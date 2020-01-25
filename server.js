@@ -1,22 +1,42 @@
-const express = require("express");
-const path = require("path");
-const PORT = process.env.PORT || 3001;
+const express = require('express');
+const favicon = require('express-favicon');
+const mongoose = require('mongoose');
+const port = process.env.PORT || 8080;
 const app = express();
+const routes = require('./routes');
+const connection = mongoose.connection;
 
-// Define middleware here
+
+// middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 
-// Define API routes here
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/ecohabit"
+mongoose.connect(
+  MONGODB_URI,
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false
+  }
+);
 
-// Send every other request to the React app
-// Define any API routes before this runs
+connection.once('open', function callback () {
+  console.log('Connected to MongoDB!');
+});
+
+
+app.use(routes);
+
+app.use(favicon(__dirname + '/build/favicon.ico'));
+
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "./client/build/index.html"));
+  res.sendFile(path.join(__dirname, "client", "build", "index.html"));
 });
 
 app.listen(PORT, () => {
