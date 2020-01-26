@@ -14,6 +14,17 @@ mongoose
 	.then(() => console.log('connection success'))
 	.catch((err) => console.error(err));
 
+const PORT = process.env.PORT || 3001;
+// Start the API server
+app.listen(PORT, function() {
+	console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
+});
+
+// Serve up static assets (usually on heroku)
+if (process.env.NODE_ENV === 'production') {
+	app.use(express.static('client/build'));
+}
+
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: 'false' }));
@@ -21,12 +32,6 @@ app.use(express.static(path.join(__dirname, 'client/build')));
 
 app.use('/api/survey', survey);
 app.use('/api/auth', auth);
-
-const PORT = process.env.PORT || 3001;
-// Start the API server
-app.listen(PORT, function() {
-	console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
-});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
