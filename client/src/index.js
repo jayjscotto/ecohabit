@@ -1,7 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import App from './App';
-import * as serviceWorker from './serviceWorker';
+import Login from './Components/Login';
+import Register from './Components/Register';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(
+	<Router>
+		<div>
+			<Route exact path="/" component={App} />
+			<Route path="/login" component={Login} />
+			<Route path="/register" component={Register} />
+		</div>
+	</Router>,
+	document.getElementById('root')
+);
