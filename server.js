@@ -1,9 +1,12 @@
+  
 const express = require('express');
 const favicon = require('express-favicon');
 const mongoose = require('mongoose');
-const port = process.env.PORT || 8080;
+
+const PORT = process.env.PORT || 3001;
 const app = express();
-const routes = require('./routes');
+var survey = require('./routes/survey');
+var auth = require('./routes/auth');
 const connection = mongoose.connection;
 
 
@@ -17,21 +20,24 @@ if (process.env.NODE_ENV === "production") {
 }
 
 const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/ecohabit"
+mongoose.Promise = require('bluebird');
 mongoose.connect(
   MONGODB_URI,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    useFindAndModify: false
+    useFindAndModify: false,
+    promiseLibrary: require('bluebird')
   }
 );
+
 
 connection.once('open', function callback () {
   console.log('Connected to MongoDB!');
 });
 
-
-app.use(routes);
+app.use('/api/survey', survey);
+app.use('/api/auth', auth);
 
 app.use(favicon(__dirname + '/build/favicon.ico'));
 
