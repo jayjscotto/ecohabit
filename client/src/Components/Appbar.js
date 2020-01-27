@@ -14,7 +14,7 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1,
   },
   bar: {
-    background: '#218f66',
+    background: '#4d77f7',
     padding: '12px',
     margin: '0px',
   }

@@ -8,11 +8,15 @@ import Tabs from './Components/Tabs';
 
 const style = {
 	pane: {
-		height: '500px',
+		height: '400px',
 		margin: '20px',
 		textAlign: 'center',
 		fontFamily: 'inherit',
-		background: '#82bfa8'
+		background: '#4d77f7',
+		padding: '40px',
+		color: '#ffffff',
+		marginTop: '4em',
+		marginBottom: '4em'
 	}
 }
 
