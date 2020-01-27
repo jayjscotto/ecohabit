@@ -9,7 +9,6 @@ import Tabs from './Components/Tabs';
 const style = {
 	pane: {
 		height: '500px',
-		overflowY: 'scroll',
 		margin: '20px',
 		textAlign: 'center',
 		fontFamily: 'inherit',
