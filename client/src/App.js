@@ -8,14 +8,14 @@ import Tabs from './Components/Tabs';
 
 const style = {
 	pane: {
-		height: '400px',
+		height: '500px',
+		overflowY: 'scroll',
 		margin: '20px',
 		textAlign: 'center',
 		fontFamily: 'inherit',
-		background: '#4d77f7',
 		padding: '40px',
-		color: '#ffffff',
-		marginTop: '4em',
+		color: 'FBFEF9',
+		marginTop: '6em',
 		marginBottom: '4em'
 	}
 }

@@ -12,11 +12,17 @@ const useStyles = makeStyles(theme => ({
   },
   title: {
     flexGrow: 1,
+    color: '#F1BB87',
+    textShadow: '-2px 2px 3px rgba(247, 239, 153,0.25)'
   },
   bar: {
-    background: '#4d77f7',
-    padding: '12px',
-    margin: '0px',
+    background: '#5D675B',
+    padding: '8px',
+    margin: '0 auto',
+    position: 'fixed',
+    top: '0',
+    right: '0',
+    left: '0'
   }
 }));
 
