@@ -1,5 +1,20 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Container, Grid, Paper } from '@material-ui/core';
+import Appbar from './Components/Appbar';
+import LeftPane from './Components/LeftPane';
+import RightPane from './Components/RightPane';
+import Tabs from './Components/Tabs';
+
+const style = {
+	pane: {
+		height: '500px',
+		margin: '20px',
+		textAlign: 'center',
+		fontFamily: 'inherit',
+		background: '#82bfa8'
+	}
+}
 
 class App extends Component {
 	constructor(props) {
@@ -31,24 +46,16 @@ class App extends Component {
 	render() {
 		return (
 			<div className="container">
-				<div className="panel panel-default">
-					<div className="panel-heading">
-						<h3 className="panel-title">
-							EcoHabit &nbsp;
-							{localStorage.getItem('jwtToken') && (
-								<button className="btn btn-primary" onClick={this.logout}>
-									Logout
-								</button>
-							)}
-						</h3>
-						<hr />
-					</div>
-					<div className="panel-body">
-						<div>
-							<h5>Put links here?</h5>
-						</div>
-					</div>
-				</div>
+				<Appbar 
+					logout={this.logout}
+				/>
+				<Container>
+					<Grid container>
+						<LeftPane style={style.pane} />
+						<RightPane style={style.pane} />
+					</Grid>
+				</Container>
+				<Tabs />
 			</div>
 		);
 	}
