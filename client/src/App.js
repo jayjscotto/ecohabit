@@ -11,7 +11,7 @@ class App extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			books: [],
+			books: []
 		};
 	}
 
@@ -20,9 +20,9 @@ class App extends Component {
 		axios
 			.get('/api/survey')
 			.then((res) => {
+				this.props.history.push('/daily');
 				console.log('YewHaw!');
 				console.log(res);
-				
 			})
 			.catch((error) => {
 				if (error.response.status === 401) {
@@ -39,19 +39,19 @@ class App extends Component {
 	render() {
 		return (
 			<Router>
-			<div className="container">
-				<Appbar 
-					logout={this.logout}
-				/>
-				<Switch>
-					
-					<Link to="/survey" component={IntakeSurvey}>About</Link>
-					<Route path='/title' component={Title}/>
-					{/* <Route path='/reminders' component={Reminders} />
+				<div className="container">
+					<Appbar logout={this.logout} />
+					<Switch>
+						<Link to="/daily" component={Daily} />
+						<Link to="/survey" component={IntakeSurvey}>
+							About
+						</Link>
+						<Route path="/title" component={Title} />
+						{/* <Route path='/reminders' component={Reminders} />
 					<Route path='/account-info' component={Account} /> */}
-				</Switch>
-				<Tabs />
-			</div>
+					</Switch>
+					<Tabs />
+				</div>
 			</Router>
 		);
 	}
