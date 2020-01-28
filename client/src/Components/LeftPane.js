@@ -6,7 +6,7 @@ function LeftPane(props) {
         <Grid item sm>
             <Paper style={props.style} >
                 <Typography variant="h4">
-                    Left Column
+                    Left Column 
                 </Typography>
                 <Typography variant="body1">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam nec felis vitae lectus dignissim pellentesque vitae pellentesque metus. Duis feugiat tincidunt iaculis. Morbi metus purus, molestie sit amet maximus bibendum, commodo vitae ex. Nunc pulvinar at velit ac finibus. Suspendisse rhoncus nunc eget accumsan consectetur. 
