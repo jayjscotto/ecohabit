@@ -45,7 +45,7 @@ class App extends Component {
 				/>
 				<Switch>
 					<Route exact path='/' component={Daily} />
-					<Route path='/intake' component={IntakeSurvey} />
+					<Link to="/survey" component={IntakeSurvey}>About</Link>
 					<Route path='/title' component={Title}/>
 					{/* <Route path='/reminders' component={Reminders} />
 					<Route path='/account-info' component={Account} /> */}
