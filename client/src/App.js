@@ -23,7 +23,7 @@ class App extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			books: []
+			books: [],
 		};
 	}
 
@@ -33,6 +33,8 @@ class App extends Component {
 			.get('/api/survey')
 			.then((res) => {
 				console.log('YewHaw!');
+				console.log(res);
+				
 			})
 			.catch((error) => {
 				if (error.response.status === 401) {

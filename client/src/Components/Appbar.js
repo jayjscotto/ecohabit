@@ -18,11 +18,6 @@ const useStyles = makeStyles(theme => ({
   bar: {
     background: '#5D675B',
     padding: '2px',
-    // margin: '0 auto',
-    // position: 'fixed',
-    // top: '0',
-    // right: '0',
-    // left: '0',
   }
 }));
 
@@ -30,7 +25,6 @@ export default function ButtonAppBar(props) {
   const classes = useStyles();
 
   return (
-    // <div className={classes.root}>
       <AppBar position="fixed" className={classes.bar}>
         <Toolbar>
           <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
@@ -44,6 +38,5 @@ export default function ButtonAppBar(props) {
 					)}
         </Toolbar>
       </AppBar>
-    // </div>
   );
 }

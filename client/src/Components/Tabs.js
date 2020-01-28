@@ -32,13 +32,11 @@ export default function CenteredTabs() {
         value={value}
         onChange={handleChange}
         indicatorColor="primary"
-        inkBarStyle={{ background: '#ffffff' }}
-        textColor="#ffffff"
         centered
       >
-        <Tab label="Habits" />
+        <Tab label="Habit break" />
         <Tab label="Education" />
-        <Tab label="Do Better" />
+        <Tab label="Marketplace" />
       </Tabs>
     </Paper>
   );
