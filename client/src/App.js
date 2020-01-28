@@ -1,23 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Container, Grid, Paper } from '@material-ui/core';
+import Daily from './Pages/Daily';
 import Appbar from './Components/Appbar';
-import LeftPane from './Components/LeftPane';
-import RightPane from './Components/RightPane';
 import Tabs from './Components/Tabs';
-
-const style = {
-	pane: {
-		height: '500px',
-		margin: '20px',
-		textAlign: 'center',
-		fontFamily: 'inherit',
-		padding: '40px',
-		color: 'FBFEF9',
-		marginTop: '6em',
-		marginBottom: '4em'
-	}
-}
 
 class App extends Component {
 	constructor(props) {
@@ -54,12 +39,7 @@ class App extends Component {
 				<Appbar 
 					logout={this.logout}
 				/>
-				<Container>
-					<Grid container>
-						<LeftPane style={style.pane} />
-						<RightPane style={style.pane} />
-					</Grid>
-				</Container>
+				<Daily />
 				<Tabs />
 			</div>
 		);
