@@ -1,4 +1,3 @@
-  
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
@@ -9,7 +8,7 @@ require('../config/passport')(passport);
 router.get('/', passport.authenticate('jwt', { session: false }), function(req, res) {
 	const token = getToken(req.headers);
 	if (token) {
-		// db query here
+		console.log(token);
 	} else {
 		return res.status(403).send({ success: false, msg: 'Unauthorized.' });
 	}

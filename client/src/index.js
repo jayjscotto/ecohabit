@@ -6,14 +6,19 @@ import './index.css';
 import Appbar from './Components/Appbar';
 import Login from './Components/Login';
 import Register from './Components/Register';
+import IntakeSurvey from './Pages/IntakeSurvey';
+import Title from './Components/Title';
 
 ReactDOM.render(
 	<Router>
-		<Appbar/>
+		<Appbar />
 		<div>
 			<Route exact path="/login" component={Login} />
-			<Route path="/register" component={Register} />
-			<Route path="/" component={App} />
+			<Route exact path="/register" component={Register} />
+			<Route exact path="/" component={App} />
+			{/* changed */}
+			<Route exact path="/survey" component={IntakeSurvey} />
+			<Route exact path="/title" component={Title} />
 		</div>
 	</Router>,
 	document.getElementById('root')

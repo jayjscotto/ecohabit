@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Daily from './Pages/Daily';
 import Appbar from './Components/Appbar';
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Tabs from './Components/Tabs';
 import IntakeSurvey from './Pages/IntakeSurvey';
 import Title from './Components/Title';
@@ -38,21 +38,23 @@ class App extends Component {
 
 	render() {
 		return (
-			<Router>
-				<div className="container">
-					<Appbar logout={this.logout} />
-					<Switch>
-						<Link to="/daily" component={Daily} />
+			<div className="container">
+				<Appbar logout={this.logout} />
+
+				<Link to="/" component={Daily}>
+					Daily
+				</Link>
+				<Link to="/survey">Survey</Link>
+
+				{/* <Route path="/" component={Daily} />
 						<Link to="/survey" component={IntakeSurvey}>
 							About
 						</Link>
-						<Route path="/title" component={Title} />
-						{/* <Route path='/reminders' component={Reminders} />
+						<Route path="/title" component={Title} /> */}
+				{/* <Route path='/reminders' component={Reminders} />
 					<Route path='/account-info' component={Account} /> */}
-					</Switch>
-					<Tabs />
-				</div>
-			</Router>
+				<Tabs />
+			</div>
 		);
 	}
 }
