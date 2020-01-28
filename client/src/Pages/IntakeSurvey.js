@@ -22,7 +22,7 @@ const IntakeSurvey = props => {
                 <Grid item sm>
                     <Paper>
                         <Typography variant='h4'>Question 1:</Typography>
-                        {/* <GreenRadio/> */}
+                        <GreenRadio/>
                     </Paper>
                 </Grid>
             </Grid> 
