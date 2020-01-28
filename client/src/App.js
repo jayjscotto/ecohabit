@@ -5,6 +5,7 @@ import Appbar from './Components/Appbar';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import Tabs from './Components/Tabs';
 import IntakeSurvey from './Pages/IntakeSurvey';
+import Title from './Components/Title';
 
 class App extends Component {
 	constructor(props) {
@@ -44,7 +45,8 @@ class App extends Component {
 				/>
 				<Switch>
 					<Route exact path='/' component={Daily} />
-					<Route exact path='/intake' component={IntakeSurvey} />
+					<Route path='/intake' component={IntakeSurvey} />
+					<Route path='/title' component={Title}/>
 					{/* <Route path='/reminders' component={Reminders} />
 					<Route path='/account-info' component={Account} /> */}
 				</Switch>
