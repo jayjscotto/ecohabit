@@ -1,22 +1,12 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Container, Grid, Paper } from '@material-ui/core';
+import Daily from './Pages/Daily';
 import Appbar from './Components/Appbar';
+<<<<<<< HEAD
 import { Router as BrowserRouter, Switch, Link } from 'react-router-dom';
+=======
+>>>>>>> 0b7aa134af78c2fcf798626ace4214197e4d41c5
 import Tabs from './Components/Tabs';
-
-const style = {
-	pane: {
-		height: '500px',
-		margin: '20px',
-		textAlign: 'center',
-		fontFamily: 'inherit',
-		padding: '40px',
-		color: 'FBFEF9',
-		marginTop: '6em',
-		marginBottom: '4em'
-	}
-}
 
 class App extends Component {
 	constructor(props) {
@@ -57,6 +47,7 @@ class App extends Component {
 				<Switch>
 					<Route exact path='/' component={Daily}/>
 					<Route path='/reminders' component={Reminders}/>
+					<Route path='/account-info' component={Account}/>
 				</Switch>
 				<Tabs />
 			</div>
