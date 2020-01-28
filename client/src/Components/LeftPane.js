@@ -4,7 +4,7 @@ import { Grid, Paper, Typography } from '@material-ui/core';
 function LeftPane(props) {
     return (
         <Grid item sm>
-            <Paper style={props.style} >
+            <Paper elevation={3} style={props.style} >
                 <Typography variant="h4">
                     Left Column 
                 </Typography>
