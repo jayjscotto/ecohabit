@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Container, Grid, Paper } from '@material-ui/core';
 import Appbar from './Components/Appbar';
-import LeftPane from './Components/LeftPane';
-import RightPane from './Components/RightPane';
+import { Router as BrowserRouter, Switch, Link } from 'react-router-dom';
 import Tabs from './Components/Tabs';
 
 const style = {
@@ -50,18 +49,18 @@ class App extends Component {
 
 	render() {
 		return (
+			<Router>
 			<div className="container">
 				<Appbar 
 					logout={this.logout}
 				/>
-				<Container>
-					<Grid container>
-						<LeftPane style={style.pane} />
-						<RightPane style={style.pane} />
-					</Grid>
-				</Container>
+				<Switch>
+					<Route exact path='/' component={Daily}/>
+					<Route path='/reminders' component={Reminders}/>
+				</Switch>
 				<Tabs />
 			</div>
+			</Router>
 		);
 	}
 }
