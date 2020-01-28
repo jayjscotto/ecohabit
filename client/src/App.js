@@ -20,6 +20,7 @@ class App extends Component {
 		axios
 			.get('/api/survey')
 			.then((res) => {
+				this.props.history.push('/daily');
 				console.log('YewHaw!');
 				console.log(res);
 			})
