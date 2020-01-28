@@ -44,7 +44,7 @@ class App extends Component {
 					logout={this.logout}
 				/>
 				<Switch>
-					<Route exact path='/' component={Daily} />
+					
 					<Link to="/survey" component={IntakeSurvey}>About</Link>
 					<Route path='/title' component={Title}/>
 					{/* <Route path='/reminders' component={Reminders} />

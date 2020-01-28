@@ -12,7 +12,7 @@ ReactDOM.render(
 		<Appbar/>
 		<div>
 			<Route exact path="/login" component={Login} />
-			<Route exact path="/register" component={Register} />
+			<Route path="/register" component={Register} />
 			<Route path="/" component={App} />
 		</div>
 	</Router>,
