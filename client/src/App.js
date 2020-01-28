@@ -2,11 +2,9 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Daily from './Pages/Daily';
 import Appbar from './Components/Appbar';
-<<<<<<< HEAD
-import { Router as BrowserRouter, Switch, Link } from 'react-router-dom';
-=======
->>>>>>> 0b7aa134af78c2fcf798626ace4214197e4d41c5
+import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import Tabs from './Components/Tabs';
+import IntakeSurvey from './Pages/IntakeSurvey';
 
 class App extends Component {
 	constructor(props) {
@@ -45,9 +43,10 @@ class App extends Component {
 					logout={this.logout}
 				/>
 				<Switch>
-					<Route exact path='/' component={Daily}/>
-					<Route path='/reminders' component={Reminders}/>
-					<Route path='/account-info' component={Account}/>
+					<Route exact path='/' component={Daily} />
+					<Route exact path='/intake' component={IntakeSurvey} />
+					{/* <Route path='/reminders' component={Reminders} />
+					<Route path='/account-info' component={Account} /> */}
 				</Switch>
 				<Tabs />
 			</div>
