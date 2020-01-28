@@ -1,0 +1,19 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-image: linear-gradient(45deg, #F78E69, #f7ef99);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: fixed;
+    height: 100vh;
+}
+
+/* 
+
+light green: #ABE188
+yellow: #F7EF99
+beige: #F1BB87
+orange: #F78E69
+dark green: #5D675B
+
+*/
