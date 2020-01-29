@@ -16,14 +16,7 @@ ReactDOM.render(
 		<div>
 			<Appbar />
 		</div>
-
-			<Switch>
-				<Route exact path="/login" component={Login} />
-				<Route exact path="/register" component={Register} />
-				<Route exact path="/" component={Daily} />
-				<Route exact path="/survey" component={IntakeSurvey} />
-				<Route exact path="/title" component={Title} />
-			</Switch>
+			<App/>
 		<Tabs/>
 	</Router>,
 	document.getElementById('root')

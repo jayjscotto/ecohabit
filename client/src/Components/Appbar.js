@@ -65,20 +65,20 @@ export default function ButtonAppBar(props) {
         <Button color='inherit'>About</Button>
         <Button color='inherit'>Reminders</Button>
 
-     
-
-        {
-        localStorage.getItem('jwtToken') ? (
+        {localStorage.getItem('jwtToken') ? (
           <Button color='inherit' onClick={logout}>
             Logout
           </Button>
         ) : (
-          <Link className={classes.link} to='/login'>
-          <Button 
-          color='inherit'>Login</Button>
-        </Link>
-        ) 
-        }
+          <div>
+            <Link className={classes.link} to='/login'>
+              <Button color='inherit'>Login</Button>
+            </Link>
+            <Link className={classes.link} to='/register'>
+              <Button color='inherit'>Register</Button>
+            </Link>
+          </div>
+        )}
       </Toolbar>
     </AppBar>
   );
