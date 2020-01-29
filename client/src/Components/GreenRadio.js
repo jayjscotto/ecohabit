@@ -7,13 +7,17 @@ const GreenRadio = withStyles({
   root: {
     color: green[400],
     '&$checked': {
-      color: green[600],
+      color: green[600]
     },
+    margin: '0 2em',
   },
-  checked: {},
-})(props => <Radio color="default" {...props} />);
 
-export default function RadioButton() {
+  checked: {},
+
+})(props => <Radio color='default' {...props} />);
+
+
+export default function RadioButtons() {
   const [selectedValue, setSelectedValue] = React.useState('a');
 
   const handleChange = event => {
@@ -22,43 +26,38 @@ export default function RadioButton() {
 
   return (
     <div>
-      <Radio
-        checked={selectedValue === 'a'}
+        
+      <GreenRadio
+    
+        checked={selectedValue === 'A'}
         onChange={handleChange}
-        value="a"
-        name="radio-button-demo"
+        value='A'
+        name='radio-button-demo'
         inputProps={{ 'aria-label': 'A' }}
       />
-      <Radio
-        checked={selectedValue === 'b'}
+      <GreenRadio
+
+        checked={selectedValue === 'B'}
         onChange={handleChange}
-        value="b"
-        name="radio-button-demo"
+        value='B'
+        name='radio-button-demo'
         inputProps={{ 'aria-label': 'B' }}
       />
       <GreenRadio
+   
         checked={selectedValue === 'c'}
         onChange={handleChange}
-        value="c"
-        name="radio-button-demo"
+        value='c'
+        name='radio-button-demo'
         inputProps={{ 'aria-label': 'C' }}
       />
-      <Radio
-        checked={selectedValue === 'd'}
+      <GreenRadio
+    
+        checked={selectedValue === 'D'}
         onChange={handleChange}
-        value="d"
-        color="default"
-        name="radio-button-demo"
+        value='D'
+        name='radio-button-demo'
         inputProps={{ 'aria-label': 'D' }}
-      />
-      <Radio
-        checked={selectedValue === 'e'}
-        onChange={handleChange}
-        value="e"
-        color="default"
-        name="radio-button-demo"
-        inputProps={{ 'aria-label': 'E' }}
-        size="small"
       />
     </div>
   );
