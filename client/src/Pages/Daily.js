@@ -11,8 +11,8 @@ const style = {
 		fontFamily: 'inherit',
 		padding: '40px',
 		color: 'FBFEF9',
-		marginTop: '6em',
-		marginBottom: '4em'
+		marginTop: '4em',
+		// marginBottom: '4em'
 	}
 }
 

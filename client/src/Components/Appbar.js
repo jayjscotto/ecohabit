@@ -25,13 +25,19 @@ export default function ButtonAppBar(props) {
   const classes = useStyles();
 
   return (
-      <AppBar position="fixed" className={classes.bar}>
+      <AppBar className={classes.bar}>
         <Toolbar>
           <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
             {/* <MenuIcon /> */}
           </IconButton>
           <Typography variant="h4" className={classes.title}>
             Ecohabit
+          </Typography>
+          <Typography variant="h5">
+            Daily Dashboard
+          </Typography>
+          <Typography variant="h5">
+            Educate
           </Typography>
           {localStorage.getItem('jwtToken') && (
             <Button color="inherit" onClick={props.logout}>Logout</Button>

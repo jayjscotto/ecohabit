@@ -11,7 +11,6 @@ import Title from './Components/Title';
 
 ReactDOM.render(
 	<Router>
-		<Appbar />
 		<div>
 			<Route exact path="/login" component={Login} />
 			<Route exact path="/register" component={Register} />

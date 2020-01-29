@@ -39,12 +39,14 @@ class App extends Component {
 	render() {
 		return (
 			<div className="container">
-				<Appbar logout={this.logout} />
+				<Appbar logout={this.logout}/>
 
-				<Link to="/" component={Daily}>
-					Daily
-				</Link>
-				<Link to="/survey">Survey</Link>
+					<Link to="/" component={Daily}>
+						Daily
+					</Link>
+					<Link to="/survey">
+						Survey
+					</Link>
 
 				{/* <Route path="/" component={Daily} />
 						<Link to="/survey" component={IntakeSurvey}>
@@ -53,7 +55,7 @@ class App extends Component {
 						<Route path="/title" component={Title} /> */}
 				{/* <Route path='/reminders' component={Reminders} />
 					<Route path='/account-info' component={Account} /> */}
-				<Tabs />
+				{/* <Tabs /> */}
 			</div>
 		);
 	}
