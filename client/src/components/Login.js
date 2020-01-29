@@ -12,6 +12,13 @@ let style = {
   input: {
     display: 'block',
     margin: '2em auto',
+  },
+  action: {
+    color: '#5D675B'
+  },
+  login: {
+    background: '#5D675B',
+    color: '#f7f3c2',
   }
 }
 
@@ -71,11 +78,7 @@ class Login extends Component {
                   { message }
                 </div>
               }
-              <Typography variant="h5">Please sign in</Typography>
-              {/* <label className="sr-only">Email address</label> */}
-              {/* <input type="email" className="form-control" placeholder="Email address" name="username" value={username} onChange={this.onChange} required/> */}
-              {/* <label className="sr-only">Password</label> */}
-              {/* <input type="password" className="form-control" placeholder="Password" name="password" value={password} onChange={this.onChange} required/> */}
+              <Typography style={style.action} variant="h5">Please sign in</Typography>
               <TextField
                 style={style.input}
                 id="outlined-password-input"
@@ -104,7 +107,8 @@ class Login extends Component {
               <Button 
               variant="contained" 
               color="primary" 
-              type="submit">
+              type="submit"
+              style={style.login}>
                 Login
               </Button>
               </CardActions>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { AppBar, Toolbar, Typography, Button, IconButton } from '@material-ui/core';
+import { AppBar, Toolbar, Typography, Button, IconButton, Link,  } from '@material-ui/core';
+import Daily from '../Pages/Daily';
 // import MenuIcon from '@material-ui/icons/Menu';
 
 const useStyles = makeStyles(theme => ({
@@ -27,18 +28,10 @@ export default function ButtonAppBar(props) {
   return (
       <AppBar className={classes.bar}>
         <Toolbar>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-            {/* <MenuIcon /> */}
-          </IconButton>
-          <Typography variant="h4" className={classes.title}>
-            Ecohabit
-          </Typography>
-          <Typography variant="h5">
-            Daily Dashboard
-          </Typography>
-          <Typography variant="h5">
-            Educate
-          </Typography>
+          <Typography variant="h4" className={classes.title}>Ecohabit</Typography>
+          <Button color="inherit" variant='h6'>Daily Dashboard</Button>
+          <Button color="inherit" variant='h6'>Reminders</Button>
+          <Button color="inherit" variant='h6'>Education Yourself</Button>
           {localStorage.getItem('jwtToken') && (
             <Button color="inherit" onClick={props.logout}>Logout</Button>
 					)}

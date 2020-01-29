@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Daily from './Pages/Daily';
+import Account from './Pages/Account';
 import Appbar from './Components/Appbar';
 import { Link } from 'react-router-dom';
 import Tabs from './Components/Tabs';
 import IntakeSurvey from './Pages/IntakeSurvey';
 import Title from './Components/Title';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 class App extends Component {
 	constructor(props) {
@@ -40,22 +42,7 @@ class App extends Component {
 		return (
 			<div className="container">
 				<Appbar logout={this.logout}/>
-
-					<Link to="/" component={Daily}>
-						Daily
-					</Link>
-					<Link to="/survey">
-						Survey
-					</Link>
-
-				{/* <Route path="/" component={Daily} />
-						<Link to="/survey" component={IntakeSurvey}>
-							About
-						</Link>
-						<Route path="/title" component={Title} /> */}
-				{/* <Route path='/reminders' component={Reminders} />
-					<Route path='/account-info' component={Account} /> */}
-				{/* <Tabs /> */}
+				<Daily />
 			</div>
 		);
 	}

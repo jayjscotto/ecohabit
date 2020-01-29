@@ -4,24 +4,30 @@ import LeftPane from '../Components/LeftPane';
 import RightPane from '../Components/RightPane';
 
 const style = {
-	pane: {
-		height: '500px',
+	leftpane: {
+		color: '#5D675B',
+		height: '650px',
 		margin: '20px',
 		textAlign: 'center',
 		fontFamily: 'inherit',
-		padding: '40px',
-		color: 'FBFEF9',
-		marginTop: '4em',
-		// marginBottom: '4em'
+		padding: '20px',
+	},
+	rightpane: {
+		color: '#5D675B',
+		height: '285px',
+		margin: '20px',
+		textAlign: 'center',
+		fontFamily: 'inherit',
+		padding: '20px',
 	}
 }
 
 function Daily(props) {
     return (
-        <Container>
+        <Container style={{ marginTop: '6em' }}>
             <Grid container>
-                <LeftPane style={style.pane} />
-                <RightPane style={style.pane} />
+                <LeftPane style={style.leftpane} />
+                <RightPane style={style.rightpane} />
             </Grid>
         </Container>
     )
