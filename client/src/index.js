@@ -8,6 +8,7 @@ import Login from './Components/Login';
 import Register from './Components/Register';
 import IntakeSurvey from './Pages/IntakeSurvey';
 import Title from './Components/Title';
+import Daily from './Pages/Daily';
 
 ReactDOM.render(
 	<Router>

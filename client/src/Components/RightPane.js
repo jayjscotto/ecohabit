@@ -2,12 +2,6 @@ import React, { Component, Fragment } from 'react';
 import { makeStyles, ThemeProvider } from '@material-ui/core/styles';
 import { Grid, Paper, Typography } from '@material-ui/core';
 
-// const useStyles = makeStyles(theme => {
-//     paper: {
-//         padding: theme.spacing(1)
-//     }
-// })
-
 function RightPane(props) {
     // const classes = useStyles();
 

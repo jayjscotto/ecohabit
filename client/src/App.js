@@ -24,7 +24,6 @@ class App extends Component {
 			.then((res) => {
 				this.props.history.push('/daily');
 				console.log('YewHaw!');
-				console.log(res);
 			})
 			.catch((error) => {
 				if (error.response.status === 401) {

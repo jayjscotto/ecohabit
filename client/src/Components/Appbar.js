@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { AppBar, Toolbar, Typography, Button, IconButton, Link,  } from '@material-ui/core';
 import Daily from '../Pages/Daily';
@@ -29,11 +29,13 @@ export default function ButtonAppBar(props) {
       <AppBar className={classes.bar}>
         <Toolbar>
           <Typography variant="h4" className={classes.title}>Ecohabit</Typography>
-          <Button color="inherit" variant='h6'>Daily Dashboard</Button>
-          <Button color="inherit" variant='h6'>Reminders</Button>
-          <Button color="inherit" variant='h6'>Education Yourself</Button>
           {localStorage.getItem('jwtToken') && (
-            <Button color="inherit" onClick={props.logout}>Logout</Button>
+            <Fragment>
+              <Button color="inherit" variant='h6'>Daily Dashboard</Button>
+              <Button color="inherit" variant='h6'>Reminders</Button>
+              <Button color="inherit" variant='h6'>Educate Yourself</Button>
+              <Button color="inherit" onClick={props.logout}>Logout</Button>
+            </Fragment>
 					)}
         </Toolbar>
       </AppBar>
