@@ -32,7 +32,8 @@ const IntakeSurvey = props => {
 
   // lifecycle method to fetch questions from API/DB
   // map over the questions to print a card with each question on it
-  
+    // map over the answers to print radio group with each answer on it... 
+    
   //write a function in which each answer and updates an array as each answer is chosen
 
   //write a function that when the survey is submitted, it makes a post request to the db.

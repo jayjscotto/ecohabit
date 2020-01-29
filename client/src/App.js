@@ -11,7 +11,8 @@ class App extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			books: []
+			dailySurveyTaken: false,
+			dailySurveyQuestions: []
 		};
 	}
 
@@ -31,15 +32,10 @@ class App extends Component {
 			});
 	}
 
-	logout = () => {
-		localStorage.removeItem('jwtToken');
-		window.location.reload();
-	};
 
 	render() {
 		return (
 			<div className="container">
-				<Appbar logout={this.logout} />
 
 				<Link to="/" component={Daily}>
 					Daily
