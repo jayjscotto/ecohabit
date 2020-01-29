@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
@@ -8,6 +9,12 @@ import {
   Button,
   IconButton
 } from '@material-ui/core';
+=======
+import React, { Fragment } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import { AppBar, Toolbar, Typography, Button, IconButton, Link,  } from '@material-ui/core';
+import Daily from '../Pages/Daily';
+>>>>>>> 5eae9381685aacd8c98c80b41d67e5c03ccdf6a3
 // import MenuIcon from '@material-ui/icons/Menu';
 
 const useStyles = makeStyles(theme => ({
@@ -48,38 +55,27 @@ export default function ButtonAppBar(props) {
   };
 
   return (
-    <AppBar position='fixed' className={classes.bar}>
-      <Toolbar>
-        <IconButton
-          edge='start'
-          className={classes.menuButton}
-          color='inherit'
-          aria-label='menu'
-        >
-          {/* <MenuIcon /> */}
-        </IconButton>
-        <Typography variant='h4' className={classes.title}>
-          Ecohabit
-        </Typography>
-        <Button color='inherit'>Home</Button>
-        <Button color='inherit'>About</Button>
-        <Button color='inherit'>Reminders</Button>
-
-        {localStorage.getItem('jwtToken') ? (
-          <Button color='inherit' onClick={logout}>
-            Logout
-          </Button>
-        ) : (
-          <div>
-            <Link className={classes.link} to='/login'>
-              <Button color='inherit'>Login</Button>
-            </Link>
-            <Link className={classes.link} to='/register'>
-              <Button color='inherit'>Register</Button>
-            </Link>
-          </div>
-        )}
-      </Toolbar>
-    </AppBar>
+      <AppBar className={classes.bar}>
+        <Toolbar>
+          <Typography variant="h4" className={classes.title}>Ecohabit</Typography>
+            {localStorage.getItem('jwtToken') ? (
+              <Fragment>
+                <Button color="inherit" variant='h6'>Daily Dashboard</Button>
+                <Button color="inherit" variant='h6'>Reminders</Button>
+                <Button color="inherit" variant='h6'>Educate Yourself</Button>
+                <Button color='inherit' onClick={logout}>Logout</Button>
+              </Fragment>
+              ) : (
+              <Fragment>
+                <Link className={classes.link} to='/login'>
+                  <Button color='inherit'>Login</Button>
+                </Link>
+                <Link className={classes.link} to='/register'>
+                  <Button color='inherit'>Register</Button>
+                </Link>
+              </Fragment>
+            )}
+        </Toolbar>
+      </AppBar>
   );
 }
