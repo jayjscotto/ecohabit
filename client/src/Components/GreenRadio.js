@@ -17,7 +17,7 @@ const GreenRadio = withStyles({
 })(props => <Radio color='default' {...props} />);
 
 
-export default function RadioButtons() {
+export default function RadioButtons(props) {
   const [selectedValue, setSelectedValue] = React.useState('a');
 
   const handleChange = event => {
@@ -26,38 +26,22 @@ export default function RadioButtons() {
 
   return (
     <div>
-        
-      <GreenRadio
-    
-        checked={selectedValue === 'A'}
-        onChange={handleChange}
-        value='A'
-        name='radio-button-demo'
-        inputProps={{ 'aria-label': 'A' }}
-      />
-      <GreenRadio
 
-        checked={selectedValue === 'B'}
-        onChange={handleChange}
-        value='B'
-        name='radio-button-demo'
-        inputProps={{ 'aria-label': 'B' }}
-      />
+      {props.answerOne}  
       <GreenRadio
-   
-        checked={selectedValue === 'c'}
+        checked={selectedValue === 'Yes'}
         onChange={handleChange}
-        value='c'
+        value='Yes'
         name='radio-button-demo'
-        inputProps={{ 'aria-label': 'C' }}
+        inputProps={{ 'aria-label': 'Yes' }}
       />
+       {props.answerTwo }  
       <GreenRadio
-    
-        checked={selectedValue === 'D'}
+        checked={selectedValue === 'No'}
         onChange={handleChange}
-        value='D'
+        value='No'
         name='radio-button-demo'
-        inputProps={{ 'aria-label': 'D' }}
+        inputProps={{ 'aria-label': 'No' }}
       />
     </div>
   );
