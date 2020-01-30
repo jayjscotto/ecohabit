@@ -10,17 +10,23 @@ export class Confirm extends Component {
 		e.preventDefault();
 		// call api here
 		const { values: { firstName, lastName, userName, password, password2, zipCode } } = this.props;
+		//console.log(this.props);
+
+		// const values = { values: { firstName, lastName, userName, password, password2, zipCode } };
+		// console.log(`this is my user data omg omg ogmogm go mgom ogrmf\n $/{JSON.stringify(values)}`);
 
 		axios
-			.post('/api/auth/register', { userName, firstName, lastName, password, password2, zipCode }, function(res) {
-				if (res.status === 200) {
-					console.log(this);
-					this.setState({ register: true });
-					console.log(this.state);
+			.post(
+				'/api/auth/register',
+				{ values: { firstName, lastName, userName, password, password2, zipCode } },
+				function(res) {
+					if (res.status === 200) {
+						console.log(res);
+					}
 				}
-			})
+			)
 			.then((result) => {
-				console.log(result);
+				//	console.log(result);
 				this.props.nextStep();
 			});
 	};
@@ -31,8 +37,7 @@ export class Confirm extends Component {
 		this.props.prevStep();
 	};
 	render() {
-		const { values: { firstName, lastName, userName, password, password2, zipCode } } = this.props;
-		console.log(this.values);
+		const { values: { userName, password, password2, firstName, lastName, zipCode } } = this.props;
 
 		return (
 			<MuiThemeProvider>

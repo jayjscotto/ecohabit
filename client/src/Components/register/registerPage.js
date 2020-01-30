@@ -9,11 +9,11 @@ import { Redirect } from 'react-router-dom';
 export class RegisterPage extends Component {
 	state = {
 		step: 1,
-		firstName: '',
-		lastName: '',
 		userName: '',
 		password: '',
 		password2: '',
+		firstName: '',
+		lastName: '',
 		zipCode: ''
 	};
 

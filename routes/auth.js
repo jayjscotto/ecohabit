@@ -7,28 +7,44 @@ const jwt = require('jsonwebtoken');
 const router = express.Router();
 const User = require('../models/User');
 
-router.post('/register', function(req, res) {
-	if (!req.body.username || !req.body.password) {
-		res.json({ success: false, msg: 'Please pass username and password.' });
+router.post('/register', function(req, res, err) {
+	console.log(req.body.values.userName);
+	if (
+		!req.body.values.userName ||
+		!req.body.values.password ||
+		!req.body.values.firstName ||
+		!req.body.values.lastName ||
+		!req.body.values.zipCode
+	) {
+		throw err;
+		// res.json({ success: false, msg: 'Please pass username and password.' });
 	} else {
 		const newUser = new User({
-			username: req.body.username,
-			password: req.body.password
+			userName: req.body.values.userName,
+			password: req.body.values.password,
+			password2: req.body.values.password2,
+			firstName: req.body.values.firstName,
+			lastName: req.body.values.lastName,
+			zipCode: req.body.values.zipCode
 		});
+		console.log(newUser);
 		// save the user
-		newUser.save(function(err) {
-			if (err) {
-				return res.json({ success: false, msg: 'Username already exists.' });
-			}
-			res.json({ success: true, msg: 'Successful created new user.' });
-		});
+		newUser
+			.save()
+			.then((user) => {
+				console.log('success!');
+				// req.flash('success_msg', 'You are now registered and can log in');
+			})
+			.catch((err) => console.log(err));
+		// you can tack a db request here with a then statement
 	}
 });
 
 router.post('/login', function(req, res) {
+	console.log(req.body);
 	User.findOne(
 		{
-			username: req.body.username
+			userName: req.body.userName
 		},
 		function(err, user) {
 			if (err) throw err;

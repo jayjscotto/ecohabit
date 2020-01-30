@@ -3,12 +3,15 @@ const Schema = mongoose.Schema;
 const bcrypt = require('bcrypt-nodejs');
 
 const UserSchema = new Schema({
-	username: {
+	userName: {
 		type: String,
-		unique: true,
 		required: true
 	},
 	password: {
+		type: String,
+		required: true
+	},
+	password2: {
 		type: String,
 		required: true
 	},
@@ -30,9 +33,9 @@ const UserSchema = new Schema({
 	},
 	zipCode: {
 		type: Number,
-		required: true,
-		min: [ 5, 'Zip Code must be 5 Digits long' ],
-		max: 5
+		required: true
+		// min: [ 5, 'Zip Code must be 5 Digits long' ],
+		// max: 5
 	},
 	surveyResult: {
 		// push points to an array

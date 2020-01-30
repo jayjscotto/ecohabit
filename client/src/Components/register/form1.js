@@ -38,7 +38,6 @@ export class Form1 extends Component {
 						floatingLabelText="E-mail"
 						onChange={handleChange('userName')}
 						defaultValue={values.userName}
-						type="email"
 					/>
 					<br />
 					<RaisedButton label="Continue" primary={true} style={styles.button} onClick={this.continue} />
