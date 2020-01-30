@@ -1,17 +1,23 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { green } from '@material-ui/core/colors';
-import { Radio, 
+import {
+  Radio,
   FormControlLabel,
   FormLabel,
-  RadioGroup, } from '@material-ui/core';
+  RadioGroup
+} from '@material-ui/core';
 
 export default function RadioButtons(props) {
-  const [selectedValue, setSelectedValue] = React.useState('a');
+  const [selectedValue, setSelectedValue] = useState();
 
   const handleChange = event => {
     setSelectedValue(event.target.value);
   };
+
+  useEffect(() => {
+    props.updateAnswers(selectedValue);
+  }, [selectedValue]);
 
   return (
     <React.Fragment>
@@ -25,17 +31,29 @@ export default function RadioButtons(props) {
       >
         <FormControlLabel
           value='Yes'
-          control={<Radio color='success' />}
+          control={
+            <Radio
+              value='Yes'
+              checked={selectedValue === 'Yes'}
+              color='success'
+            />
+          }
           label='Yes'
           labelPlacement='top'
         />
         <FormControlLabel
           value='No'
-          control={<Radio color='success' />}
+          control={
+            <Radio
+              value='No'
+              checked={selectedValue === 'No'}
+              color='success'
+            />
+          }
           label='No'
           labelPlacement='top'
         />
       </RadioGroup>
-  </React.Fragment>
+    </React.Fragment>
   );
 }

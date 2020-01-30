@@ -42,14 +42,21 @@ const useStyles = makeStyles({
 const CheckIn = props => {
   const classes = useStyles();
 
+  let answers = [];
+
+  const updateAnswers = event => {
+    answers.push(event);
+    answers = answers.filter(answer => answer !== undefined)
+    console.log(answers)
+  };
+
   //onform submit
-  //get all the data from the lower level hooks
-  //PROVIDER
+
 
   return (
     <FormControl component='fieldset'>
       {IntakeQuestions.questions.map((question, index) => (
-        <GreenRadio index={index} question={question.question}/>
+        <GreenRadio index={index} updateAnswers={(e) => {updateAnswers(e)}} question={question.question}/>
       ))}
     </FormControl>
   );
