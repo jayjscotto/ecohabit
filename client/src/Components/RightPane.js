@@ -3,7 +3,6 @@ import { makeStyles, ThemeProvider } from '@material-ui/core/styles';
 import { Grid, Paper, Typography } from '@material-ui/core';
 
 function RightPane(props) {
-    // const classes = useStyles();
 
     return (
         <Grid container sm={6} >
@@ -23,6 +22,7 @@ function RightPane(props) {
             </Grid>
         </Grid>
     )
+
 }
 
 export default RightPane;

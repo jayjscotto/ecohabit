@@ -12,21 +12,27 @@ const UserSchema = new Schema({
 		type: String,
 		required: true
 	},
-	name: {
+	fullName: {
 		type: String,
 		required: false
 	},
 	firstName: {
 		type: String,
-		required: false
+		required: true
 	},
 	lastName: {
 		type: String,
-		required: false
+		required: true
 	},
 	date: {
 		type: Date,
 		default: Date.now
+	},
+	zipCode: {
+		type: Number,
+		required: true,
+		min: [ 5, 'Zip Code must be 5 Digits long' ],
+		max: 5
 	},
 	surveyResult: {
 		// push points to an array
