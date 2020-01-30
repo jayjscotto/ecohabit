@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const passport = require('passport');
+const User = require('../models/User');
 require('../config/passport')(passport);
 
 /* GET */
