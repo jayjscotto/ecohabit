@@ -34,7 +34,7 @@ export default function CenteredTabs() {
         indicatorColor="primary"
         centered
       >
-        <Tab label="Habit break" />
+        <Tab label="Daily"/>
         <Tab label="Education" />
         <Tab label="Marketplace" />
       </Tabs>

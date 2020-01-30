@@ -2,6 +2,25 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import './Login.css';
+import Appbar from '../Components/Appbar';
+import { Box, Container, Button, Card, CardContent, Grid, CardActions, TextField, Typography } from '@material-ui/core';
+
+let style = {
+  box: {
+    margin: '0 auto'
+  },
+  input: {
+    display: 'block',
+    margin: '2em auto',
+  },
+  action: {
+    color: '#5D675B'
+  },
+  login: {
+    background: '#5D675B',
+    color: '#f7f3c2',
+  }
+}
 
 class Login extends Component {
 
@@ -28,7 +47,7 @@ class Login extends Component {
       .then((result) => {
         localStorage.setItem('jwtToken', result.data.token);
         this.setState({ message: '' });
-        this.props.history.push('/')
+        window.location.replace('/')
       })
       .catch((error) => {
         if(error.response.status === 401) {
@@ -40,24 +59,67 @@ class Login extends Component {
   render() {
     const { username, password, message } = this.state;
     return (
-      <div className="container">
-        <form className="form-signin" onSubmit={this.onSubmit}>
-          {message !== '' &&
-            <div className="alert alert-warning alert-dismissible" role="alert">
-              { message }
-            </div>
-          }
-          <h2 className="form-signin-heading">Please sign in</h2>
-          <label className="sr-only">Email address</label>
-          <input type="email" className="form-control" placeholder="Email address" name="username" value={username} onChange={this.onChange} required/>
-          <label className="sr-only">Password</label>
-          <input type="password" className="form-control" placeholder="Password" name="password" value={password} onChange={this.onChange} required/>
-          <button className="btn btn-lg btn-primary btn-block" type="submit">Login</button>
-          <p>
-            Not a member? <Link to="/register"><span className="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Register here</Link>
-          </p>
-        </form>
-      </div>
+      <Grid 
+      container
+      spacing={0}
+      direction="column"
+      alignItems="center"
+      justify="center"
+      style={{ minHeight: '100vh' }}
+      elevation={3}
+      >
+        <Appbar />
+        <Grid item>
+          <Card className="container" style={style.box}>
+            <CardContent>
+            <form className="form-signin" onSubmit={this.onSubmit}>
+              {message !== '' &&
+                <div className="alert alert-warning alert-dismissible" role="alert">
+                  { message }
+                </div>
+              }
+              <Typography style={style.action} variant="h5">Please sign in</Typography>
+              <TextField
+                style={style.input}
+                id="outlined-password-input"
+                label="Email Address"
+                name="username"
+                value={username}
+                onChange={this.onChange}
+                type="email"
+                autoComplete="current-username"
+                variant="outlined"
+                required
+              />
+              <TextField
+                style={style.input}
+                id="outlined-password-input"
+                label="Password"
+                name="password"
+                value={password}
+                onChange={this.onChange}
+                type="password"
+                autoComplete="current-password"
+                variant="outlined"
+                required
+              />
+              <CardActions>
+              <Button 
+              variant="contained" 
+              color="primary" 
+              type="submit"
+              style={style.login}>
+                Login
+              </Button>
+              </CardActions>
+              <Typography>
+                Not a member? <Link to="/register"><span className="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Register here</Link>
+              </Typography>
+            </form>
+            </CardContent>
+          </Card>
+        </Grid>
+      </Grid>
     );
   }
 }
