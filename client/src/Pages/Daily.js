@@ -32,7 +32,7 @@ class Daily extends Component {
         <Container style={{ marginTop: '6em' }}>
             <Grid container>
                 <LeftPane style={style.leftpane}>
-					<CheckIn firstAnswer={'Yes'} secondAnswer={'No'}></CheckIn>
+					<CheckIn></CheckIn>
 				</LeftPane>
                 <RightPane style={style.rightpane} />
             </Grid>

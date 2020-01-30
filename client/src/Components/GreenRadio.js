@@ -1,21 +1,7 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { green } from '@material-ui/core/colors';
-import Radio from '@material-ui/core/Radio';
-
-const GreenRadio = withStyles({
-  root: {
-    color: green[400],
-    '&$checked': {
-      color: green[600]
-    },
-    margin: '0 2em',
-  },
-
-  checked: {},
-
-})(props => <Radio color='default' {...props} />);
-
+import { Radio, Typography, FormHelperText } from '@material-ui/core';
 
 export default function RadioButtons(props) {
   const [selectedValue, setSelectedValue] = React.useState('a');
@@ -25,24 +11,28 @@ export default function RadioButtons(props) {
   };
 
   return (
-    <div>
-
-      {props.answerOne}  
-      <GreenRadio
-        checked={selectedValue === 'Yes'}
+    <React.Fragment>
+      <FormLabel component='legend'>{props.question}</FormLabel>
+      <RadioGroup
+        aria-label='position'
+        name='position'
+        value={props.index}
         onChange={handleChange}
-        value='Yes'
-        name='radio-button-demo'
-        inputProps={{ 'aria-label': 'Yes' }}
-      />
-       {props.answerTwo }  
-      <GreenRadio
-        checked={selectedValue === 'No'}
-        onChange={handleChange}
-        value='No'
-        name='radio-button-demo'
-        inputProps={{ 'aria-label': 'No' }}
-      />
-    </div>
+        row
+      >
+        <FormControlLabel
+          value='Yes'
+          control={<Radio color='success' />}
+          label='Yes'
+          labelPlacement='top'
+        />
+        <FormControlLabel
+          value='No'
+          control={<Radio color='success' />}
+          label='No'
+          labelPlacement='top'
+        />
+      </RadioGroup>
+  </React.Fragment>
   );
 }
