@@ -10,10 +10,6 @@ export class Confirm extends Component {
 		e.preventDefault();
 		// call api here
 		const { values: { firstName, lastName, userName, password, password2, zipCode } } = this.props;
-		//console.log(this.props);
-
-		// const values = { values: { firstName, lastName, userName, password, password2, zipCode } };
-		// console.log(`this is my user data omg omg ogmogm go mgom ogrmf\n $/{JSON.stringify(values)}`);
 
 		axios
 			.post(
