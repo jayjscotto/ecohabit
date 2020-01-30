@@ -1,6 +1,10 @@
+
+
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import GreenRadio from '../Components/GreenRadio';
+import GreenRadio from './GreenRadio';
+
+
 import {
   Typography,
   FormControl,
@@ -8,6 +12,8 @@ import {
   FormLabel,
   RadioGroup
 } from '@material-ui/core';
+
+const IntakeQuestions = require('../Utils/checkin-questions.json');  
 
 const useStyles = makeStyles({
   paper: {
@@ -30,7 +36,7 @@ const useStyles = makeStyles({
   }
 });
 
-const Intake = props => {
+const CheckIn = props => {
   const classes = useStyles();
 
   return (
@@ -38,7 +44,7 @@ const Intake = props => {
       <Typography className={classes.surveyTitle} variant='h5'>
         Initial Survey
       </Typography>
-      {props.questions.map((question, index) => (
+      {IntakeQuestions.questions.map((question, index) => (
         <FormControl className={classes.auto} key={index} component='fieldset'>
           <FormLabel component='legend'>{question.question}</FormLabel>
           <RadioGroup
@@ -55,4 +61,4 @@ const Intake = props => {
   );
 };
 
-export default Intake;
+export default CheckIn;

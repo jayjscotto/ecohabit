@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { Component }from 'react';
 import { Container, Grid } from '@material-ui/core';
 import LeftPane from '../Components/LeftPane';
 import RightPane from '../Components/RightPane';
+import CheckIn from '../Components/CheckIn';
+import axios from 'axios';
 
 const style = {
 	leftpane: {
@@ -22,15 +24,21 @@ const style = {
 	}
 }
 
-function Daily(props) {
-    return (
+class Daily extends Component {
+
+
+	render() {
+    	return (
         <Container style={{ marginTop: '6em' }}>
             <Grid container>
-                <LeftPane style={style.leftpane} />
+                <LeftPane style={style.leftpane}>
+					<CheckIn></CheckIn>
+				</LeftPane>
                 <RightPane style={style.rightpane} />
             </Grid>
         </Container>
-    )
+	)
+	}
 }
 
 export default Daily;

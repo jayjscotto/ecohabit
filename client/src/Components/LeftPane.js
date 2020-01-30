@@ -9,6 +9,7 @@ function LeftPane(props) {
                     <Typography variant="h4">
                         Welcome
                     </Typography>
+                    {props.children}
                 </Paper>
             </Grid>
         </Grid>
