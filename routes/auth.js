@@ -7,19 +7,22 @@ const jwt = require('jsonwebtoken');
 const router = express.Router();
 const User = require('../models/User');
 
+// changed the way req.body is being parsed to data from post request can be accessed
 router.post('/register', function(req, res, err) {
-	console.log(req.body.values.userName);
 	if (
+		// added .values so data can be parsed
 		!req.body.values.userName ||
 		!req.body.values.password ||
 		!req.body.values.firstName ||
 		!req.body.values.lastName ||
 		!req.body.values.zipCode
 	) {
+		// iff err throw err
 		throw err;
-		// res.json({ success: false, msg: 'Please pass username and password.' });
 	} else {
+		// create new user variable
 		const newUser = new User({
+			// this contains new parsing params
 			userName: req.body.values.userName,
 			password: req.body.values.password,
 			password2: req.body.values.password2,
@@ -27,14 +30,14 @@ router.post('/register', function(req, res, err) {
 			lastName: req.body.values.lastName,
 			zipCode: req.body.values.zipCode
 		});
-		console.log(newUser);
 		// save the user
 		newUser
 			.save()
 			.then((user) => {
-				console.log('success!');
-				// req.flash('success_msg', 'You are now registered and can log in');
+				// if success send message
+				res.json({ success: true, msg: 'You are now registered' });
 			})
+			// if err catch err
 			.catch((err) => console.log(err));
 		// you can tack a db request here with a then statement
 	}
@@ -43,15 +46,18 @@ router.post('/register', function(req, res, err) {
 router.post('/login', function(req, res) {
 	User.findOne(
 		{
+			// updated username to userName to match model
 			userName: req.body.userName
 		},
 		function(err, user) {
 			if (err) throw err;
-
+			// if not a registered user...
 			if (!user) {
+				// user not found
 				res.status(401).send({ success: false, msg: 'Authentication failed. User not found.' });
 			} else {
 				// check if password matches
+				// comparePassword method can be found in User model
 				user.comparePassword(req.body.password, function(err, isMatch) {
 					if (isMatch && !err) {
 						// if user is found and password is right create a token
@@ -59,6 +65,7 @@ router.post('/login', function(req, res) {
 						// return the information including token as JSON
 						res.json({ success: true, token: 'JWT ' + token });
 					} else {
+						// auth failed wrong password
 						res.status(401).send({ success: false, msg: 'Authentication failed. Wrong password.' });
 					}
 				});

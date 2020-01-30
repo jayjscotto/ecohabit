@@ -14,15 +14,15 @@ export class Confirm extends Component {
 		axios
 			.post(
 				'/api/auth/register',
+				// changed the data being sent in request
 				{ values: { firstName, lastName, userName, password, password2, zipCode } },
 				function(res) {
 					if (res.status === 200) {
-						console.log(res);
+						console.log('success');
 					}
 				}
 			)
 			.then((result) => {
-				//	console.log(result);
 				this.props.nextStep();
 			});
 	};
