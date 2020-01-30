@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import { FormInput, FormButton, FormCard, FormCardContent, FormAction } from '../../Components/FormElements';
 import AppBar from 'material-ui/AppBar';
-import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
+import { Button, Grid, CardActions, Paper } from '@material-ui/core';
 
 export class Form2 extends Component {
 	continue = (e) => {
@@ -17,47 +17,49 @@ export class Form2 extends Component {
 		const { values, handleChange } = this.props;
 
 		return (
-			<MuiThemeProvider>
-				<React.Fragment>
-					<AppBar title="Your account is almost Complete!" />
-					<TextField
-						required
-						id="password"
-						hintText="Create a New Password"
-						floatingLabelText="Password"
-						label="Required"
-						type="password"
-						defaultValue={values.password}
-						onChange={handleChange('password')}
-					/>
-					<br />
-					<TextField
-						required
-						id="password2"
-						hintText="Confirm Password"
-						floatingLabelText="Confirm Password"
-						label="Required"
-						type="password"
-						defaultValue={values.password2}
-						onChange={handleChange('password2')}
-					/>
-					<br />
-					<TextField
-						required
-						id="zipCode"
-						hintText="Enter Your 5 Digit Zip Code"
-						floatingLabelText="Enter Zip"
-						label="Required"
-						type="number"
-						defaultValue={values.zipCode}
-						onChange={handleChange('zipCode')}
-					/>
-					<br />
-					<RaisedButton label="Continue" primary={true} style={styles.button} onClick={this.continue} />
-
-					<RaisedButton label="Back" primary={false} style={styles.button} onClick={this.back} />
-				</React.Fragment>
-			</MuiThemeProvider>
+			<Grid 
+			container
+			spacing={0}
+			direction="column"
+			alignItems="center"
+			justify="center"
+			style={{ minHeight: '100vh' }}
+			elevation={3}
+			>
+				<Grid item>
+					<FormCard>
+						<FormCardContent>
+						<FormAction>Just one more thing...</FormAction>
+							<FormInput
+								required
+								id="password"
+								label="Password"
+								type="password"
+								defaultValue={values.password}
+								onChange={handleChange('password')}
+							/>
+							<FormInput
+								required
+								id="password2"
+								label="Re-enter Password"
+								type="password"
+								defaultValue={values.password2}
+								onChange={handleChange('password2')}
+							/>
+							<FormInput
+								required
+								id="zipCode"
+								label="Zip Code"
+								type="number"
+								defaultValue={values.zipCode}
+								onChange={handleChange('zipCode')}
+							/>
+							<FormButton label="Continue" primary={true} onClick={this.continue}>Continue</FormButton>
+							<FormButton label="Back" primary={false} onClick={this.back}>Back</FormButton>
+						</FormCardContent>
+					</FormCard>
+				</Grid>
+			</Grid>
 		);
 	}
 }
