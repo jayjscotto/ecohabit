@@ -4,9 +4,7 @@ import GreenRadio from './GreenRadio';
 import {
   Typography,
   FormControl,
-  FormControlLabel,
-  FormLabel,
-  RadioGroup,
+ 
   Radio
 } from '@material-ui/core';
 
@@ -47,8 +45,6 @@ const CheckIn = props => {
   //onform submit
   //get all the data from the lower level hooks
   //PROVIDER
-  
-
 
   return (
     <FormControl component='fieldset'>
