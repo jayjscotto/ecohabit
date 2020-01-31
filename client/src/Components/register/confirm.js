@@ -12,15 +12,17 @@ export class Confirm extends Component {
 		const { values: { firstName, lastName, userName, password, password2, zipCode } } = this.props;
 
 		axios
-			.post('/api/auth/register', { userName, firstName, lastName, password, password2, zipCode }, function(res) {
-				if (res.status === 200) {
-					console.log(this);
-					this.setState({ register: true });
-					console.log(this.state);
+			.post(
+				'/api/auth/register',
+				// changed the data being sent in request
+				{ values: { firstName, lastName, userName, password, password2, zipCode } },
+				function(res) {
+					if (res.status === 200) {
+						console.log('success');
+					}
 				}
-			})
+			)
 			.then((result) => {
-				console.log(result);
 				this.props.nextStep();
 			});
 	};
@@ -31,8 +33,7 @@ export class Confirm extends Component {
 		this.props.prevStep();
 	};
 	render() {
-		const { values: { firstName, lastName, userName, password, password2, zipCode } } = this.props;
-		console.log(this.values);
+		const { values: { userName, password, password2, firstName, lastName, zipCode } } = this.props;
 
 		return (
 			<Grid 

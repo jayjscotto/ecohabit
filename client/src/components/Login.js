@@ -1,46 +1,46 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import './Login.css';
 import { FormInput, FormButton, FormCard, FormCardContent, FormAction } from '../Components/FormElements';
 import { Grid, CardActions, Typography, Card } from '@material-ui/core';
 
 class Login extends Component {
+	constructor() {
+		super();
+		this.state = {
+			userName: '',
+			password: '',
+			message: ''
+		};
+	}
+	onChange = (e) => {
+		const state = this.state;
+		state[e.target.name] = e.target.value;
+		this.setState(state);
+	};
 
-  constructor() {
-    super();
-    this.state = {
-      username: '',
-      password: '',
-      message: ''
-    };
-  }
-  onChange = (e) => {
-    const state = this.state
-    state[e.target.name] = e.target.value;
-    this.setState(state);
-  }
+	onSubmit = (e) => {
+		e.preventDefault();
 
-  onSubmit = (e) => {
-    e.preventDefault();
+		const { userName, password } = this.state;
+		console.log({ userName, password });
 
-    const { username, password } = this.state;
-
-    axios.post('/api/auth/login', { username, password })
-      .then((result) => {
-        localStorage.setItem('jwtToken', result.data.token);
-        this.setState({ message: '' });
-        window.location.replace('/')
-      })
-      .catch((error) => {
-        if(error.response.status === 401) {
-          this.setState({ message: 'Login failed. Username or password not match' });
-        }
-      });
-  }
+		axios
+			.post('/api/auth/login', { userName, password })
+			.then((result) => {
+				localStorage.setItem('jwtToken', result.data.token);
+				this.setState({ message: '' });
+				window.location.replace('/');
+			})
+			.catch((error) => {
+				if (error.response.status === 401) {
+					this.setState({ message: 'Login failed. userName or password not match' });
+				}
+			});
+	};
 
   render() {
-    const { username, password, message } = this.state;
+    const { userName, password, message } = this.state;
     return (
       <Grid 
       container
@@ -65,11 +65,11 @@ class Login extends Component {
               <FormInput
                 id="outlined-password-input"
                 label="Email Address"
-                name="username"
-                value={username}
+                name="userName"
+                value={userName}
                 onChange={this.onChange}
                 type="email"
-                autoComplete="current-username"
+                autoComplete="current-userName"
                 required
               />
               <FormInput
