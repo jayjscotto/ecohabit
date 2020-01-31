@@ -12,9 +12,11 @@ import IntakeSurvey from './Pages/IntakeSurvey';
 import Title from './Components/Title';
 
 class App extends Component {
+	state = {
+		user: ''
+	}
 
   componentDidMount() {
-    console.log('hello')
     axios.defaults.headers.common['Authorization'] = localStorage.getItem(
       'jwtToken'
     );
@@ -22,13 +24,16 @@ class App extends Component {
       .get('/api/survey')
       .then(res => {
         this.props.history.push('/');
-        console.log(res);
       })
       .catch(error => {
         if (error.response.status === 401) {
           this.props.history.push('/login');
         }
-      });
+	  });
+	axios.get('/api/user/mattpigs@gmail.com')
+	  .then(res => {
+		  console.log(res);
+	  })
   };
 
   render() {

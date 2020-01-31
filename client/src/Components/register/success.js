@@ -1,20 +1,18 @@
 import React, { Component } from 'react';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import AppBar from 'material-ui/AppBar';
-// import axios from 'axios';
+import AppBar from 'material-ui/core';
 
 export class Success extends Component {
 	render() {
 		return (
-			<MuiThemeProvider>
+			// <MuiThemeProvider>
 				<React.Fragment>
-					<AppBar title="Success!" />
+					{/* <AppBar title="Success!" /> */}
 					<h1>You're all signed up!</h1>
 					<p>
 						Please Proceed to <em>login</em>
 					</p>
 				</React.Fragment>
-			</MuiThemeProvider>
+			// </MuiThemeProvider>
 		);
 	}
 }
