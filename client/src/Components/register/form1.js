@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AppBar from 'material-ui/AppBar';
-import TextField from 'material-ui/TextField';
-import RaisedButton from 'material-ui/RaisedButton';
+import { FormInput, FormButton, FormCard, FormCardContent, FormAction } from '../../Components/FormElements';
+import { Box, Container, Button, Card, CardContent, Grid, CardActions, Typography, Paper, TextField } from '@material-ui/core';
+
 
 export class Form1 extends Component {
 	continue = (e) => {
@@ -13,37 +13,46 @@ export class Form1 extends Component {
 		const { values, handleChange } = this.props;
 
 		return (
-			<MuiThemeProvider>
-				<React.Fragment>
-					<AppBar title="Enter User Details" />
-					<TextField
-						id="firstName"
-						hintText="Enter Your First Name"
-						floatingLabelText="First Name"
-						onChange={handleChange('firstName')}
-						defaultValue={values.firstName}
-					/>
-					<br />
-					<TextField
-						id="lastName"
-						hintText="Enter Your Last Name"
-						floatingLabelText="Last Name"
-						onChange={handleChange('lastName')}
-						defaultValue={values.lastName}
-					/>
-					<br />
-					<TextField
-						id="userName"
-						hintText="Enter Your E-mail"
-						floatingLabelText="E-mail"
-						onChange={handleChange('userName')}
-						defaultValue={values.userName}
-						type="email"
-					/>
-					<br />
-					<RaisedButton label="Continue" primary={true} style={styles.button} onClick={this.continue} />
-				</React.Fragment>
-			</MuiThemeProvider>
+			<Grid 
+			container
+			spacing={0}
+			direction="column"
+			alignItems="center"
+			justify="center"
+			style={{ minHeight: '100vh' }}
+			elevation={3} 
+			>
+				<Grid item>
+					<FormCard>
+						<FormCardContent>
+						<FormAction>Enter User Details</FormAction>
+						<FormInput
+							id="firstName"
+							label="First Name"
+							variant="outlined"
+							onChange={handleChange('firstName')}
+							defaultValue={values.firstName}
+						/>
+						<FormInput
+							id="lastName"
+							label="Last Name"
+							variant="outlined"
+							onChange={handleChange('lastName')}
+							defaultValue={values.lastName}
+						/>
+						<FormInput
+							id="userName"
+							label="email"
+							variant="outlined"
+							onChange={handleChange('userName')}
+							defaultValue={values.userName}
+							type="email"
+						/>
+						<FormButton label="Continue" primary={true} onClick={this.continue}>Continue</FormButton>
+						</FormCardContent>
+					</FormCard>
+			</Grid>
+	</Grid>
 		);
 	}
 }
