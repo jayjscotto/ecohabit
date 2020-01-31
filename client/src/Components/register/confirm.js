@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AppBar from 'material-ui/AppBar';
-import { List, ListItem } from 'material-ui/List';
-import RaisedButton from 'material-ui/RaisedButton';
+// import { List, ListItem } from 'material-ui/List';
 import axios from 'axios';
+import { FormInput, FormButton, FormCard, FormCardContent, FormAction } from '../../Components/FormElements';
+import { Grid, CardActions, Paper, List, ListItem } from '@material-ui/core';
 
 export class Confirm extends Component {
 	continue = (e) => {
@@ -12,15 +12,17 @@ export class Confirm extends Component {
 		const { values: { firstName, lastName, userName, password, password2, zipCode } } = this.props;
 
 		axios
-			.post('/api/auth/register', { userName, firstName, lastName, password, password2, zipCode }, function(res) {
-				if (res.status === 200) {
-					console.log(this);
-					this.setState({ register: true });
-					console.log(this.state);
+			.post(
+				'/api/auth/register',
+				// changed the data being sent in request
+				{ values: { firstName, lastName, userName, password, password2, zipCode } },
+				function(res) {
+					if (res.status === 200) {
+						console.log('success');
+					}
 				}
-			})
+			)
 			.then((result) => {
-				console.log(result);
 				this.props.nextStep();
 			});
 	};
@@ -31,35 +33,40 @@ export class Confirm extends Component {
 		this.props.prevStep();
 	};
 	render() {
-		const { values: { firstName, lastName, userName, password, password2, zipCode } } = this.props;
-		console.log(this.values);
+		const { values: { userName, password, password2, firstName, lastName, zipCode } } = this.props;
 
 		return (
-			<MuiThemeProvider>
-				<React.Fragment>
-					<AppBar title="Confirm Your Details" />
-					<List>
-						<ListItem primaryText="First Name" secondaryText={firstName} />
-						<ListItem primaryText="Last Name" secondaryText={lastName} />
-						<ListItem primaryText="E-mail" secondaryText={userName} />
-						<ListItem primaryText="Zip Code" secondaryText={zipCode} />
-					</List>
-					<br />
-					<RaisedButton
-						label="Confirm Details"
-						primary={true}
-						style={styles.button}
-						onClick={this.continue}
-					/>
-					<RaisedButton label="Back" primary={false} style={styles.button} onClick={this.back} />
-				</React.Fragment>
-			</MuiThemeProvider>
+			<Grid 
+				container
+				spacing={0}
+				direction="column"
+				alignItems="center"
+				justify="center"
+				style={{ minHeight: '100vh' }}
+				elevation={3} 
+			>
+				<Grid item>
+					<FormCard>
+						<FormCardContent>
+							<FormAction title="Confirm Your Details">Confirm Your Details</FormAction>
+							<List>
+								<ListItem primary="First Name" secondary={firstName} />
+								<ListItem primary="Last Name" secondary={lastName} />
+								<ListItem primary="E-mail" secondary={userName} />
+								<ListItem primary="Zip Code" secondary={zipCode} />
+							</List>
+							<FormButton label="Confirm Details" primary={true} onClick={this.continue}>
+							Confirm Details
+							</FormButton>
+							<FormButton label="Back" primary={false} onClick={this.back}>
+							Back
+							</FormButton>
+						</FormCardContent>
+					</FormCard>
+				</Grid>
+			</Grid>
 		);
 	}
 }
-const styles = {
-	button: {
-		margin: 15
-	}
-};
+
 export default Confirm;

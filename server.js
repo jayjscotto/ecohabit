@@ -2,7 +2,7 @@
 const express = require('express');
 const favicon = require('express-favicon');
 const mongoose = require('mongoose');
-
+const path = require('path');
 const PORT = process.env.PORT || 3001;
 const app = express();
 var survey = require('./routes/survey');
@@ -19,7 +19,7 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 
-const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/ecohabit"
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/ecohabit";
 mongoose.Promise = require('bluebird');
 mongoose.connect(
   MONGODB_URI,
@@ -30,7 +30,6 @@ mongoose.connect(
     promiseLibrary: require('bluebird')
   }
 );
-
 
 connection.once('open', function callback () {
   console.log('Connected to MongoDB!');

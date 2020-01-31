@@ -1,28 +1,29 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import './Login.css';
+import { FormInput, FormButton, FormCard, FormCardContent, FormAction } from '../Components/FormElements';
+import { Grid, CardActions, Typography, Card } from '@material-ui/core';
 
 class Login extends Component {
+	constructor() {
+		super();
+		this.state = {
+			userName: '',
+			password: '',
+			message: ''
+		};
+	}
+	onChange = (e) => {
+		const state = this.state;
+		state[e.target.name] = e.target.value;
+		this.setState(state);
+	};
 
-  constructor() {
-    super();
-    this.state = {
-      username: '',
-      password: '',
-      message: ''
-    };
-  }
-  onChange = (e) => {
-    const state = this.state
-    state[e.target.name] = e.target.value;
-    this.setState(state);
-  }
+	onSubmit = (e) => {
+		e.preventDefault();
 
-  onSubmit = (e) => {
-    e.preventDefault();
-
-    const { username, password } = this.state;
+		const { userName, password } = this.state;
+		console.log({ userName, password });
 
     axios.post('/api/auth/login', { username, password })
       .then((result) => {
@@ -38,26 +39,59 @@ class Login extends Component {
   }
 
   render() {
-    const { username, password, message } = this.state;
+    const { userName, password, message } = this.state;
     return (
-      <div className="container">
-        <form className="form-signin" onSubmit={this.onSubmit}>
-          {message !== '' &&
-            <div className="alert alert-warning alert-dismissible" role="alert">
-              { message }
-            </div>
-          }
-          <h2 className="form-signin-heading">Please sign in</h2>
-          <label className="sr-only">Email address</label>
-          <input type="email" className="form-control" placeholder="Email address" name="username" value={username} onChange={this.onChange} required/>
-          <label className="sr-only">Password</label>
-          <input type="password" className="form-control" placeholder="Password" name="password" value={password} onChange={this.onChange} required/>
-          <button className="btn btn-lg btn-primary btn-block" type="submit">Login</button>
-          <p>
-            Not a member? <Link to="/register"><span className="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Register here</Link>
-          </p>
-        </form>
-      </div>
+      <Grid 
+      container
+      spacing={0}
+      direction="column"
+      alignItems="center"
+      justify="center"
+      style={{ minHeight: '100vh' }}
+      elevation={3}
+      >
+        {/* <Appbar /> */}
+        <Grid item>
+          <FormCard>
+            <FormCardContent>
+            <form className="form-signin" onSubmit={this.onSubmit}>
+              {message !== '' &&
+                <div className="alert alert-warning alert-dismissible" role="alert">
+                  { message }
+                </div>
+              }
+              <FormAction>Please sign in</FormAction>
+              <FormInput
+                id="outlined-password-input"
+                label="Email Address"
+                name="userName"
+                value={userName}
+                onChange={this.onChange}
+                type="email"
+                autoComplete="current-userName"
+                required
+              />
+              <FormInput
+                id="outlined-password-input"
+                label="Password"
+                name="password"
+                value={password}
+                onChange={this.onChange}
+                type="password"
+                autoComplete="current-password"
+                required 
+              />
+              <CardActions>
+                <FormButton type="submit">Login</FormButton>
+              </CardActions>
+              <Typography>
+                Not a member? <Link to="/register"><span className="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Register here</Link>
+              </Typography>
+            </form>
+            </FormCardContent>
+          </FormCard>
+        </Grid>
+      </Grid>
     );
   }
 }

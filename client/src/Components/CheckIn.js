@@ -47,7 +47,7 @@ const CheckIn = props => {
   const updateAnswers = event => {
     answers.push(event);
     answers = answers.filter(answer => answer !== undefined)
-    console.log(answers)
+    console.log(answers);
   };
 
   //onform submit
