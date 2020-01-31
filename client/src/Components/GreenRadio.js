@@ -1,64 +1,59 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { green } from '@material-ui/core/colors';
-import Radio from '@material-ui/core/Radio';
+import {
+  Radio,
+  FormControlLabel,
+  FormLabel,
+  RadioGroup
+} from '@material-ui/core';
 
-const GreenRadio = withStyles({
-  root: {
-    color: green[400],
-    '&$checked': {
-      color: green[600]
-    },
-    margin: '0 2em',
-  },
-
-  checked: {},
-
-})(props => <Radio color='default' {...props} />);
-
-
-export default function RadioButtons() {
-  const [selectedValue, setSelectedValue] = React.useState('a');
+export default function RadioButtons(props) {
+  const [selectedValue, setSelectedValue] = useState();
 
   const handleChange = event => {
     setSelectedValue(event.target.value);
   };
 
-  return (
-    <div>
-        
-      <GreenRadio
-    
-        checked={selectedValue === 'A'}
-        onChange={handleChange}
-        value='A'
-        name='radio-button-demo'
-        inputProps={{ 'aria-label': 'A' }}
-      />
-      <GreenRadio
+  useEffect(() => {
+    props.updateAnswers(selectedValue);
+  }, [selectedValue]);
 
-        checked={selectedValue === 'B'}
+  return (
+    <React.Fragment>
+      <FormLabel component='legend'>{props.question}</FormLabel>
+      <RadioGroup
+        aria-label='position'
+        name='position'
+        value={props.index}
         onChange={handleChange}
-        value='B'
-        name='radio-button-demo'
-        inputProps={{ 'aria-label': 'B' }}
-      />
-      <GreenRadio
-   
-        checked={selectedValue === 'c'}
-        onChange={handleChange}
-        value='c'
-        name='radio-button-demo'
-        inputProps={{ 'aria-label': 'C' }}
-      />
-      <GreenRadio
-    
-        checked={selectedValue === 'D'}
-        onChange={handleChange}
-        value='D'
-        name='radio-button-demo'
-        inputProps={{ 'aria-label': 'D' }}
-      />
-    </div>
+        row
+      >
+        <FormControlLabel
+          value='Yes'
+          control={
+            <Radio
+              value='Yes'
+              checked={selectedValue === 'Yes'}
+              color='success'
+            />
+          }
+          label='Yes'
+          labelPlacement='top'
+        />
+        <FormControlLabel
+          value='No'
+          control={
+            <Radio
+              value='No'
+              checked={selectedValue === 'No'}
+              color='success'
+            />
+          }
+          label='No'
+          labelPlacement='top'
+        />
+      </RadioGroup>
+    </React.Fragment>
   );
 }

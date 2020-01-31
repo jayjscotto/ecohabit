@@ -1,19 +1,14 @@
-
-
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import GreenRadio from './GreenRadio';
-
-
 import {
   Typography,
   FormControl,
-  FormControlLabel,
-  FormLabel,
-  RadioGroup
+ 
+  Radio
 } from '@material-ui/core';
 
-const IntakeQuestions = require('../Utils/checkin-questions.json');  
+const IntakeQuestions = require('../Utils/checkin-questions.json');
 
 const useStyles = makeStyles({
   paper: {
@@ -26,38 +21,44 @@ const useStyles = makeStyles({
   flex: {
     display: 'flex',
     flexDirection: 'row',
-  },
-  surveyTitle: {
-    textAlign: 'center',
-    marginBottom: '1em'
-  },
-  radioGrp: {
+    justifyContent: 'space-between'
+    },
+    checkin: {
+      margin: '6em'
+    },
+    radioGrp: {
       marginBottom: '1em'
-  }
-});
+    },
+    questionDiv: {
+      display: 'flex',
+      flexDirection: 'row'
+    },
+    question: {
+      textAlign: 'left',
+      width: '70%'
+    }
+  });
 
 const CheckIn = props => {
   const classes = useStyles();
 
+  let answers = [];
+
+  const updateAnswers = event => {
+    answers.push(event);
+    answers = answers.filter(answer => answer !== undefined)
+    console.log(answers);
+  };
+
+  //onform submit
+
+
   return (
-    <React.Fragment>
-      <Typography className={classes.surveyTitle} variant='h5'>
-        Initial Survey
-      </Typography>
+    <FormControl component='fieldset'>
       {IntakeQuestions.questions.map((question, index) => (
-        <FormControl className={classes.auto} key={index} component='fieldset'>
-          <FormLabel component='legend'>{question.question}</FormLabel>
-          <RadioGroup
-            className={classes.flex}
-            defaultValue='intakeSurvey'
-            aria-label='intakeSurvey'
-            name='customized-radios'
-          >
-            <GreenRadio  className={classes.radioGrp}/>
-          </RadioGroup>
-        </FormControl>
+        <GreenRadio index={index} updateAnswers={(e) => {updateAnswers(e)}} question={question.question}/>
       ))}
-    </React.Fragment>
+    </FormControl>
   );
 };
 
