@@ -39,62 +39,65 @@ class Login extends Component {
 			});
 	};
 
-  render() {
-    const { userName, password, message } = this.state;
-    return (
-      <Grid 
-      container
-      spacing={0}
-      direction="column"
-      alignItems="center"
-      justify="center"
-      style={{ minHeight: '100vh' }}
-      elevation={3}
-      >
-        {/* <Appbar /> */}
-        <Grid item>
-          <FormCard>
-            <FormCardContent>
-            <form className="form-signin" onSubmit={this.onSubmit}>
-              {message !== '' &&
-                <div className="alert alert-warning alert-dismissible" role="alert">
-                  { message }
-                </div>
-              }
-              <FormAction>Please sign in</FormAction>
-              <FormInput
-                id="outlined-password-input"
-                label="Email Address"
-                name="userName"
-                value={userName}
-                onChange={this.onChange}
-                type="email"
-                autoComplete="current-userName"
-                required
-              />
-              <FormInput
-                id="outlined-password-input"
-                label="Password"
-                name="password"
-                value={password}
-                onChange={this.onChange}
-                type="password"
-                autoComplete="current-password"
-                required 
-              />
-              <CardActions>
-                <FormButton type="submit">Login</FormButton>
-              </CardActions>
-              <Typography>
-                Not a member? <Link to="/register"><span className="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Register here</Link>
-              </Typography>
-            </form>
-            </FormCardContent>
-          </FormCard>
-        </Grid>
-      </Grid>
-    );
-  }
+	render() {
+		const { userName, password, message } = this.state;
+		return (
+			<Grid
+				container
+				spacing={0}
+				direction="column"
+				alignItems="center"
+				justify="center"
+				style={{ minHeight: '100vh' }}
+				elevation={3}
+			>
+				<Grid item>
+					<FormCard>
+						<FormCardContent>
+							<form className="form-signin" onSubmit={this.onSubmit}>
+								{message !== '' && (
+									<div className="alert alert-warning alert-dismissible" role="alert">
+										{message}
+									</div>
+								)}
+								<FormAction>Please sign in</FormAction>
+								<FormInput
+									id="outlined-password-input"
+									label="Email Address"
+									name="userName"
+									value={userName}
+									onChange={this.onChange}
+									type="email"
+									autoComplete="current-userName"
+									required
+								/>
+								<FormInput
+									id="outlined-password-input"
+									label="Password"
+									name="password"
+									value={password}
+									onChange={this.onChange}
+									type="password"
+									autoComplete="current-password"
+									required
+								/>
+								<CardActions>
+									<FormButton type="submit">Login</FormButton>
+								</CardActions>
+								<Typography>
+									Not a member?{' '}
+									<Link to="/register">
+										<span className="glyphicon glyphicon-plus-sign" aria-hidden="true" /> Register
+										here
+									</Link>
+								</Typography>
+							</form>
+						</FormCardContent>
+					</FormCard>
+				</Grid>
+			</Grid>
+		);
+	}
 }
 
 export default Login;

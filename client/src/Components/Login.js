@@ -1,28 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import './Login.css';
-import Appbar from '../Components/Appbar';
-import { Box, Container, Button, Card, CardContent, Grid, CardActions, TextField, Typography } from '@material-ui/core';
+import { FormInput, FormButton, FormCard, FormCardContent, FormAction } from '../Components/FormElements';
+import { Grid, CardActions, Typography, Card } from '@material-ui/core';
 
-let style = {
-	box: {
-		margin: '0 auto'
-	},
-	input: {
-		display: 'block',
-		margin: '2em auto'
-	},
-	action: {
-		color: '#5D675B'
-	},
-	login: {
-		background: '#5D675B',
-		color: '#f7f3c2'
-	}
-};
-// in login: Laura Updated username key to userName so the data being sent matches data in the Usermodel
-// no other changes made
 class Login extends Component {
 	constructor() {
 		super();
@@ -70,21 +51,17 @@ class Login extends Component {
 				style={{ minHeight: '100vh' }}
 				elevation={3}
 			>
-				<Appbar />
 				<Grid item>
-					<Card className="container" style={style.box}>
-						<CardContent>
+					<FormCard>
+						<FormCardContent>
 							<form className="form-signin" onSubmit={this.onSubmit}>
 								{message !== '' && (
 									<div className="alert alert-warning alert-dismissible" role="alert">
 										{message}
 									</div>
 								)}
-								<Typography style={style.action} variant="h5">
-									Please sign in
-								</Typography>
-								<TextField
-									style={style.input}
+								<FormAction>Please sign in</FormAction>
+								<FormInput
 									id="outlined-password-input"
 									label="Email Address"
 									name="userName"
@@ -92,11 +69,9 @@ class Login extends Component {
 									onChange={this.onChange}
 									type="email"
 									autoComplete="current-userName"
-									variant="outlined"
 									required
 								/>
-								<TextField
-									style={style.input}
+								<FormInput
 									id="outlined-password-input"
 									label="Password"
 									name="password"
@@ -104,13 +79,10 @@ class Login extends Component {
 									onChange={this.onChange}
 									type="password"
 									autoComplete="current-password"
-									variant="outlined"
 									required
 								/>
 								<CardActions>
-									<Button variant="contained" color="primary" type="submit" style={style.login}>
-										Login
-									</Button>
+									<FormButton type="submit">Login</FormButton>
 								</CardActions>
 								<Typography>
 									Not a member?{' '}
@@ -120,8 +92,8 @@ class Login extends Component {
 									</Link>
 								</Typography>
 							</form>
-						</CardContent>
-					</Card>
+						</FormCardContent>
+					</FormCard>
 				</Grid>
 			</Grid>
 		);
