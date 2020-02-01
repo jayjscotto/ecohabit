@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
     textShadow: '-2px 2px 3px rgba(247, 239, 153,0.25)'
   },
   bar: {
-    background: '#5D675B',
+    background: '#6d8468',
     padding: '2px'
   },
   link: {

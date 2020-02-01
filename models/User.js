@@ -37,21 +37,14 @@ const UserSchema = new Schema({
 		// min: [ 5, 'Zip Code must be 5 Digits long' ],
 		// max: 5
 	},
-	surveyResult: {
-		// push points to an array
-		// holds
-		survey: [
-			{
-				points: {
-					type: Number
-				},
-				date: {
-					type: Date,
-					default: Date.now
-				}
-			}
-		]
-	}
+	dailyCheck: {
+		type: Boolean,
+		default: false
+	},
+	checkIn: [{
+		type: Schema.Types.ObjectId,
+		ref: 'CheckIn'
+	}]
 });
 
 UserSchema.pre('save', function(next) {

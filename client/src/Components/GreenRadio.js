@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { withStyles } from '@material-ui/core/styles';
+import React, { useState, useEffect, Fragment, Box } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
 import { green } from '@material-ui/core/colors';
 import {
   Radio,
@@ -8,7 +8,21 @@ import {
   RadioGroup
 } from '@material-ui/core';
 
+const useStyles = makeStyles({
+  root: {
+    // flexGrow: 1,
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-evenly'
+  },
+  question: {
+    lineHeight: '1.5em',
+    margin: '10px auto 0px auto',
+  },
+});
+
 export default function RadioButtons(props) {
+  const classes = useStyles();
   const [selectedValue, setSelectedValue] = useState();
 
   const handleChange = event => {
@@ -21,16 +35,18 @@ export default function RadioButtons(props) {
 
   return (
     <React.Fragment>
-      <FormLabel component='legend'>{props.question}</FormLabel>
+      <FormLabel className={classes.question} component='legend'>{props.question}</FormLabel>
       <RadioGroup
         aria-label='position'
         name='position'
         value={props.index}
         onChange={handleChange}
         row
+        className={classes.root}
       >
         <FormControlLabel
           value='Yes'
+          style={{ display: 'inline' }}
           control={
             <Radio
               value='Yes'
@@ -43,6 +59,7 @@ export default function RadioButtons(props) {
         />
         <FormControlLabel
           value='No'
+          style={{ display: 'inline' }}
           control={
             <Radio
               value='No'

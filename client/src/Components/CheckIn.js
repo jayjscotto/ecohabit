@@ -6,38 +6,7 @@ import { FormButton } from './FormElements';
 
 const IntakeQuestions = require('../Utils/checkin-questions.json');
 
-// const useStyles = makeStyles({
-//   paper: {
-//     marginTop: '6em',
-//     marginBottom: '4em',
-//     padding: '40px',
-//     minHeight: '500px',
-//     fontFamily: 'inherit'
-//   },
-//   flex: {
-//     display: 'flex',
-//     flexDirection: 'row',
-//     justifyContent: 'space-between'
-//     },
-//     checkin: {
-//       margin: '6em'
-//     },
-//     radioGrp: {
-//       marginBottom: '1em'
-//     },
-//     questionDiv: {
-//       display: 'flex',
-//       flexDirection: 'row'
-//     },
-//     question: {
-//       textAlign: 'left',
-//       width: '70%',
-//       lineHeight: '1.5em'
-//     }
-//   });
-
 const CheckIn = props => {
-  // const classes = useStyles();
 
   let answers = [];
 
@@ -55,7 +24,7 @@ const CheckIn = props => {
       {IntakeQuestions.questions.map((question, index) => (
         <GreenRadio index={index} updateAnswers={(e) => {updateAnswers(e)}} question={question.question}/>
       ))}
-      <FormButton style={{ margin: '0 auto' }}>Submit</FormButton>
+      <FormButton>Submit</FormButton>
     </FormControl>
   );
 };

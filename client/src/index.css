@@ -5,17 +5,17 @@
 body {
     margin: 0;
     padding: 0;
-    background-image: linear-gradient(45deg, #fff2ed, #f7f3c2);
+    /* background-image: linear-gradient(45deg, #ffe5da, #f7f3c2); */
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
     height: 100vh;
-    background: #edf0ed;
+    background: #faefd7;
 }
 
 
 .class { 
-    color: var(light-orange, #ffe7df);
+    color: var(light-orange, #63925a);
     color: var(light-yellow #f7f3c2);
     color: var(dark-green, #5D675B);
     color: var(title, #F1BB87);
