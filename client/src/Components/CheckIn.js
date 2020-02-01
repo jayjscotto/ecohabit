@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import GreenRadio from './GreenRadio';
 import { FormControl } from '@material-ui/core';
-import { FormButton } from './FormElements'
+import { FormButton } from './FormElements';
 
 const IntakeQuestions = require('../Utils/checkin-questions.json');
 
@@ -13,6 +13,7 @@ const useStyles = makeStyles({
 });
 
 const CheckIn = props => {
+  const [ dailyCheck, setDailyCheck ] = useState();
   const classes = useStyles();
 
   let answers = [];
@@ -23,13 +24,27 @@ const CheckIn = props => {
     console.log(answers);
   };
 
+  // when component mounts, check from the db if the user has checked in today
+  // ---- COMPONENT DID MOUNT ----
+  // const componentDidMount = () => {
+  //   console.log('axios request for user/s daily checkin boolean goes here');
+  //   call API to see if the user has checked in today and update the state variable to update 
+  //   API.userCheckIn().then(res => {
+  //     if (res !== true) {
+  //       setDailyCheck(false);
+  //     } else {
+  //        setDailyCheck(true);       
+  //      }
+  //   });
+  // };
+
   //onform submit
- const submitSurvey = answers => {
-    console.log(answers)
+  const submitSurvey = answers => {
+    console.log(answers);
     // API.submitCheckIn(answers).then(
-    //   console.log('render the alternate (after survey) component here')
+    //   setDailyCheck(true);
     // );
-  }
+  };
 
   return (
     <FormControl component='fieldset'>
@@ -42,7 +57,10 @@ const CheckIn = props => {
           question={question.question}
         />
       ))}
-      <FormButton onClick={() => submitSurvey(answers)}className={classes.buttonSubmit}>
+      <FormButton
+        onClick={() => submitSurvey(answers)}
+        className={classes.buttonSubmit}
+      >
         Submit
       </FormButton>
     </FormControl>
