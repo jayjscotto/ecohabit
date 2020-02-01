@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
     textShadow: '-2px 2px 3px rgba(247, 239, 153,0.25)'
   },
   bar: {
-    background: '#5D675B',
+    background: '#6d8468',
     padding: '2px'
   },
   link: {
@@ -43,14 +43,23 @@ export default function ButtonAppBar(props) {
   };
 
   return (
-      <AppBar className={classes.bar}>
+      <AppBar position="relative" className={classes.bar}>
         <Toolbar>
           <Typography variant="h4" className={classes.title}>Ecohabit</Typography>
             {localStorage.getItem('jwtToken') ? (
               <Fragment>
-                <Button color="inherit" variant='h6'>Daily Dashboard</Button>
-                <Button color="inherit" variant='h6'>Reminders</Button>
-                <Button color="inherit" variant='h6'>Educate Yourself</Button>
+                <Link to='/'>
+                  <Button color="inherit" variant='h6'>Daily Dashboard</Button>
+                </Link>
+
+                <Link to='/reminder'>
+                  <Button color="inherit" variant='h6'>Reminders</Button>
+                </Link>
+
+                <Link to='/account'>
+                  <Button color="inherit" variant='h6'>Account</Button>
+                </Link>
+
                 <Button color='inherit' onClick={logout}>Logout</Button>
               </Fragment>
               ) : (

@@ -33,7 +33,15 @@ const UserSchema = new Schema({
 		required: true
 		// min: [ 5, 'Zip Code must be 5 Digits long' ],
 		// max: 5
-	}
+	},
+	dailyCheck: {
+		type: Boolean,
+		default: false
+	},
+	checkIn: [{
+		type: Schema.Types.ObjectId,
+		ref: 'CheckIn'
+	}]
 });
 
 UserSchema.pre('save', function(next) {
