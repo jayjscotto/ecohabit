@@ -8,7 +8,7 @@ import clientauth from '../Utils/clientauth';
 
 let style = {
 	box: {
-		margin: '0 auto'
+		margin: '10px auto'
 	},
 	input: {
 		display: 'block',
@@ -70,7 +70,6 @@ class Login extends Component {
 				style={{ minHeight: '100vh' }}
 				elevation={3}
 			>
-				<Appbar />
 				<Grid item>
 					<Card className="container" style={style.box}>
 						<CardContent>
