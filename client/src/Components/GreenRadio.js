@@ -24,8 +24,12 @@ const useStyles = makeStyles({
 export default function RadioButtons(props) {
   const classes = useStyles();
   const [selectedValue, setSelectedValue] = useState();
+  const [selectedIndex, setSelectedIndex] = useState();
+
+  const classes = useStyles();
 
   const handleChange = event => {
+    setSelectedIndex(event.target.index);
     setSelectedValue(event.target.value);
   };
 
@@ -49,9 +53,10 @@ export default function RadioButtons(props) {
           style={{ display: 'inline' }}
           control={
             <Radio
-              value='Yes'
-              checked={selectedValue === 'Yes'}
+              value={1}
+              checked={selectedValue === 1}
               color='success'
+              index={props.index}
             />
           }
           label='Yes'
@@ -62,9 +67,10 @@ export default function RadioButtons(props) {
           style={{ display: 'inline' }}
           control={
             <Radio
-              value='No'
-              checked={selectedValue === 'No'}
+              value={0}
+              checked={selectedValue === 0}
               color='success'
+              index={props.index}
             />
           }
           label='No'

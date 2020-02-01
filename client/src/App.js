@@ -26,10 +26,10 @@ class App extends Component {
           this.props.history.push('/login');
         }
       });
-    clientAuth.getUserData('mattpigs@gmail.com')
-      .then(res => {
-        console.log(res);
-      })
+    // clientAuth.getUserData('mattpigs@gmail.com')
+    //   .then(res => {
+    //     console.log(res);
+    //   })
   };
 
   render() {
