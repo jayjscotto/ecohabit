@@ -15,7 +15,7 @@ const useStyles = makeStyles(theme => ({
   title: {
     flexGrow: 1,
     color: '#F1BB87',
-    textShadow: '-2px 2px 3px rgba(247, 239, 153,0.25)'
+    textShadow: '-2px 2px 3px rgba(247, 239, 153,0.25)',
   },
   bar: {
     background: '#6d8468',
