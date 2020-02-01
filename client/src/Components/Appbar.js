@@ -2,6 +2,7 @@ import React, { useState, Fragment } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 import { AppBar, Toolbar, Typography, Button, IconButton } from '@material-ui/core';
+import clientauth from '../Utils/clientauth'
 
 // import MenuIcon from '@material-ui/icons/Menu';
 
@@ -32,7 +33,7 @@ export default function ButtonAppBar(props) {
 
   const [user, setUser] = useState(false);
 
-  function componentWillMount() {
+  const componentDidMount = () => {
     const token = localStorage.getItem('jwtToken');
     console.log(token);
   }
@@ -46,7 +47,7 @@ export default function ButtonAppBar(props) {
       <AppBar position="relative" className={classes.bar}>
         <Toolbar>
           <Typography variant="h4" className={classes.title}>Ecohabit</Typography>
-            {localStorage.getItem('jwtToken') ? (
+            { clientauth.userToken() ? (
               <Fragment>
                 <Link to='/'>
                   <Button color="inherit" variant='h6'>Daily Dashboard</Button>
