@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import GreenRadio from './GreenRadio';
 import { FormControl } from '@material-ui/core';
 import { FormButton } from './FormElements';
+import clientauth from '../Utils/clientauth'
 
 const IntakeQuestions = require('../Utils/checkin-questions.json');
 
@@ -40,8 +41,10 @@ const CheckIn = props => {
 
   //onform submit
   const submitSurvey = answers => {
-    console.log(answers);
-    // API.submitCheckIn(answers).then(
+    const localStorageObject = clientauth.getLocalStorage('eco-user');
+    const user = JSON.parse(localStorageObject)._id;
+
+    // clientauth.userSubmitDaily(user, answers).then(
     //   setDailyCheck(true);
     // );
   };
@@ -68,3 +71,4 @@ const CheckIn = props => {
 };
 
 export default CheckIn;
+
