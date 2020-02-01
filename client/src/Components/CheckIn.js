@@ -21,7 +21,7 @@ const CheckIn = props => {
   const updateAnswers = event => {
     answers.push(event);
     answers = answers.filter(answer => answer !== undefined);
-    // console.log(answers);
+    console.log(answers)
   };
 
   // when component mounts, check from the db if the user has checked in today

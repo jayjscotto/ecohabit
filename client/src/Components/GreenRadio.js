@@ -30,11 +30,10 @@ export default function RadioButtons(props) {
   const handleChange = event => {
     setSelectedIndex(event.target.index);
     setSelectedValue(event.target.value);
-    console.log(event.target.index);
   };
 
   useEffect(() => {
-    props.updateAnswers(selectedValue, selectedIndex);
+    props.updateAnswers(selectedValue);
   }, [selectedValue]);
 
   return (
@@ -53,8 +52,8 @@ export default function RadioButtons(props) {
           value='Yes'
           control={
             <Radio
-              value='Yes'
-              checked={selectedValue === 'Yes'}
+              value={1}
+              checked={selectedValue === 1}
               color='success'
               index={props.index}
             />
@@ -66,8 +65,8 @@ export default function RadioButtons(props) {
           value='No'
           control={
             <Radio
-              value='No'
-              checked={selectedValue === 'No'}
+              value={0}
+              checked={selectedValue === 0}
               color='success'
               index={props.index}
             />

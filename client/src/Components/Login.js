@@ -46,7 +46,7 @@ class Login extends Component {
 
 		clientauth.userLogin({ userName, password })
 			.then((result) => {
-				populateLocalStorage(result.data);
+				clientauth.populateLocalStorage(result.data);
 				this.setState({ message: '' });
 				window.location.replace('/');
 			})
