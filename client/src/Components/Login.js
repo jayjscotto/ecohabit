@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 // import './Login.css';
 import Appbar from '../Components/Appbar';
 import { Box, Container, Button, Card, CardContent, Grid, CardActions, TextField, Typography } from '@material-ui/core';
+import clientauth from '../Utils/clientauth';
 
 let style = {
 	box: {
@@ -44,8 +45,7 @@ class Login extends Component {
 		const { userName, password } = this.state;
 		console.log({ userName, password });
 
-		axios
-			.post('/api/auth/login', { userName, password })
+		clientauth.userLogin({ userName, password })
 			.then((result) => {
 				localStorage.setItem('jwtToken', result.data.token);
 				this.setState({ message: '' });
