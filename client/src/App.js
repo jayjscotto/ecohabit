@@ -14,23 +14,9 @@ class App extends Component {
 	}
 
   componentDidMount() {
-    axios.defaults.headers.common['Authorization'] = localStorage.getItem(
-      'jwtToken'
-    );
-    axios
-      .get('/api/survey')
-      .then(res => {
-        this.props.history.push('/');
-      })
-      .catch(error => {
-        if (error.response.status === 401) {
-          this.props.history.push('/login');
-        }
-	  });
-	axios.get('/api/user/mattpigs@gmail.com')
-	  .then(res => {
-		  console.log(res);
-	  })
+    clientAuth.userAuth();
+    clientAuth.userLogin(this.props.history);
+    clientAuth.userData('mattpigs@gmail.com');
   };
 
   render() {
