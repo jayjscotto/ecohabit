@@ -1,16 +1,21 @@
+* {
+    letter-spacing: -0.5px;
+}
+
 body {
     margin: 0;
     padding: 0;
-    background-image: linear-gradient(45deg, #f8cdbe, #f7f3c2);
+    background-image: linear-gradient(45deg, #fff2ed, #f7f3c2);
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: fixed;
+    background-attachment: fixed;
     height: 100vh;
+    background: #edf0ed;
 }
 
 
 .class { 
-    color: var(light-orange, #f8cdbe);
+    color: var(light-orange, #ffe7df);
     color: var(light-yellow #f7f3c2);
     color: var(dark-green, #5D675B);
     color: var(title, #F1BB87);

@@ -7,7 +7,7 @@ function LeftPane(props) {
             <Grid item sm>
                 <Paper elevation={3} style={props.style} >
                     <Typography style={props.header}>
-                        Welcome
+                        CHeck-In
                     </Typography>
                     {props.children}
                 </Paper>

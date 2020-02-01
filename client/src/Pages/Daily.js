@@ -13,6 +13,7 @@ const style = {
 		textAlign: 'center',
 		fontFamily: 'inherit',
 		padding: '10px 70px',
+		backgroundImage: 'linear-gradient(30deg, #fff2ed, #fffde9)'
 	},
 	rightpane: {
 		color: '#5D675B',
@@ -21,15 +22,15 @@ const style = {
 		textAlign: 'center',
 		fontFamily: 'inherit',
 		padding: '10px 70px',
+		backgroundImage: 'linear-gradient(30deg, #fff2ed, #fffde9)'
 	},
 	header: {
-		// padding: '5px',
+		textTransform: 'uppercase',
 		borderBottom: '0.5px solid #5D675B',
 		marginBottom: '40px',
-		letterSpacing: '-1px',
-		fontSize: '32px',
-		boxShadow: 'inset 0px -29px 25px -40px rgba(0,0,0,0.25)'
-		// background: '#f7f3c2'
+		fontSize: '28px',
+		boxShadow: 'inset 0px -29px 25px -40px rgba(0,0,0,0.25)',
+		padding: '12px 0px',
 
 	}
 }
@@ -39,7 +40,7 @@ class Daily extends Component {
 
 	render() {
     	return (
-        <Container style={{ marginTop: '6em' }}>
+        <Container style={{ marginTop: '2em' }}>
             <Grid container>
                 <LeftPane style={style.leftpane} header={style.header}>
 					<CheckIn></CheckIn>

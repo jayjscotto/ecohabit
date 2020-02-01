@@ -3,9 +3,11 @@ import axios from 'axios';
 import Daily from './Pages/Daily';
 import Login from './Components/Login';
 import Register from './Components/Register';
+import Reminder from './Pages/Reminders';
 import { BrowserRouter as Router, withRouter, Switch, Route } from 'react-router-dom';
 import IntakeSurvey from './Pages/IntakeSurvey';
 import Title from './Components/Title';
+import Account from './Pages/Account';
 import clientAuth from './Utils/clientauth';
 
 class App extends Component {
@@ -28,7 +30,7 @@ class App extends Component {
         }
 	  });
 	axios.get('/api/user/mattpigs@gmail.com')
-	  .then(res => {
+	  . then(res => {
 		  console.log(res);
 	  })
   };
@@ -39,8 +41,10 @@ class App extends Component {
         <Switch>
           <Route exact path='/login' component={Login} />
           <Route exact path='/register' component={Register} />
+          <Route exact path='/reminder' component={Reminder} />
           <Route exact path='/' component={Daily} />
           <Route exact path='/title' component={Title} />
+          <Route exact path='/account' component={Account} />
         </Switch>
       </div>
     ) 
