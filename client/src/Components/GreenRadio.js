@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Fragment, Box } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { green } from '@material-ui/core/colors';
 import {
@@ -9,17 +9,20 @@ import {
 } from '@material-ui/core';
 
 const useStyles = makeStyles({
-  questionWrapper: {
+  root: {
+    // flexGrow: 1,
     display: 'flex',
-    flexDirection: 'row'
+    flexDirection: 'row',
+    justifyContent: 'space-evenly'
   },
-  surveyQuestion: {
-    textAlign: 'left',
-    width: '70%',
-    margin: '0'
-  }
+  question: {
+    lineHeight: '1.5em',
+    margin: '20px auto 0px auto',
+    fontSize: '16px',
+    fontWeight: 'bold',
+    letterSpacing: '-0.5px',
+  },
 });
-
 
 export default function RadioButtons(props) {
   const [selectedValue, setSelectedValue] = useState();
@@ -35,19 +38,19 @@ export default function RadioButtons(props) {
   }, [selectedValue]);
 
   return (
-    <div className='questionWrapper'>
-      <FormLabel style={{margin: '0', width: '70%'}} component='legend'>
-        {props.question}
-      </FormLabel>
+    <div>
+      <FormLabel className={classes.question} component='legend'>{props.question}</FormLabel>
       <RadioGroup
         aria-label='position'
         name='position'
         value={props.index}
         onChange={handleChange}
         row
+        className={classes.root}
       >
         <FormControlLabel
           value='Yes'
+          style={{ display: 'inline' }}
           control={
             <Radio
               value={1}
@@ -61,6 +64,7 @@ export default function RadioButtons(props) {
         />
         <FormControlLabel
           value='No'
+          style={{ display: 'inline' }}
           control={
             <Radio
               value={0}

@@ -8,14 +8,14 @@ function RightPane(props) {
         <Grid container sm={6} >
             <Grid item sm={12}>
                 <Paper elevation={3} style={props.style}>
-                    <Typography variant="h4">
+                    <Typography style={props.header}>
                         Daily Dashboard
                     </Typography>
                 </Paper>
             </Grid>
             <Grid item sm={12}>
                 <Paper elevation={3} style={props.style}>
-                    <Typography variant="h4">
+                    <Typography style={props.header}>
                         Data by the Day
                     </Typography>
                 </Paper>
