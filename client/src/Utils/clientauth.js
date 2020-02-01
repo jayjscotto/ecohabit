@@ -2,32 +2,16 @@
 import axios from 'axios';
 
 export default {
-    userAuth: function() {
+    userToken: function() {
         return axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
     },
-    userLogin: function(history) {
-        return (
-            axios
-            .get('/api/survey')
-            .then(res => {
-                history.push('/');
-            })
-            .catch(error => {
-                if (error.response.status === 401) {
-                history.push('/login');
-                }
-            })
-        )
+    giveUserAccess: function(history) {
+        return axios.get('/api/survey');
     },
-    userData: function(id) {
-        return (
-            axios.get(`/api/user/${id}`)
-            .then(res => {
-                console.log(res);
-            })
-        )
+    getUserData: function(id) {
+        return axios.get(`/api/user/${id}`);
     },
-    userRegister: function(obj, callback) {
+    userRegister: function(obj) {
         return (
             axios.post('/api/auth/register', obj, function(res) {
                 // changed the data being sent in request
@@ -35,9 +19,9 @@ export default {
                     console.log('success');
                 }
             })
-            .then((result) => {
-                callback();
-            })
         )
+    },
+    userLogin: function(obj) {
+        return axios.post('/api/auth/login', obj)
     }
 }

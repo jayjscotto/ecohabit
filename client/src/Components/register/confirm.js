@@ -12,12 +12,12 @@ export class Confirm extends Component {
 		// call api here
 		console.log('working');
 		const { values: { firstName, lastName, userName, password, password2, zipCode } } = this.props;
-		clientAuth.userRegister(
-			{ values: { firstName, lastName, userName, password, password2, zipCode } },
-			this.props.nextStep()
-		)
+		clientAuth.userRegister({ values: { firstName, lastName, userName, password, password2, zipCode } })
+			.then((result) => {
+				this.props.nextStep();
+			})
 	};
-
+	
 	back = (e) => {
 		e.preventDefault();
 		this.props.prevStep();

@@ -14,9 +14,20 @@ class App extends Component {
 	}
 
   componentDidMount() {
-    clientAuth.userAuth();
-    clientAuth.userLogin(this.props.history);
-    clientAuth.userData('mattpigs@gmail.com');
+    clientAuth.userToken();
+    clientAuth.giveUserAccess()
+      .then(res => {
+        this.props.history.push('/');
+      })
+      .catch(error => {
+        if (error.response.status === 401) {
+          this.props.history.push('/login');
+        }
+      });
+    clientAuth.getUserData('mattpigs@gmail.com')
+      .then(res => {
+        console.log(res);
+      })
   };
 
   render() {
