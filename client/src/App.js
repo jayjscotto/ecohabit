@@ -5,7 +5,7 @@ import Login from './Components/Login';
 import Register from './Components/Register';
 import Reminder from './Pages/Reminders';
 import { BrowserRouter as Router, withRouter, Switch, Route } from 'react-router-dom';
-
+import IntakeSurvey from './Pages/IntakeSurvey';
 import Title from './Components/Title';
 import Account from './Pages/Account';
 import clientAuth from './Utils/clientauth';

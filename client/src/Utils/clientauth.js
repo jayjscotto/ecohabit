@@ -47,7 +47,7 @@ export default {
         const score = answers.reduce(reducer);
         const checkInData = {
             user_id,
-            userAnswers: answers,
+            useAnswers: answers,
             totalPoints: answers.reduce(reducer),
             date: Date.now()
         }
