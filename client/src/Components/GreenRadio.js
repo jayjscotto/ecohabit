@@ -9,14 +9,17 @@ import {
 } from '@material-ui/core';
 
 export default function RadioButtons(props) {
-  const [selectedValue, setSelectedValue] = useState();
+  const [ selectedValue, setSelectedValue ] = useState();
+  const [ selectedIndex, setSelectedIndex ] = useState();
 
   const handleChange = event => {
+    setSelectedIndex(event.target.index);
     setSelectedValue(event.target.value);
+    console.log(event.target.index)
   };
 
   useEffect(() => {
-    props.updateAnswers(selectedValue);
+    props.updateAnswers(selectedValue, selectedIndex);
   }, [selectedValue]);
 
   return (
@@ -36,6 +39,7 @@ export default function RadioButtons(props) {
               value='Yes'
               checked={selectedValue === 'Yes'}
               color='success'
+              index={props.index}
             />
           }
           label='Yes'
@@ -48,6 +52,7 @@ export default function RadioButtons(props) {
               value='No'
               checked={selectedValue === 'No'}
               color='success'
+              index={props.index}
             />
           }
           label='No'
