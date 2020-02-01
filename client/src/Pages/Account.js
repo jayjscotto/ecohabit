@@ -1,9 +1,14 @@
 import React from 'react';
+import { Container, Typography } from '@material-ui/core';
 
-function Account() {
+class Account extends React.Component {
+  render() {
     return (
-        <h1>This is the account page.</h1>
+      <Container>
+        <Typography>This is the Account page</Typography>
+      </Container>
     )
+  }
 }
 
 export default Account;

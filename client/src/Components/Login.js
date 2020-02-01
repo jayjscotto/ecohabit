@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-
 import Appbar from '../Components/Appbar';
 import { Box, Container, Button, Card, CardContent, Grid, CardActions, TextField, Typography } from '@material-ui/core';
 import clientauth from '../Utils/clientauth';
 
 let style = {
 	box: {
-		margin: '0 auto'
+		margin: '10px auto'
 	},
 	input: {
 		display: 'block',
@@ -69,7 +68,6 @@ class Login extends Component {
 				style={{ minHeight: '100vh' }}
 				elevation={3}
 			>
-				<Appbar />
 				<Grid item>
 					<Card className="container" style={style.box}>
 						<CardContent>

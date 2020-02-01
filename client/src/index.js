@@ -10,7 +10,7 @@ ReactDOM.render(
   <Router>
     <Appbar />
     <App />
-    <Tabs />
+    {/* <Tabs /> */}
   </Router>,
   document.getElementById('root')
 );

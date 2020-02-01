@@ -1,23 +1,29 @@
 import React, { Component } from 'react';
-import AppBar from 'material-ui/AppBar';
-// import { List, ListItem } from 'material-ui/List';
-// import axios from 'axios';
 import clientAuth from '../../Utils/clientauth';
-import { FormInput, FormButton, FormCard, FormCardContent, FormAction } from '../../Components/FormElements';
-import { Grid, CardActions, Paper, List, ListItem, ListItemText } from '@material-ui/core';
+import { FormButton, FormCard, FormCardContent, FormAction } from '../../Components/FormElements';
+import { Grid, List, ListItem, ListItemText } from '@material-ui/core';
 
 export class Confirm extends Component {
+	// continue function
 	continue = (e) => {
 		e.preventDefault();
 		// call api here
-		console.log('working');
+		console.log('api call working');
+
 		const { values: { firstName, lastName, userName, password, password2, zipCode } } = this.props;
-		clientAuth.userRegister({ values: { firstName, lastName, userName, password, password2, zipCode } })
-			.then((result) => {
+		clientAuth
+			.userRegister({ values: { firstName, lastName, userName, password, password2, zipCode } })
+			.then((res) => {
 				this.props.nextStep();
 			})
+			// catches 500 error for empty fields
+			.catch((err) => {
+				if (err) {
+					console.log('Please fill out all user fields');
+				}
+			});
 	};
-	
+	// back button function
 	back = (e) => {
 		e.preventDefault();
 		this.props.prevStep();
