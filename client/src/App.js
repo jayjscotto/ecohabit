@@ -4,7 +4,6 @@ import Daily from './Pages/Daily';
 import Login from './Components/Login';
 import Register from './Components/Register';
 import { BrowserRouter as Router, withRouter, Switch, Route } from 'react-router-dom';
-import IntakeSurvey from './Pages/IntakeSurvey';
 import Title from './Components/Title';
 import clientAuth from './Utils/clientauth';
 
