@@ -25,7 +25,6 @@ router.post('/register', function(req, res, err) {
 			// this contains new parsing params
 			userName: req.body.values.userName,
 			password: req.body.values.password,
-			password2: req.body.values.password2,
 			firstName: req.body.values.firstName,
 			lastName: req.body.values.lastName,
 			zipCode: req.body.values.zipCode
@@ -63,7 +62,7 @@ router.post('/login', function(req, res) {
 						// if user is found and password is right create a token
 						const token = jwt.sign(user.toJSON(), settings.secret);
 						// return the information including token as JSON
-						res.json({ success: true, token: 'JWT ' + token });
+						res.json({ success: true, token: 'JWT ' + token, user: req.body.userName, firstName: user.firstName });
 					} else {
 						// auth failed wrong password
 						res.status(401).send({ success: false, msg: 'Authentication failed. Wrong password.' });
