@@ -25,14 +25,6 @@ router.post('/', passport.authenticate('jwt', { session: false }), function(req,
 	}
 });
 
-//  daily cron job
-var CronJob = require('cron').CronJob;
-var job = new CronJob('0 1 * * *', function() {
-	db.Users.find({}, { $set: { dailyCheck: false } });
-});
-
-job.start();
-
 // don't touch PLEASE <3 Laura
 getToken = function(headers) {
 	if (headers && headers.authorization) {

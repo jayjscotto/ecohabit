@@ -11,10 +11,6 @@ const UserSchema = new Schema({
 		type: String,
 		required: true
 	},
-	password2: {
-		type: String,
-		required: true
-	},
 	fullName: {
 		type: String,
 		required: false
@@ -36,21 +32,6 @@ const UserSchema = new Schema({
 		required: true
 		// min: [ 5, 'Zip Code must be 5 Digits long' ],
 		// max: 5
-	},
-	surveyResult: {
-		// push points to an array
-		// holds
-		survey: [
-			{
-				points: {
-					type: Number
-				},
-				date: {
-					type: Date,
-					default: Date.now
-				}
-			}
-		]
 	}
 });
 

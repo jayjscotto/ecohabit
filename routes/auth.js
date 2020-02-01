@@ -17,15 +17,15 @@ router.post('/register', function(req, res, err) {
 		!req.body.values.lastName ||
 		!req.body.values.zipCode
 	) {
-		// iff err throw err
-		throw err;
+		res.status(500).send({ success: false, msg: 'Authentication failed. You must fill in all fields' });
+		res.msg = 'You must fill in all fields';
+		console.log(res.msg);
 	} else {
 		// create new user variable
 		const newUser = new User({
 			// this contains new parsing params
 			userName: req.body.values.userName,
 			password: req.body.values.password,
-			password2: req.body.values.password2,
 			firstName: req.body.values.firstName,
 			lastName: req.body.values.lastName,
 			zipCode: req.body.values.zipCode
