@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const passport = require('passport');
-//const db= require('../models');
+const db = require('../models');
 require('../config/passport')(passport);
 
 /* GET */
