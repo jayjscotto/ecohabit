@@ -50,10 +50,19 @@ export class Confirm extends Component {
 						<FormCardContent>
 							<FormAction title="Confirm Your Details">Confirm Your Details</FormAction>
 							<List>
-								<ListItem primary="First Name" secondary={firstName} />
-								<ListItem primary="Last Name" secondary={lastName} />
-								<ListItem primary="E-mail" secondary={userName} />
-								<ListItem primary="Zip Code" secondary={zipCode} />
+							<ListItem>
+									<ListItemText primary="First Name" secondary={firstName} />
+								</ListItem>
+								<ListItem>
+									<ListItemText primary="Last Name" secondary={lastName} />
+								</ListItem>
+								<ListItem>
+									<ListItemText primary="E-mail" secondary={userName} />
+								</ListItem>
+								<ListItem>
+									<ListItemText primary="Zip Code" secondary={zipCode} />
+								</ListItem>
+
 							</List>
 							<FormButton label="Confirm Details" primary={true} onClick={this.continue}>
 							Confirm Details
