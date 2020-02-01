@@ -21,7 +21,7 @@ const CheckIn = props => {
   const updateAnswers = event => {
     answers.push(event);
     answers = answers.filter(answer => answer !== undefined);
-    console.log(answers);
+    // console.log(answers);
   };
 
   // when component mounts, check from the db if the user has checked in today
@@ -29,7 +29,7 @@ const CheckIn = props => {
   // const componentDidMount = () => {
   //   console.log('axios request for user/s daily checkin boolean goes here');
   //   call API to see if the user has checked in today and update the state variable to update 
-  //   API.userCheckIn().then(res => {
+  //   API.userDailyCheck().then(res => {
   //     if (res !== true) {
   //       setDailyCheck(false);
   //     } else {
