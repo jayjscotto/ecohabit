@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const passport = require('passport');
-//const db= require('../models');
+const db = require('../models');
 require('../config/passport')(passport);
 
 /* GET */
@@ -24,6 +24,14 @@ router.post('/', passport.authenticate('jwt', { session: false }), function(req,
 		return res.status(403).send({ success: false, msg: 'Unauthorized.' });
 	}
 });
+
+//  daily cron job
+var CronJob = require('cron').CronJob;
+var job = new CronJob('0 1 * * *', function() {
+	db.Users.find({}, { $set: { dailyCheck: false } });
+});
+
+job.start();
 
 // don't touch PLEASE <3 Laura
 getToken = function(headers) {
