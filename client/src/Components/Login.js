@@ -22,8 +22,8 @@ let style = {
 		color: '#f7f3c2'
 	}
 };
-// in login: Laura Updated username key to userName so the data being sent matches data in the Usermodel
-// no other changes made
+
+
 class Login extends Component {
 	constructor() {
 		super();
