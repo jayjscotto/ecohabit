@@ -17,19 +17,18 @@ const useStyles = makeStyles({
   },
   question: {
     lineHeight: '1.5em',
-    margin: '10px auto 0px auto',
+    margin: '20px auto 0px auto',
+    fontSize: '16px',
+    fontWeight: 'bold'
   },
 });
 
 export default function RadioButtons(props) {
-  const classes = useStyles();
   const [selectedValue, setSelectedValue] = useState();
-  const [selectedIndex, setSelectedIndex] = useState();
 
   const classes = useStyles();
 
   const handleChange = event => {
-    setSelectedIndex(event.target.index);
     setSelectedValue(event.target.value);
   };
 
@@ -38,7 +37,7 @@ export default function RadioButtons(props) {
   }, [selectedValue]);
 
   return (
-    <React.Fragment>
+    <div>
       <FormLabel className={classes.question} component='legend'>{props.question}</FormLabel>
       <RadioGroup
         aria-label='position'
@@ -54,7 +53,7 @@ export default function RadioButtons(props) {
           control={
             <Radio
               value={1}
-              checked={selectedValue === 1}
+              checked={selectedValue == 1}
               color='success'
               index={props.index}
             />
@@ -68,7 +67,7 @@ export default function RadioButtons(props) {
           control={
             <Radio
               value={0}
-              checked={selectedValue === 0}
+              checked={selectedValue == 0}
               color='success'
               index={props.index}
             />
@@ -77,6 +76,6 @@ export default function RadioButtons(props) {
           labelPlacement='top'
         />
       </RadioGroup>
-    </React.Fragment>
+    </div>
   );
 }

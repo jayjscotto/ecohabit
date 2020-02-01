@@ -21,7 +21,7 @@ const style = {
 		margin: '20px',
 		textAlign: 'left',
 		fontFamily: 'inherit',
-		// padding: '10px 20px',
+		padding: '20px 60px',
 		backgroundImage: 'linear-gradient(30deg, #fff2ed, #fffde9)'
 	},
 	header: {
