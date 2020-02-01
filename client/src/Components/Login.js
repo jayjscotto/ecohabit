@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import './Login.css';
+
 import Appbar from '../Components/Appbar';
 import { Box, Container, Button, Card, CardContent, Grid, CardActions, TextField, Typography } from '@material-ui/core';
 import clientauth from '../Utils/clientauth';
@@ -22,8 +22,8 @@ let style = {
 		color: '#f7f3c2'
 	}
 };
-// in login: Laura Updated username key to userName so the data being sent matches data in the Usermodel
-// no other changes made
+
+
 class Login extends Component {
 	constructor() {
 		super();
@@ -43,17 +43,16 @@ class Login extends Component {
 		e.preventDefault();
 
 		const { userName, password } = this.state;
-		console.log({ userName, password });
 
 		clientauth.userLogin({ userName, password })
 			.then((result) => {
-				localStorage.setItem('jwtToken', result.data.token);
+				clientauth.populateLocalStorage(result.data);
 				this.setState({ message: '' });
 				window.location.replace('/');
 			})
 			.catch((error) => {
 				if (error.response.status === 401) {
-					this.setState({ message: 'Login failed. userName or password not match' });
+					this.setState({ message: 'Login failed. username or password does not match' });
 				}
 			});
 	};

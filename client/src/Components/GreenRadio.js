@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import { green } from '@material-ui/core/colors';
 import {
   Radio,
@@ -8,10 +8,27 @@ import {
   RadioGroup
 } from '@material-ui/core';
 
+const useStyles = makeStyles({
+  questionWrapper: {
+    display: 'flex',
+    flexDirection: 'row'
+  },
+  surveyQuestion: {
+    textAlign: 'left',
+    width: '70%',
+    margin: '0'
+  }
+});
+
+
 export default function RadioButtons(props) {
   const [selectedValue, setSelectedValue] = useState();
+  const [selectedIndex, setSelectedIndex] = useState();
+
+  const classes = useStyles();
 
   const handleChange = event => {
+    setSelectedIndex(event.target.index);
     setSelectedValue(event.target.value);
   };
 
@@ -20,8 +37,10 @@ export default function RadioButtons(props) {
   }, [selectedValue]);
 
   return (
-    <React.Fragment>
-      <FormLabel component='legend'>{props.question}</FormLabel>
+    <div className='questionWrapper'>
+      <FormLabel style={{margin: '0', width: '70%'}} component='legend'>
+        {props.question}
+      </FormLabel>
       <RadioGroup
         aria-label='position'
         name='position'
@@ -33,9 +52,10 @@ export default function RadioButtons(props) {
           value='Yes'
           control={
             <Radio
-              value='Yes'
-              checked={selectedValue === 'Yes'}
+              value={1}
+              checked={selectedValue === 1}
               color='success'
+              index={props.index}
             />
           }
           label='Yes'
@@ -45,15 +65,16 @@ export default function RadioButtons(props) {
           value='No'
           control={
             <Radio
-              value='No'
-              checked={selectedValue === 'No'}
+              value={0}
+              checked={selectedValue === 0}
               color='success'
+              index={props.index}
             />
           }
           label='No'
           labelPlacement='top'
         />
       </RadioGroup>
-    </React.Fragment>
+    </div>
   );
 }
