@@ -1,34 +1,47 @@
 import React from 'react';
-import { Grid, Typography } from '@material-ui/core';
+import { Grid, Typography, Paper } from '@material-ui/core';
 import API from '../Utils/electric-api';
+import { makeStyles } from '@material-ui/core/styles';
+
+let useStyles = makeStyles({
+  root: {
+    padding: '1em',
+    backgroundImage: 'linear-gradient(30deg, #fff2ed, #fffde9)'
+  },
+  title: {
+    paddingRight: '2em'
+  },
+  list: {
+    listStyle: 'none'
+  }, 
+  distance: {
+    fontSize: '20px'
+  }
+})
 
 function DataDisplay(props) {
-
+  let classes = useStyles();
   return (
-      props.results.map(res => {
+    <Grid container spacing={3}>
+      {props.results.map(res => {
         return (
-          <div>
-            <h1>{res.AddressInfo.Title}</h1>
-            <p>{parseFloat(res.AddressInfo.Distance).toFixed(2)} miles away</p>
-            <p>{res.AddressInfo.AddressLine1}</p>
-            <p>{res.AddressInfo.Town}</p>
-            <p>{res.AddressInfo.StateOrProvince}</p>
-            <p>{res.AddressInfo.PostCode}</p>
-            <p>{res.AddressInfo.ContactTelephone}</p>
-            <p>{res.AddressInfo.AccessComments}</p>
-          </div>
+          
+          <Grid item sm={6}>
+          <Paper className={classes.root}>
+            <ul className={classes.list}>
+              <li>
+                <h1>{res.AddressInfo.Title}</h1>
+                <h4 className={classes.distance}>{parseFloat(res.AddressInfo.Distance).toFixed(2)}  miles away</h4>
+                <p>{res.AddressInfo.AddressLine1}, {res.AddressInfo.Town}, {res.AddressInfo.StateOrProvince}, {res.AddressInfo.Postcode}</p>
+                <p>{res.AddressInfo.ContactTelephone}</p>
+                <p>{res.AddressInfo.AccessComments}</p>
+              </li>
+            </ul>
+          </Paper>
+          </Grid>
         )
-      })
-      <div>
-      <h1>Title</h1>
-      <p>Distance miles away</p>
-      <p>AddressLine1</p>
-      <p>Town</p>
-      <p>StateOrProvince</p>
-      <p>PostCode</p>
-      <p>ContactTelephone</p>
-      <p>AccessComments</p>
-    </div>
+      })}
+      </Grid>
   )
 
 }

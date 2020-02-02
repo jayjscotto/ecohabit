@@ -24,8 +24,8 @@ class Reminders extends React.Component {
 
   render() {
     return (
-      <Container>
-        <Typography>This is the REMINDERS page</Typography>
+      <Container style={{ marginTop: '2em' }}>
+        <Typography>Results based on your zip code</Typography>
         <DataDisplay results={this.state.results} />
       </Container>
     )
