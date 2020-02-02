@@ -1,9 +1,11 @@
 import axios from 'axios';
 
 export default {
-  getElectricData: function() {
-    const url = 'https://api.openchargemap.io/v3/poi/?output=json&countrycode=US&maxresults=100&compact=true&verbose=false&latitude=40.398510&longitude=-74.632294';
-
+  getLatLng: function(zipCode) {
+    return axios.get(`/get-coordinates/${zipCode}`);
+  },
+  getElectricData: function(lat, lng) {
+    const url = `https://api.openchargemap.io/v3/poi/?output=json&countrycode=US&maxresults=100&compact=true&verbose=false&latitude=${lat}&longitude=${lng}`;
     return axios.get(url);
-  }
+  },
 }
