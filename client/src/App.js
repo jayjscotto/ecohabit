@@ -12,7 +12,7 @@ import clientAuth from './Utils/clientauth';
 
 class App extends Component {
 	state = {
-		user: ''
+		user: {},
 	}
 
   componentDidMount() {

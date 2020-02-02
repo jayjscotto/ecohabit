@@ -9,18 +9,18 @@ class Reminders extends React.Component {
     results: []
   }
 
-  componentDidMount() {
-    API.getLatLng('08844')
-      .then(res => { 
-        let lat = res.data[0].geometry.lat;
-        let lng = res.data[0].geometry.lng;
-      API.getElectricData(lat, lng)
-        .then(data => {
-           console.log(data.data) 
-           this.setState({ results: data.data });
-          });
-      });
-  }
+  // componentDidMount() {
+  //   API.getLatLng('08844')
+  //     .then(res => { 
+  //       let lat = res.data[0].geometry.lat;
+  //       let lng = res.data[0].geometry.lng;
+  //     API.getElectricData(lat, lng)
+  //       .then(data => {
+  //          console.log(data.data) 
+  //          this.setState({ results: data.data });
+  //         });
+  //     });
+  // }
 
   render() {
     return (
