@@ -19,7 +19,6 @@ const useStyles = makeStyles({
     margin: '20px auto 0px auto',
     fontSize: '16px',
     fontWeight: 'bold',
-    letterSpacing: '-0.5px',
   },
 });
 
