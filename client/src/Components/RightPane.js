@@ -1,5 +1,4 @@
-import React, { Component, Fragment } from 'react';
-import { makeStyles, ThemeProvider } from '@material-ui/core/styles';
+import React from 'react';
 import { Grid, Paper, Typography } from '@material-ui/core';
 
 function RightPane(props) {

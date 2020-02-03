@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
-import Appbar from '../Components/Appbar';
-import { Box, Container, Button, Card, CardContent, Grid, CardActions, TextField, Typography } from '@material-ui/core';
+import { Button, Card, CardContent, Grid, CardActions, TextField, Typography } from '@material-ui/core';
 import clientauth from '../Utils/clientauth';
 
 let style = {

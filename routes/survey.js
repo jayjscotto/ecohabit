@@ -1,31 +1,16 @@
 const express = require('express');
 const router = express.Router();
-const mongoose = require('mongoose');
 const passport = require('passport');
-const db = require('../models');
 require('../config/passport')(passport);
+const controller = require('../controller/UserController')
 
 /* GET */
-router.get('/', passport.authenticate('jwt', { session: false }), function(req, res) {
-	const token = getToken(req.headers);
-	if (token) {
-		console.log(token);
-	} else {
-		return res.status(403).send({ success: false, msg: 'Unauthorized.' });
-	}
-});
+router.get('/', passport.authenticate('jwt', { session: false }), controller.getCheckInResults);
 
 /* Post */
-router.post('/', passport.authenticate('jwt', { session: false }), function(req, res) {
-	const token = getToken(req.headers);
-	if (token) {
-		// db query here
-	} else {
-		return res.status(403).send({ success: false, msg: 'Unauthorized.' });
-	}
-});
+router.post('/', passport.authenticate('jwt', { session: false }), controller.userSubmitDaily);
 
-// don't touch PLEASE <3 Laura
+// function to get JSON web token
 getToken = function(headers) {
 	if (headers && headers.authorization) {
 		const parted = headers.authorization.split(' ');

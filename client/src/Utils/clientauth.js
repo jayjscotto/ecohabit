@@ -45,12 +45,13 @@ export default {
             return (a + b)
         }
         const score = answers.reduce(reducer);
+        
         const checkInData = {
             user_id,
-            useAnswers: answers,
-            totalPoints: answers.reduce(reducer),
+            userAnswers: answers,
+            totalPoints: score,
             date: Date.now()
         }
-        return axios.post('/api/user/dailycheck', checkInData)
+        return axios.post('/api/survey', checkInData)
     },
 }

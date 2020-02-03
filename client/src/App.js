@@ -1,12 +1,9 @@
-import React, { Component, useEffect } from 'react';
-import axios from 'axios';
+import React, { Component } from 'react';
 import Daily from './Pages/Daily';
 import Login from './Components/Login';
 import Register from './Components/Register';
 import Reminder from './Pages/Reminders';
-import { BrowserRouter as Router, withRouter, Switch, Route } from 'react-router-dom';
-import IntakeSurvey from './Pages/IntakeSurvey';
-import Title from './Components/Title';
+import { withRouter, Switch, Route } from 'react-router-dom';
 import Account from './Pages/Account';
 import clientAuth from './Utils/clientauth';
 
@@ -40,7 +37,6 @@ class App extends Component {
           <Route exact path='/register' component={Register} />
           <Route exact path='/reminder' component={Reminder} />
           <Route exact path='/' component={Daily} />
-          <Route exact path='/title' component={Title} />
           <Route exact path='/account' component={Account} />
         </Switch>
       </div>

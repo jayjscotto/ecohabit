@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import AppBar from 'material-ui/AppBar';
 import { FormInput, FormButton, FormCard, FormCardContent, FormAction } from '../../Components/FormElements';
-import { Box, Container, Button, Card, CardContent, Grid, CardActions, Typography, Paper, TextField } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 
 
 export class Form1 extends Component {
@@ -56,9 +55,5 @@ export class Form1 extends Component {
 		);
 	}
 }
-const styles = {
-	button: {
-		margin: 15
-	}
-};
+
 export default Form1;
