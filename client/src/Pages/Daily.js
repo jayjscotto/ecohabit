@@ -1,8 +1,9 @@
-import React, { Component }from 'react';
+import React, { Component } from 'react';
 import { Container, Grid } from '@material-ui/core';
 import LeftPane from '../Components/LeftPane';
 import RightPane from '../Components/RightPane';
 import CheckIn from '../Components/CheckIn';
+import SurveyComplete from '../Components/conditionalRenders/surveyComplete';
 
 const style = {
 	leftpane: {
@@ -29,24 +30,22 @@ const style = {
 		margin: '0px 40px 20px 40px',
 		fontSize: '28px',
 		boxShadow: 'inset 0px -29px 25px -40px rgba(0,0,0,0.25)',
-		padding: '12px 0px',
+		padding: '12px 0px'
 	}
-}
+};
 
 class Daily extends Component {
-
-
 	render() {
-    	return (
-        <Container style={{ marginTop: '2em' }}>
-            <Grid container>
-                <LeftPane style={style.leftpane} header={style.header}>
-					<CheckIn></CheckIn>
-				</LeftPane>
-                <RightPane style={style.rightpane} header={style.header} />
-            </Grid>
-        </Container>
-	)
+		return (
+			<Container style={{ marginTop: '2em' }}>
+				<Grid container>
+					<LeftPane style={style.leftpane} header={style.header}>
+						<CheckIn />
+					</LeftPane>
+					<RightPane style={style.rightpane} header={style.header} />
+				</Grid>
+			</Container>
+		);
 	}
 }
 
