@@ -36,7 +36,7 @@ const CheckIn = props => {
   //     } else {
   //        setDailyCheck(true);       
   //      }
-  //   });
+  //   }); 
   // };
 
   //onform submit
@@ -44,9 +44,9 @@ const CheckIn = props => {
     const localStorageObject = clientauth.getLocalStorage('eco-user');
     const user = JSON.parse(localStorageObject)._id;
 
-    // clientauth.userSubmitDaily(user, answers).then(
-    //   setDailyCheck(true);
-    // );
+    clientauth.userSubmitDaily(user, answers).then(
+      setDailyCheck(true)
+    );
   };
 
   return (
