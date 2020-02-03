@@ -45,10 +45,11 @@ export default {
             return (a + b)
         }
         const score = answers.reduce(reducer);
+        
         const checkInData = {
             user_id,
             userAnswers: answers,
-            totalPoints: answers.reduce(reducer),
+            totalPoints: score,
             date: Date.now()
         }
         return axios.post('/api/survey', checkInData)
