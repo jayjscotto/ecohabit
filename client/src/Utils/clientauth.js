@@ -22,6 +22,10 @@ export default {
 	userLogin: function(obj) {
 		return axios.post('/api/auth/login', obj);
 	},
+
+	userUpdate: function(data) {
+		return axios.post(`/api/auth/update`, data);
+	},
 	populateLocalStorage: function(userData) {
 		localStorage.setItem('jwtToken', userData.token);
 		localStorage.setItem('eco-user', JSON.stringify(userData.user));
