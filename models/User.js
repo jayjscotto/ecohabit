@@ -30,9 +30,9 @@ const UserSchema = new Schema({
 	},
 	zipCode: {
 		type: Number,
-		required: true
-		// min: [ 5, 'Zip Code must be 5 Digits long' ],
-		// max: 5
+		required: true,
+		min: [ 5, 'Zip Code must be 5 Digits long' ],
+		max: 5
 	},
 	dailyCheck: {
 		type: Boolean,
