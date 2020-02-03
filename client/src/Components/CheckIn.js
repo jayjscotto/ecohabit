@@ -21,7 +21,7 @@ const CheckIn = props => {
 
   const updateAnswers = event => {
     answers.push(parseInt(event));
-    answers = answers.filter(answer => answer !== undefined && NaN);
+    answers = answers.filter(answer => answer !== undefined);
     console.log(answers)
   };
 

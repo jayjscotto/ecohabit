@@ -45,7 +45,7 @@ export default {
             return (a + b)
         }
         const score = answers.reduce(reducer);
-        
+            
         const checkInData = {
             user_id,
             userAnswers: answers,
