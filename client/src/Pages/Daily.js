@@ -40,6 +40,7 @@ class Daily extends Component {
 			<Container style={{ marginTop: '2em' }}>
 				<Grid container>
 					<LeftPane style={style.leftpane} header={style.header}>
+						{/* {this.state.SurveyComplete ? <SurveyComplete /> : <CheckIn />} */}
 						<CheckIn />
 					</LeftPane>
 					<RightPane style={style.rightpane} header={style.header} />

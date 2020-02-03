@@ -73,11 +73,14 @@ class UserDash extends Component {
 							<FormAction title="User Dash">Confirm Your Details</FormAction>
 							<List>
 								<ListItem>
-									<ListItemText primary="First Name" secondary={firstName} />
+									{!this.state.displayTextFields ? (
+										<ListItemText primary="First Name" secondary={firstName} />
+									) : null}
 								</ListItem>
 								<ListItem>
 									{this.state.displayTextFields ? (
 										<TextField
+											label="First Name"
 											id="firstName"
 											onChange={this.handleChange('firstName')}
 											defaultValue={firstName}
@@ -85,11 +88,14 @@ class UserDash extends Component {
 									) : null}
 								</ListItem>
 								<ListItem>
-									<ListItemText primary="Last Name" secondary={lastName} />
+									{!this.state.displayTextFields ? (
+										<ListItemText primary="Last Name" secondary={lastName} />
+									) : null}
 								</ListItem>
 								<ListItem>
 									{this.state.displayTextFields ? (
 										<TextField
+											label="Last Name"
 											id="lastName"
 											onChange={this.handleChange('lastName')}
 											defaultValue={lastName}
@@ -97,11 +103,14 @@ class UserDash extends Component {
 									) : null}
 								</ListItem>
 								<ListItem>
-									<ListItemText primary="E-mail" secondary={userName} />
+									{!this.state.displayTextFields ? (
+										<ListItemText primary="E-mail" secondary={userName} />
+									) : null}
 								</ListItem>
 								<ListItem>
 									{this.state.displayTextFields ? (
 										<TextField
+											label="E-mail"
 											id="userName"
 											onChange={this.handleChange('userName')}
 											defaultValue={userName}
@@ -109,11 +118,14 @@ class UserDash extends Component {
 									) : null}
 								</ListItem>
 								<ListItem>
-									<ListItemText primary="Zip Code" secondary={zipCode} />
+									{!this.state.displayTextFields ? (
+										<ListItemText primary="Zip Code" secondary={zipCode} />
+									) : null}
 								</ListItem>
 								<ListItem>
 									{this.state.displayTextFields ? (
 										<TextField
+											label="Zip Code"
 											id="zipCode"
 											onChange={this.handleChange('zipCode')}
 											defaultValue={zipCode}
