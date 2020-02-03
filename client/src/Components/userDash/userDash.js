@@ -74,6 +74,8 @@ class UserDash extends Component {
 							<List>
 								<ListItem>
 									<ListItemText primary="First Name" secondary={firstName} />
+								</ListItem>
+								<ListItem>
 									{this.state.displayTextFields ? (
 										<TextField
 											id="firstName"
@@ -84,6 +86,8 @@ class UserDash extends Component {
 								</ListItem>
 								<ListItem>
 									<ListItemText primary="Last Name" secondary={lastName} />
+								</ListItem>
+								<ListItem>
 									{this.state.displayTextFields ? (
 										<TextField
 											id="lastName"
@@ -94,6 +98,8 @@ class UserDash extends Component {
 								</ListItem>
 								<ListItem>
 									<ListItemText primary="E-mail" secondary={userName} />
+								</ListItem>
+								<ListItem>
 									{this.state.displayTextFields ? (
 										<TextField
 											id="userName"
@@ -104,6 +110,8 @@ class UserDash extends Component {
 								</ListItem>
 								<ListItem>
 									<ListItemText primary="Zip Code" secondary={zipCode} />
+								</ListItem>
+								<ListItem>
 									{this.state.displayTextFields ? (
 										<TextField
 											id="zipCode"
