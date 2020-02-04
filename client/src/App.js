@@ -5,14 +5,9 @@ import Login from './Components/Login';
 import Register from './Components/Register';
 import Reminder from './Pages/Reminders';
 import { withRouter, Switch, Route } from 'react-router-dom';
-import Account from './Pages/Account';
 import clientAuth from './Utils/clientauth';
 
 class App extends Component {
-	state = {
-		user: ''
-	};
-
 	componentDidMount() {
 		clientAuth.userToken();
 		clientAuth
@@ -25,10 +20,6 @@ class App extends Component {
 					this.props.history.push('/login');
 				}
 			});
-		// clientAuth.getUserData('mattpigs@gmail.com')
-		//   .then(res => {
-		//     console.log(res);
-		//   })
 	}
 
 	render() {
