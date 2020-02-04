@@ -38,7 +38,7 @@ const UserSchema = new Schema({
 		type: Boolean,
 		default: false
 	},
-	checkIn: [{
+	checkIns: [{
 		type: Schema.Types.ObjectId,
 		ref: 'CheckIn'
 	}]
