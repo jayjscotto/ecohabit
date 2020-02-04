@@ -5,10 +5,10 @@ require('../config/passport')(passport);
 const controller = require('../controller/UserController');
 
 /* GET */
-//
-router.get(`/`), passport.authenticate('jwt', { session: false }, controller.userDailyCheck);
+router.get('/'), passport.authenticate('jwt', { session: false }, controller.userDailyCheck);
+
 /* GET */
-router.get('/', passport.authenticate('jwt', { session: false }), controller.getCheckInResults);
+router.get('/results', passport.authenticate('jwt', { session: false }), controller.getCheckInResults);
 
 /* Post */
 router.post('/', passport.authenticate('jwt', { session: false }), controller.userSubmitDaily);
