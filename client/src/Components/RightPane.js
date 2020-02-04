@@ -35,13 +35,12 @@ class RightPane extends React.Component {
             })
     }
 
-
     render() {
         return (
             <Grid container sm={6} >
                 <Grid item sm={12}>
-                    <Paper elevation={3} style={props.style}>
-                        <Typography style={props.header}>
+                    <Paper elevation={3} style={this.props.style}>
+                        <Typography style={this.props.header}>
                             Daily Dashboard
                         </Typography>
                         <Line
@@ -53,10 +52,11 @@ class RightPane extends React.Component {
                     </Paper>
                 </Grid>
                 <Grid item sm={12}>
-                    <Paper elevation={3} style={props.style}>
-                        <Typography style={props.header}>
-                            Data by the Day
+                    <Paper elevation={3} style={this.props.style}>
+                        <Typography style={this.props.header}>
+                            Reminders
                         </Typography>
+                        <Reminders />
                     </Paper>
                 </Grid>
             </Grid>

@@ -20,16 +20,23 @@ class Reminders extends React.Component {
   }
 
   getData = (zip) => {
-    // this.state.loading = true;
     API.getLatLng(zip)
       .then(res => { 
-        let lat = res.data[0].geometry.lat;
-        let lng = res.data[0].geometry.lng;
-        // this.state.loading = false;
+        let lat, lng;
+        for (let i = 0; i < res.data.length; i++) {
+          if (res.data[i].components.country_code === 'us') {
+            lat = res.data[i].geometry.lat;
+            lng = res.data[i].geometry.lng;
+            break;
+          }
+        }
       API.getElectricData(lat, lng)
         .then(data => {
           this.setState({ results: data.data });
-        });
+        })
+        .catch(err => {
+          console.log(err);
+        })
       });
   }
 
