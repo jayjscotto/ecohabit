@@ -56,8 +56,7 @@ export default {
 		};
 		return axios.post('/api/survey', checkInData);
 	},
-	getCheckIn: function() {
-		console.log('FUCK')
-    return axios.get('/api/survey/results');
-  }
+	getCheckIn: function(obj) {
+		return axios.get('/api/survey/results');
+	}
 };

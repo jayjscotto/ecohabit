@@ -1,6 +1,7 @@
 import React from 'react';
 import { Grid, Paper, Typography } from '@material-ui/core';
 import API from '../Utils/clientauth';
+import Reminders from './Reminders';
 
 class RightPane extends React.Component {
 
@@ -27,7 +28,8 @@ class RightPane extends React.Component {
                 <Grid item sm={12}>
                     <Paper elevation={3} style={this.props.style}>
                         <Typography style={this.props.header}>
-                            Data by the Day
+                            Reminders
+                            <Reminders />
                         </Typography>
                     </Paper>
                 </Grid>
