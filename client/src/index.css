@@ -17,9 +17,10 @@ body {
 
 
 .class { 
-    color: var(light-orange, #63925a);
+    color: var(light-orange, rgb(99, 146, 90));
     color: var(light-yellow #f7f3c2);
     color: var(dark-green, #5D675B);
-    color: var(title, #F1BB87);
+    color: var(title, rgb(241, 187, 135));
     color: var(cardtitle, #f1d1b3);
+    color: rgb(93, 103, 91)
 }
