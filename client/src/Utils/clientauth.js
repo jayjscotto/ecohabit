@@ -57,6 +57,7 @@ export default {
 		return axios.post('/api/survey', checkInData);
 	},
 	getCheckIn: function(obj) {
-		return axios.get('/api/survey/results');
+		let token = localStorage.getItem('jwtToken');
+		return axios.get('/api/survey/results', { headers: {"Authorization" : token }});
 	}
 };

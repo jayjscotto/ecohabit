@@ -84,7 +84,6 @@ module.exports = {
 
 	// gets check-in results for data visualization
 	getCheckInResults: function(req, res) {
-		console.log('hello')
 		const token = getToken(req.headers);
 		if (token) {
 			db.User.find({ _id: req.body._id }).populate('checkIns').then((results) => {
