@@ -55,5 +55,8 @@ export default {
 			date: Date.now()
 		};
 		return axios.post('/api/survey', checkInData);
+	},
+	getCheckIn: function(obj) {
+		return axios.get('/api/survey/results');
 	}
 };

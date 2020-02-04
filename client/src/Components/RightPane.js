@@ -1,5 +1,6 @@
 import React from 'react';
 import { Grid, Paper, Typography } from '@material-ui/core';
+import Reminders from './Reminders';
 
 function RightPane(props) {
 
@@ -15,8 +16,9 @@ function RightPane(props) {
             <Grid item sm={12}>
                 <Paper elevation={3} style={props.style}>
                     <Typography style={props.header}>
-                        Data by the Day
+                       Daily Reminders
                     </Typography>
+                     <Reminders />
                 </Paper>
             </Grid>
         </Grid>
