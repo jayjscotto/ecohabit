@@ -48,6 +48,8 @@ const CheckIn = (props) => {
 
 		clientauth.userSubmitDaily(user, answers).then(setDailyCheck(true));
 	};
+
+	// conditional rendering
 	if (setDailyCheck !== false) {
 		return (
 			<FormControl component="fieldset">
