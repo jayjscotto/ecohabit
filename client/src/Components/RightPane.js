@@ -6,9 +6,10 @@ import Reminders from './Reminders';
 class RightPane extends React.Component {
 
     componentDidMount() {
-        API.getCheckIn()
+        let user = JSON.parse(API.getLocalStorage('eco-user'));
+        API.getCheckIn(user._id)
             .then(res => {
-                console.log(res);
+                console.log(res.data[0]);
             })
             .catch(err => {
                 console.log(err);

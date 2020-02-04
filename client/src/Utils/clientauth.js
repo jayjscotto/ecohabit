@@ -8,9 +8,6 @@ export default {
 	giveUserAccess: function() {
 		return axios.get('/api/survey');
 	},
-	getUserData: function(id) {
-		return axios.get(`/api/user/${id}`);
-	},
 	userRegister: function(obj) {
 		return axios.post('/api/auth/register', obj, function(res) {
 			// changed the data being sent in request
@@ -56,8 +53,8 @@ export default {
 		};
 		return axios.post('/api/survey', checkInData);
 	},
-	getCheckIn: function(obj) {
+	getCheckIn: function(id) {
 		let token = localStorage.getItem('jwtToken');
-		return axios.get('/api/survey/results', { headers: {"Authorization" : token }});
+		return axios.get(`/api/survey/results`, { headers: {"Authorization" : token } });
 	}
 };
