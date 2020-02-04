@@ -1,13 +1,24 @@
 import React, { Component } from 'react';
-// import { makeStyles } from '@material-ui/core/styles';
-// import clientauth from '../Utils/clientauth';
+import { Grid, Container } from '@material-ui/core';
 
 class SurveyComplete extends Component {
 	render() {
 		return (
-			<div>
-				<p>Checked and Submitted!</p>
-			</div>
+			<Grid
+				container
+				spacing={0}
+				direction="column"
+				alignItems="center"
+				justify="center"
+				style={{ minHeight: '50vh' }}
+			>
+				<Grid item>
+					<Container maxWidth="sm">
+						<h1>Great Job!</h1>
+						<h3>Check in tomorrow to log your results...</h3>
+					</Container>
+				</Grid>
+			</Grid>
 		);
 	}
 }

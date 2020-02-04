@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { FormButton, FormCard, FormCardContent, FormAction } from '../../Components/FormElements';
-import { makeStyles } from '@material-ui/core/styles';
-import { AppBar, Toolbar, Typography, Button, Grid, List, ListItem, ListItemText, TextField } from '@material-ui/core';
+import { Grid, List, ListItem, ListItemText, TextField } from '@material-ui/core';
 import clientauth from '../../Utils/clientauth';
 
 class UserDash extends Component {
@@ -55,7 +54,7 @@ class UserDash extends Component {
 			});
 	};
 	render() {
-		const { firstName, lastName, userName, dailyCheck, zipCode } = this.state;
+		const { firstName, lastName, userName, zipCode } = this.state;
 
 		return (
 			<Grid

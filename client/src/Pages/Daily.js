@@ -3,7 +3,6 @@ import { Container, Grid } from '@material-ui/core';
 import LeftPane from '../Components/LeftPane';
 import RightPane from '../Components/RightPane';
 import CheckIn from '../Components/CheckIn';
-import SurveyComplete from '../Components/conditionalRenders/surveyComplete';
 
 const style = {
 	leftpane: {
@@ -40,7 +39,6 @@ class Daily extends Component {
 			<Container style={{ marginTop: '2em' }}>
 				<Grid container>
 					<LeftPane style={style.leftpane} header={style.header}>
-						{/* {this.state.SurveyComplete ? <SurveyComplete /> : <CheckIn />} */}
 						<CheckIn />
 					</LeftPane>
 					<RightPane style={style.rightpane} header={style.header} />

@@ -4,6 +4,7 @@ import GreenRadio from './GreenRadio';
 import { FormControl } from '@material-ui/core';
 import { FormButton } from './FormElements';
 import clientauth from '../Utils/clientauth';
+import SurveyComplete from './conditionalRenders/surveyComplete';
 
 const IntakeQuestions = require('../Utils/checkin-questions.json');
 
@@ -47,23 +48,26 @@ const CheckIn = (props) => {
 
 		clientauth.userSubmitDaily(user, answers).then(setDailyCheck(true));
 	};
-
-	return (
-		<FormControl component="fieldset">
-			{IntakeQuestions.questions.map((question, index) => (
-				<GreenRadio
-					index={index}
-					updateAnswers={(e) => {
-						updateAnswers(e);
-					}}
-					question={question.question}
-				/>
-			))}
-			<FormButton onClick={() => submitSurvey(answers)} className={classes.buttonSubmit}>
-				Submit
-			</FormButton>
-		</FormControl>
-	);
+	if (setDailyCheck !== false) {
+		return (
+			<FormControl component="fieldset">
+				{IntakeQuestions.questions.map((question, index) => (
+					<GreenRadio
+						index={index}
+						updateAnswers={(e) => {
+							updateAnswers(e);
+						}}
+						question={question.question}
+					/>
+				))}
+				<FormButton onClick={() => submitSurvey(answers)} className={classes.buttonSubmit}>
+					Submit
+				</FormButton>
+			</FormControl>
+		);
+	} else {
+		return <SurveyComplete />;
+	}
 };
 
 export default CheckIn;
