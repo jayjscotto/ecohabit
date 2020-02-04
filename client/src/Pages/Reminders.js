@@ -20,12 +20,12 @@ class Reminders extends React.Component {
   }
 
   getData = (zip) => {
-    this.state.loading = true;
+    // this.state.loading = true;
     API.getLatLng(zip)
       .then(res => { 
         let lat = res.data[0].geometry.lat;
         let lng = res.data[0].geometry.lng;
-        this.state.loading = false;
+        // this.state.loading = false;
       API.getElectricData(lat, lng)
         .then(data => {
           this.setState({ results: data.data });
@@ -58,9 +58,7 @@ class Reminders extends React.Component {
         />
         <FormButton onClick={() => { this.getData(this.state.zipCode) }}>Search a different zip code</FormButton>
       </Box>
-
-          <DataDisplay results={this.state.results} />
-
+      <DataDisplay results={this.state.results} />
       </Container>
     )
   }
