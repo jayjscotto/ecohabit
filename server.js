@@ -33,7 +33,7 @@ connection.once('open', function callback() {
 
 app.use('/api/survey', survey);
 app.use('/api/auth', auth);
-app.use(api);
+// app.use(api);
 
 app.use(favicon(__dirname + '/build/favicon.ico'));
 

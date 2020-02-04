@@ -10,6 +10,8 @@ router.get('/'), passport.authenticate('jwt', { session: false }, controller.use
 /* GET */
 router.get('/results', passport.authenticate('jwt', { session: false }), controller.getCheckInResults);
 
+console.log(controller.getCheckInResults);
+
 /* Post */
 router.post('/', passport.authenticate('jwt', { session: false }), controller.userSubmitDaily);
 

@@ -61,10 +61,6 @@ class Reminders extends React.Component {
 
           <DataDisplay results={this.state.results} />
 
-          <Box>
-            <iframe src="https://giphy.com/embed/l1KVcrdl7rJpFnY2s" width="480" height="360" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
-          </Box>
-
       </Container>
     )
   }

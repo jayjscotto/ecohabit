@@ -1,27 +1,39 @@
 import React from 'react';
 import { Grid, Paper, Typography } from '@material-ui/core';
+import API from '../Utils/clientauth';
 
-function RightPane(props) {
+class RightPane extends React.Component {
 
-    return (
-        <Grid container sm={6} >
-            <Grid item sm={12}>
-                <Paper elevation={3} style={props.style}>
-                    <Typography style={props.header}>
-                        Daily Dashboard
-                    </Typography>
-                </Paper>
+    componentDidMount() {
+        API.getCheckIn()
+            .then(res => {
+                console.log(res);
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    }
+
+    render() {
+        return (
+            <Grid container sm={6} >
+                <Grid item sm={12}>
+                    <Paper elevation={3} style={this.props.style}>
+                        <Typography style={this.props.header}>
+                            Daily Dashboard
+                        </Typography>
+                    </Paper>
+                </Grid>
+                <Grid item sm={12}>
+                    <Paper elevation={3} style={this.props.style}>
+                        <Typography style={this.props.header}>
+                            Data by the Day
+                        </Typography>
+                    </Paper>
+                </Grid>
             </Grid>
-            <Grid item sm={12}>
-                <Paper elevation={3} style={props.style}>
-                    <Typography style={props.header}>
-                        Data by the Day
-                    </Typography>
-                </Paper>
-            </Grid>
-        </Grid>
-    )
-
+        )
+    }
 }
 
 export default RightPane;
