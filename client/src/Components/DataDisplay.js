@@ -1,5 +1,6 @@
 import React from 'react';
-import { Grid, Typography, Paper } from '@material-ui/core';
+import { Grid, Typography, Paper, Box } from '@material-ui/core';
+import { FormInput, FormButton } from './FormElements';
 import API from '../Utils/electric-api';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -23,6 +24,9 @@ let useStyles = makeStyles({
     color: '#6d8468'
   }
 })
+
+// for user's zip code, call get local storage?
+// look into a hook to get it from the login
 
 function DataDisplay(props) {
   let classes = useStyles();
@@ -48,59 +52,62 @@ function DataDisplay(props) {
 
   return (
     <Grid container spacing={3}>
-      <Grid item sm={6}>
-        <Paper className={classes.root}>
-          <ul className={classes.list}>
-            <li>
-              <h1>Title</h1>
-              <h2 className={classes.distance}>Distance miles away</h2>
-              <a className={classes.link} href={`https://www.google.com/maps/place/4+Park+Ave,+Rocky+Hill,+NJ+08553`} target="_blank">AddressLine1, Town, State, Zip Code</a>
-              <p>Contact Phone</p>
-              <p>Access Comments</p>
-            </li>
-          </ul>
-        </Paper>
-      </Grid>
-      <Grid item sm={6}>
-        <Paper className={classes.root}>
-          <ul className={classes.list}>
-            <li>
-              <h1>Title</h1>
-              <h2 className={classes.distance}>Distance miles away</h2>
-              <a className={classes.link} href={`https://www.google.com/maps/place/4+Park+Ave,+Rocky+Hill,+NJ+08553`} target="_blank">AddressLine1, Town, State, Zip Code</a>
-              <p>Contact Phone</p>
-              <p>Access Comments</p>
-            </li>
-          </ul>
-        </Paper>
-      </Grid>
-      <Grid item sm={6}>
-        <Paper className={classes.root}>
-          <ul className={classes.list}>
-            <li>
-              <h1>Title</h1>
-              <h2 className={classes.distance}>Distance miles away</h2>
-              <a className={classes.link} href={`https://www.google.com/maps/place/4+Park+Ave,+Rocky+Hill,+NJ+08553`} target="_blank">AddressLine1, Town, State, Zip Code</a>
-              <p>Contact Phone</p>
-              <p>Access Comments</p>
-            </li>
-          </ul>
-        </Paper>
-      </Grid>
-      <Grid item sm={6}>
-        <Paper className={classes.root}>
-          <ul className={classes.list}>
-            <li>
-              <h1>Title</h1>
-              <h2 className={classes.distance}>Distance miles away</h2>
-              <a className={classes.link} href={`https://www.google.com/maps/place/4+Park+Ave,+Rocky+Hill,+NJ+08553`} target="_blank">AddressLine1, Town, State, Zip Code</a>
-              <p>Contact Phone</p>
-              <p>Access Comments</p>
-            </li>
-          </ul>
-        </Paper>
-      </Grid>
+      {stationList}
     </Grid>
+    // <Grid container spacing={3}>
+    //   <Grid item sm={6}>
+    //     <Paper className={classes.root}>
+    //       <ul className={classes.list}>
+    //         <li>
+    //           <h1>Title</h1>
+    //           <h2 className={classes.distance}>Distance miles away</h2>
+    //           <a className={classes.link} href={`https://www.google.com/maps/place/4+Park+Ave,+Rocky+Hill,+NJ+08553`} target="_blank">AddressLine1, Town, State, Zip Code</a>
+    //           <p>Contact Phone</p>
+    //           <p>Access Comments</p>
+    //         </li>
+    //       </ul>
+    //     </Paper>
+    //   </Grid>
+    //   <Grid item sm={6}>
+    //     <Paper className={classes.root}>
+    //       <ul className={classes.list}>
+    //         <li>
+    //           <h1>Title</h1>
+    //           <h2 className={classes.distance}>Distance miles away</h2>
+    //           <a className={classes.link} href={`https://www.google.com/maps/place/4+Park+Ave,+Rocky+Hill,+NJ+08553`} target="_blank">AddressLine1, Town, State, Zip Code</a>
+    //           <p>Contact Phone</p>
+    //           <p>Access Comments</p>
+    //         </li>
+    //       </ul>
+    //     </Paper>
+    //   </Grid>
+    //   <Grid item sm={6}>
+    //     <Paper className={classes.root}>
+    //       <ul className={classes.list}>
+    //         <li>
+    //           <h1>Title</h1>
+    //           <h2 className={classes.distance}>Distance miles away</h2>
+    //           <a className={classes.link} href={`https://www.google.com/maps/place/4+Park+Ave,+Rocky+Hill,+NJ+08553`} target="_blank">AddressLine1, Town, State, Zip Code</a>
+    //           <p>Contact Phone</p>
+    //           <p>Access Comments</p>
+    //         </li>
+    //       </ul>
+    //     </Paper>
+    //   </Grid>
+    //   <Grid item sm={6}>
+    //     <Paper className={classes.root}>
+    //       <ul className={classes.list}>
+    //         <li>
+    //           <h1>Title</h1>
+    //           <h2 className={classes.distance}>Distance miles away</h2>
+    //           <a className={classes.link} href={`https://www.google.com/maps/place/4+Park+Ave,+Rocky+Hill,+NJ+08553`} target="_blank">AddressLine1, Town, State, Zip Code</a>
+    //           <p>Contact Phone</p>
+    //           <p>Access Comments</p>
+    //         </li>
+    //       </ul>
+    //     </Paper>
+    //   </Grid>
+    // </Grid>
   )
 
 }
