@@ -29,6 +29,9 @@ const CheckIn = (props) => {
 	// when component mounts, check from the db if the user has checked in today
 	function componentDidMount() {
 		console.log(dailyCheck);
+		console.log('mounted')
+
+		clientauth.getCheckIn().then(result => console.log(result))
 		// call API to see if the user has checked in today and update the state variable to update
 		const localStorageObject = clientauth.getLocalStorage('eco-user');
 		const user = JSON.parse(localStorageObject)._id;
