@@ -26,7 +26,7 @@ class RightPane extends React.Component {
 
     componentDidMount() {
         let user = JSON.parse(API.getLocalStorage('eco-user'));
-        API.getCheckIn(user._id)
+        API.getUserData(user._id)
             .then(res => {
                 console.log(res.data[0]);
             })
