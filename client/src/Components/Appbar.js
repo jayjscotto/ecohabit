@@ -53,7 +53,7 @@ export default function ButtonAppBar(props) {
                 </Link>
 
                 <Link to='/reminder' className={classes.link}>
-                  <Button style={{ color: 'inherit' }} variant='h6'>Reminders</Button>
+                  <Button style={{ color: 'inherit' }} variant='h6'>Utilities</Button>
                 </Link>
 
                 <Link to='/account' className={classes.link}>

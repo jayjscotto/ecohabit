@@ -1,6 +1,8 @@
 import React from 'react';
 import { Grid, Paper, Typography } from '@material-ui/core';
 import { Bar, Line } from 'react-chartjs-2';
+import API from '../Utils/clientauth';
+import Reminders from './Reminders';
 
 let data = {
     data: {
@@ -20,33 +22,46 @@ let data = {
     },
 }
 
-function RightPane(props) {
+class RightPane extends React.Component {
 
-    return (
-        <Grid container sm={6} >
-            <Grid item sm={12}>
-                <Paper elevation={3} style={props.style}>
-                    <Typography style={props.header}>
-                        Daily Dashboard
-                    </Typography>
-                    <Line
-                    data={data.data}
-                    width={100}
-                    height={40}
-                    options={{ maintainAspectRatio: true }}
-                    />
-                </Paper>
-            </Grid>
-            <Grid item sm={12}>
-                <Paper elevation={3} style={props.style}>
-                    <Typography style={props.header}>
-                        Data by the Day
-                    </Typography>
-                </Paper>
-            </Grid>
-        </Grid>
-    )
+    componentDidMount() {
+        let user = JSON.parse(API.getLocalStorage('eco-user'));
+        API.getCheckIn(user._id)
+            .then(res => {
+                console.log(res.data[0]);
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    }
 
+
+    render() {
+        return (
+            <Grid container sm={6} >
+                <Grid item sm={12}>
+                    <Paper elevation={3} style={props.style}>
+                        <Typography style={props.header}>
+                            Daily Dashboard
+                        </Typography>
+                        <Line
+                        data={data.data}
+                        width={100}
+                        height={40}
+                        options={{ maintainAspectRatio: true }}
+                        />
+                    </Paper>
+                </Grid>
+                <Grid item sm={12}>
+                    <Paper elevation={3} style={props.style}>
+                        <Typography style={props.header}>
+                            Data by the Day
+                        </Typography>
+                    </Paper>
+                </Grid>
+            </Grid>
+        )
+    }
 }
 
 export default RightPane;

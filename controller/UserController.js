@@ -68,14 +68,14 @@ module.exports = {
 	},
 
 	// get state of boolean dailyCheck
-	userDailyCheck: function(res, req) {
+	userDailyCheck: function(req, res) {
 		// check to see if user has token
 		const token = getToken(req.headers);
 		if (token) {
 			//find user based on submitted id
 			db.User.find({ _id: req.body._id }).then((results) => res.json(results));
 			// log results
-			console.log(results);
+			
 		} else {
 			// else return error
 			return res.status(403).send({ success: false, msg: 'Unauthorized.' });
@@ -85,10 +85,15 @@ module.exports = {
 	// gets check-in results for data visualization
 	getCheckInResults: function(req, res) {
 		const token = getToken(req.headers);
+		// console.log(req.user);
 		if (token) {
-			db.User.find({ _id: req.body.user_id }).populate('checkIns').then((results) => res.json(results));
+			db.User.find({ _id: req.user._id }).populate('checkIns').then((results) => { res.json(results) });
 		} else {
 			return res.status(403).send({ success: false, msg: 'Unauthorized.' });
 		}
 	}
 };
+
+
+
+
