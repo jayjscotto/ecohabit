@@ -3,6 +3,7 @@ import { Container, Grid } from '@material-ui/core';
 import LeftPane from '../Components/LeftPane';
 import RightPane from '../Components/RightPane';
 import CheckIn from '../Components/CheckIn';
+import confetti from 'canvas-confetti';
 
 const style = {
 	leftpane: {
@@ -34,6 +35,7 @@ const style = {
 };
 
 class Daily extends Component {
+
 	render() {
 		return (
 			<Container style={{ marginTop: '2em' }}>

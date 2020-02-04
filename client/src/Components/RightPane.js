@@ -6,13 +6,14 @@ let data = {
     data: {
         labels: ['Jan', 'Feb', 'March', 'April', 'May', 'June'],
         datasets: [{
-            label: 'Ecohabits',
+            label: 'Ecohabits Daily Score',
             data: [0, 3, 2, 2, 1, 4, 3, 1, 2, 5, 4, 2],
             backgroundColor: [
-                'rgba(241, 187, 135, 0.2)'
+                'rgba(93, 103, 91, 0.2)'
             ],
             borderColor: [
-                'rgba(93, 103, 91, 1)'
+                // 'rgba(93, 103, 91, 1)',
+                'rgba(241, 187, 135, 1)'
             ],
             borderWidth: 1
         }]
