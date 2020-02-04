@@ -6,7 +6,9 @@ const express = require('express');
 const jwt = require('jsonwebtoken');
 const router = express.Router();
 const User = require('../models/User');
+const controller = require('../controller/UserController');
 
+router.post('/update', passport.authenticate('jwt', { session: false }), controller.userUpdate);
 // changed the way req.body is being parsed to data from post request can be accessed
 router.post('/register', function(req, res, err) {
 	if (
