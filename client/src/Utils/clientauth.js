@@ -29,15 +29,9 @@ export default {
 	},
 
 	getLocalStorage: function(key) {
-		// if web token is present
-		// else ???
 		return localStorage.getItem(key);
 	},
 
-	/// boolean for user daily check in
-	userDailyCheck: function(id) {
-		return axios.get(`/api/user/${id}`, id);
-	},
 	// submit user daily check answers
 	userSubmitDaily: function(user_id, answers) {
 		const reducer = (a, b) => {
@@ -54,7 +48,11 @@ export default {
 		return axios.post('/api/survey', checkInData);
 	},
 	getCheckIn: function(id) {
-		let token = localStorage.getItem('jwtToken');
+		let token = this.getLocalStorage('jwtToken');
 		return axios.get(`/api/survey/results`, { headers: {"Authorization" : token } });
+	},
+	getDailyCheck: function(id) {
+		let token = this.getLocalStorage('jwtToken');
+		return axios.get(`/api/survey/user/dailycheck`, { headers: {"Authorization" : token } });
 	}
 };

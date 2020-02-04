@@ -18,10 +18,6 @@ const getToken = (headers) => {
 };
 
 module.exports = {
-	findUser: function() {
-		db.User.find({});
-	},
-
 	userUpdate: function(req, res) {
 		const token = getToken(req.headers);
 		if (token) {
@@ -43,6 +39,7 @@ module.exports = {
 			return res.status(403).send({ success: false, msg: 'Unauthorized.' });
 		}
 	},
+
 	// takes in user id checkin results
 	// saves new check-in document in db check-in collection
 	userSubmitDaily: function(req, res) {
@@ -55,12 +52,11 @@ module.exports = {
 				totalPoints: req.body.totalPoints,
 				Date: Date.now()
 			};
-			// update boolean and submit results
-			db.User.findByIdAndUpdate({ _id: req.body.user_id }, { $set: { dailyCheck: true } });
 
+			
 			return db.CheckIn.create(checkIn).then((created) => db.User.findOneAndUpdate( 
 				{_id: req.body.user_id}, 
-				{ $push: { checkIns: created } }, 
+				{ $push: { checkIns: created }, $set: { dailyCheck: true }  },
 				{ new: true }))
 		} else {
 			return res.status(403).send({ success: false, msg: 'Unauthorized.' });
@@ -68,14 +64,12 @@ module.exports = {
 	},
 
 	// get state of boolean dailyCheck
-	userDailyCheck: function(req, res) {
+	getDailyCheck: function(req, res) {
 		// check to see if user has token
 		const token = getToken(req.headers);
 		if (token) {
 			//find user based on submitted id
-			db.User.find({ _id: req.body._id }).then((results) => res.json(results));
-			// log results
-			
+			db.User.find({ _id: req.body._id }).then(results => res.json(results))
 		} else {
 			// else return error
 			return res.status(403).send({ success: false, msg: 'Unauthorized.' });
@@ -87,7 +81,7 @@ module.exports = {
 		const token = getToken(req.headers);
 		// console.log(req.user);
 		if (token) {
-			db.User.find({ _id: req.user._id }).populate('checkIns').then((results) => { res.json(results) });
+			db.User.find({ _id: req.user._id }).populate('checkIns').then((results) => { res.json(results.checkIns) });
 		} else {
 			return res.status(403).send({ success: false, msg: 'Unauthorized.' });
 		}

@@ -3,7 +3,7 @@ import { FormLabel, FormControl, FormGroup, FormControlLabel, FormHelperText, Ty
 
 
 const Reminders = props => {  
-    const [state, setState] = React.useState({
+    const [state, setState] = useState({
     bottle: false,
     bags: false,
     packLunch: false,
