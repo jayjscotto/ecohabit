@@ -1,29 +1,41 @@
 import React from 'react';
 import { Grid, Paper, Typography } from '@material-ui/core';
+import API from '../Utils/clientauth';
 import Reminders from './Reminders';
 
-function RightPane(props) {
+class RightPane extends React.Component {
 
-    return (
-        <Grid container sm={6} >
-            <Grid item sm={12}>
-                <Paper elevation={3} style={props.style}>
-                    <Typography style={props.header}>
-                        Daily Dashboard
-                    </Typography>
-                </Paper>
-            </Grid>
-            <Grid item sm={12}>
-                <Paper elevation={3} style={props.style}>
-                    <Typography style={props.header}>
-                       Daily Reminders
-                    </Typography>
-                     <Reminders />
-                </Paper>
-            </Grid>
-        </Grid>
-    )
+    componentDidMount() {
+        API.getCheckIn()
+            .then(res => {
+                console.log(res);
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    }
 
+    render() {
+        return (
+            <Grid container sm={6} >
+                <Grid item sm={12}>
+                    <Paper elevation={3} style={this.props.style}>
+                        <Typography style={this.props.header}>
+                            Daily Dashboard
+                        </Typography>
+                    </Paper>
+                </Grid>
+                <Grid item sm={12}>
+                    <Paper elevation={3} style={this.props.style}>
+                        <Typography style={this.props.header}>
+                            Reminders
+                            <Reminders />
+                        </Typography>
+                    </Paper>
+                </Grid>
+            </Grid>
+        )
+    }
 }
 
 export default RightPane;

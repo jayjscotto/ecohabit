@@ -5,7 +5,7 @@ export default {
 	userToken: function() {
 		return (axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken'));
 	},
-	giveUserAccess: function(history) {
+	giveUserAccess: function() {
 		return axios.get('/api/survey');
 	},
 	getUserData: function(id) {
@@ -57,6 +57,7 @@ export default {
 		return axios.post('/api/survey', checkInData);
 	},
 	getCheckIn: function(obj) {
-		return axios.get('/api/survey/results');
+		let token = localStorage.getItem('jwtToken');
+		return axios.get('/api/survey/results', { headers: {"Authorization" : token }});
 	}
 };

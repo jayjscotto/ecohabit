@@ -84,12 +84,18 @@ module.exports = {
 
 	// gets check-in results for data visualization
 	getCheckInResults: function(req, res) {
-		console.log('hello')
 		const token = getToken(req.headers);
 		if (token) {
-			db.User.find({ _id: req.body.user_id }).populate('checkIns').then((results) => res.json(results));
+			db.User.find({ _id: req.body._id }).populate('checkIns').then((results) => {
+				console.log(results);
+				res.json(results);
+			});
 		} else {
 			return res.status(403).send({ success: false, msg: 'Unauthorized.' });
 		}
 	}
 };
+
+
+
+

@@ -6,6 +6,7 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 var survey = require('./routes/survey');
 var auth = require('./routes/auth');
+const api = require('./routes/api/api-route');
 const connection = mongoose.connection;
 
 // middleware
@@ -32,6 +33,7 @@ connection.once('open', function callback() {
 
 app.use('/api/survey', survey);
 app.use('/api/auth', auth);
+// app.use(api);
 
 app.use(favicon(__dirname + '/build/favicon.ico'));
 

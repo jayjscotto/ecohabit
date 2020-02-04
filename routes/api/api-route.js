@@ -1,6 +1,8 @@
 const router = require('express').Router();
-const db = require('../models');
+const db = require('../../models');
 const mongoose = require('mongoose');
+const axios = require('axios');
+require('dotenv').config();
 
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/ecohabit';
 mongoose.Promise = require('bluebird');
@@ -18,3 +20,5 @@ router.get('/api/user/:id', function(req, res) {
 		res.json(data);
 	});
 });
+
+module.exports = router;
