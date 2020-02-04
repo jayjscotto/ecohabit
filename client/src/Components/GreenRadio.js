@@ -1,6 +1,5 @@
-import React, { useState, useEffect, Fragment, Box } from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { green } from '@material-ui/core/colors';
 import {
   Radio,
   FormControlLabel,
@@ -53,7 +52,7 @@ export default function RadioButtons(props) {
           control={
             <Radio
               value={1}
-              checked={selectedValue == 1}
+              checked={selectedValue === "1"}
               color='success'
               index={props.index}
             />
@@ -67,7 +66,7 @@ export default function RadioButtons(props) {
           control={
             <Radio
               value={0}
-              checked={selectedValue == 0}
+              checked={selectedValue === "0"}
               color='success'
               index={props.index}
             />

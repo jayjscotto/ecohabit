@@ -1,21 +1,91 @@
+const mongoose = require('mongoose');
 const db = require('../models');
+const passport = require('passport');
+require('../config/passport')(passport);
+
+// function to get JSON web token
+const getToken = (headers) => {
+	if (headers && headers.authorization) {
+		const parted = headers.authorization.split(' ');
+		if (parted.length === 2) {
+			return parted[1];
+		} else {
+			return null;
+		}
+	} else {
+		return null;
+	}
+};
 
 module.exports = {
-  findUser: function() {
-    db.User.find({});
-  },
-  submitCheckInResults: function(req, res) {
-    const checkIn = {
-        user_id: req.body.user_id,
-        userAnswers: req.body.userAnswers,
-        totalPoints: req.body.totalPoints,
-        Date: Date.now()
-    }
-    return db.CheckIn.create(checkIn).then(created => res.json(created));
-  },
-  getCheckInResults: function(req, res) {
-    db.User.find({ userName: req.user })
-      .populate('checkInResults')
-      .then(results => res.json(results));
-  }
+	findUser: function() {
+		db.User.find({});
+	},
+
+	userUpdate: function(req, res) {
+		const token = getToken(req.headers);
+		if (token) {
+			console.log(req.body);
+			db.User
+				.findByIdAndUpdate(
+					{ _id: req.body._id },
+					{
+						$set: {
+							userName: req.body.userName,
+							firstName: req.body.firstName,
+							lastName: req.body.lastName,
+							zipCode: req.body.zipCode
+						}
+					}
+				)
+				.then((data) => res.json(data));
+		} else {
+			return res.status(403).send({ success: false, msg: 'Unauthorized.' });
+		}
+	},
+	// takes in user id checkin results
+	// saves new check-in document in db check-in collection
+	userSubmitDaily: function(req, res) {
+		const token = getToken(req.headers);
+
+		if (token) {
+			const checkIn = {
+				user_id: req.body.user_id,
+				userAnswers: req.body.userAnswers,
+				totalPoints: req.body.totalPoints,
+				Date: Date.now()
+			};
+			// update boolean and submit results
+			db.User.findByIdAndUpdate({ _id: req.body.user_id }, { $set: { dailyCheck: true } });
+
+			return db.CheckIn.create(checkIn).then((created) => res.json(created));
+		} else {
+			return res.status(403).send({ success: false, msg: 'Unauthorized.' });
+		}
+	},
+
+	// get state of boolean dailyCheck
+	userDailyCheck: function(res, req) {
+		// check to see if user has token
+		const token = getToken(req.headers);
+		if (token) {
+			//find user based on submitted id
+			db.User.find({ _id: req.body._id }).then((results) => res.json(results));
+			// log results
+			console.log(results);
+		} else {
+			// else return error
+			return res.status(403).send({ success: false, msg: 'Unauthorized.' });
+		}
+	},
+
+	// gets check-in results for data visualization
+	getCheckInResults: function(req, res) {
+		const token = getToken(req.headers);
+		if (token) {
+			db.User.find({ _id: req.body.user_id }).populate('checkInResults').then((results) => res.json(results));
+		} else {
+			return res.status(403).send({ success: false, msg: 'Unauthorized.' });
+		}
+	}
 };
