@@ -3,7 +3,7 @@ import Daily from './Pages/Daily';
 import UserDash from './Components/userDash/userDash';
 import Login from './Components/Login';
 import Register from './Components/Register';
-import Reminder from './Pages/Reminders';
+import Utilities from './Pages/Utilities';
 import { withRouter, Switch, Route } from 'react-router-dom';
 import API from './Utils/clientauth';
 
@@ -34,7 +34,7 @@ class App extends Component {
         <Switch>
           <Route exact path='/login' component={Login} />
           <Route exact path='/register' component={Register} />
-          <Route exact path='/reminder' component={Reminder} />
+          <Route exact path='/utilites' component={Utilities} />
           <Route exact path='/' component={Daily} />
           <Route exact path='/account' component={UserDash} />
         </Switch>

@@ -47,10 +47,14 @@ export default {
 	},
 	getCheckIn: function(id) {
 		let token = this.getLocalStorage('jwtToken');
-		return axios.get(`/api/survey/results/` + id, { headers: {"Authorization" : token } });
+		return axios.get(`/api/survey/results/`, { headers: {"Authorization" : token } });
 	},
 	getDailyCheck: function(id) {
 		let token = this.getLocalStorage('jwtToken');
 		return axios.get(`/api/survey/dailycheck/` + id, { data: id, headers: {"Authorization" : token } });
+	},
+		getUserData: function(id) {
+		let token = localStorage.getItem('jwtToken');
+		return axios.get(`/api/survey/results`, { headers: {"Authorization" : token } });
 	}
 };
