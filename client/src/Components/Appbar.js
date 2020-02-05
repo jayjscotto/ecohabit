@@ -52,7 +52,7 @@ export default function ButtonAppBar(props) {
                   <Button style={{ color: 'inherit' }} variant='h6'>Daily Dashboard</Button>
                 </Link>
 
-                <Link to='/reminder' className={classes.link}>
+                <Link to='/utilities' className={classes.link}>
                   <Button style={{ color: 'inherit' }} variant='h6'>Utilities</Button>
                 </Link>
 

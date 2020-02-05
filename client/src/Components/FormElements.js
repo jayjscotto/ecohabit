@@ -16,7 +16,7 @@ let style = {
       background: '#5D675B',
       color: '#f7f3c2',
       margin: '20px auto',
-      display: 'block'
+        
     }
 }
 
