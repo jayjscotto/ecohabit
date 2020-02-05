@@ -1,6 +1,5 @@
 import React from 'react';
 import { Grid, Paper, Typography } from '@material-ui/core';
-import { Bar, Line } from 'react-chartjs-2';
 import Reminders from './Reminders';
 import LineChart from './Chart';
 import API from '../Utils/clientauth';
@@ -24,21 +23,24 @@ class RightPane extends React.Component {
 
     updateUserData() {
         let user = JSON.parse(API.getLocalStorage('eco-user'));
-        let checkinPoints = [];
-        let dates = [];
-        API.getUserData(user._id)
-            .then(res => {
-              let points = res.data[0].checkIns;
-              for (let i = 0; i < points.length; i++) {
-                  checkinPoints.push(points[i].totalPoints);
-                  console.log(points[i].date);
-                  dates.push(moment(points[i].date).format('MMM D'));
-              }
-              this.setState({ chartdata: checkinPoints, dates: dates, rendered: true });
-            })
-            .catch(err => {
-                console.log(err);
-            })
+        if (user) {
+            let checkinPoints = [];
+            let dates = [];
+            API.getUserData(user._id)
+                .then(res => {
+                  let points = res.data[0].checkIns;
+                  for (let i = 0; i < points.length; i++) {
+                      checkinPoints.push(points[i].totalPoints);
+                      dates.push(moment(points[i].date).format('MMM D'));
+                  }
+                  this.setState({ chartdata: checkinPoints, dates: dates, rendered: true });
+                })
+                .catch(err => {
+                    console.log(err);
+                })
+        } else {
+        // need else code 
+      }
     }
 
     render() {

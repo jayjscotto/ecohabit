@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { Bar, Line } from 'react-chartjs-2';
+import React from 'react';
+import { Line } from 'react-chartjs-2';
 
 class LineChart extends React.Component {
   
