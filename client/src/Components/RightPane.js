@@ -28,7 +28,7 @@ class RightPane extends React.Component {
             let dates = [];
             API.getUserData(user._id)
                 .then(res => {
-                  let points = res.data[0].checkIns;
+                  let points = res.data;
                   for (let i = 0; i < points.length; i++) {
                       checkinPoints.push(points[i].totalPoints);
                       dates.push(moment(points[i].date).format('MMM D'));
