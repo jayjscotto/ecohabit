@@ -1,6 +1,7 @@
 const express = require('express');
 const favicon = require('express-favicon');
 const mongoose = require('mongoose');
+const db = require('./models');
 const path = require('path');
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -48,6 +49,7 @@ app.listen(PORT, () => {
 //  daily cron job
 const CronJob = require('cron').CronJob;
 const job = new CronJob('0 1 * * *', function() {
+	console.log('hi');
 	db.Users.find({}, { $set: { dailyCheck: false } });
 });
 
