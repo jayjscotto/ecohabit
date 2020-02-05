@@ -15,7 +15,7 @@ const useStyles = makeStyles({
 });
 
 const CheckIn = props => {
-  const [dailyCheck, setDailyCheck] = useState(false);
+  const [dailyCheck, setDailyCheck] = useState();
   const classes = useStyles();
 
   let answers = [];
@@ -30,11 +30,12 @@ const CheckIn = props => {
 
   // when component mounts, check from the db if the user has checked in today
   useEffect(() => {
+	  console.log(dailyCheck)
     // call API to see if the user has checked in today and update the state variable to update
     if (user) {
       API.getDailyCheck(user._id).then(result => {
-		  console.log(result)
-        // setDailyCheck(result.data[0].dailyCheck);
+		console.log(result.data)
+        setDailyCheck(result.data);
       });
     }
   }, [dailyCheck]);
@@ -47,7 +48,7 @@ const CheckIn = props => {
   // conditional rendering
     return (
 		<React.Fragment>
-		{dailyCheck ? (
+		{!dailyCheck ? (
 			<FormControl component='fieldset'>
 			{IntakeQuestions.questions.map((question, index) => (
 			  <GreenRadio

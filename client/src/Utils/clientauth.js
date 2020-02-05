@@ -5,9 +5,6 @@ export default {
 	userToken: function() {
 		return (axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken'));
 	},
-	giveUserAccess: function() {
-		return axios.get('/api/survey');
-	},
 	userRegister: function(obj) {
 		return axios.post('/api/auth/register', obj, function(res) {
 			// changed the data being sent in request
@@ -19,7 +16,6 @@ export default {
 	userLogin: function(obj) {
 		return axios.post('/api/auth/login', obj);
 	},
-
 	userUpdate: function(data) {
 		return axios.post(`/api/auth/update`, data);
 	},
@@ -49,10 +45,10 @@ export default {
 	},
 	getCheckIn: function(id) {
 		let token = this.getLocalStorage('jwtToken');
-		return axios.get(`/api/survey/results`, { headers: {"Authorization" : token } });
+		return axios.get(`/api/survey/results/` + id, { headers: {"Authorization" : token } });
 	},
 	getDailyCheck: function(id) {
 		let token = this.getLocalStorage('jwtToken');
-		return axios.get(`/api/survey/user/dailycheck`, { headers: {"Authorization" : token } });
+		return axios.get(`/api/survey/dailycheck/` + id, { data: id, headers: {"Authorization" : token } });
 	}
 };

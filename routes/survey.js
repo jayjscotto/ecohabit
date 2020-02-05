@@ -8,9 +8,9 @@ const controller = require('../controller/UserController');
 router.get('/', passport.authenticate('jwt', { session: false }), controller.getDailyCheck);
 
 /* GET */
-router.get('/results', passport.authenticate('jwt', { session: false }), controller.getCheckInResults);
+router.get('/results/:id', passport.authenticate('jwt', { session: false }), controller.getCheckInResults);
 
-router.get('/user/dailycheck', passport.authenticate('jwt', { session: false}), controller.getDailyCheck);
+router.get('/dailycheck/:id', passport.authenticate('jwt', { session: false}), controller.getDailyCheck);
 
 /* Post */
 router.post('/', passport.authenticate('jwt', { session: false }), controller.userSubmitDaily);

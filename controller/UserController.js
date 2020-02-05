@@ -21,7 +21,6 @@ module.exports = {
 	userUpdate: function(req, res) {
 		const token = getToken(req.headers);
 		if (token) {
-			console.log(req.body);
 			db.User
 				.findByIdAndUpdate(
 					{ _id: req.body._id },
@@ -68,8 +67,11 @@ module.exports = {
 		// check to see if user has token
 		const token = getToken(req.headers);
 		if (token) {
-			//find user based on submitted id
-			db.User.find({ _id: req.body._id }).then(results => res.json(results))
+			// find user based on submitted id
+			// then respond with the boolean value of dailyCheck from database
+			console.log(typeof req.params.id)
+			console.log(req.params.id.length)
+			db.User.findById({ _id: req.params.id }).then(results => res.json(results.dailyCheck));
 		} else {
 			// else return error
 			return res.status(403).send({ success: false, msg: 'Unauthorized.' });
@@ -79,9 +81,8 @@ module.exports = {
 	// gets check-in results for data visualization
 	getCheckInResults: function(req, res) {
 		const token = getToken(req.headers);
-		// console.log(req.user);
 		if (token) {
-			db.User.find({ _id: req.user._id }).populate('checkIns').then((results) => { res.json(results.checkIns) });
+			db.User.findById({ _id: req.params.id }).populate('checkIns').then((results) => { res.json(results.checkIns) });
 		} else {
 			return res.status(403).send({ success: false, msg: 'Unauthorized.' });
 		}
