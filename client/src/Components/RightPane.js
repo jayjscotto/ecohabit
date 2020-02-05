@@ -14,18 +14,24 @@ class RightPane extends React.Component {
 
     componentDidMount() {
       let user = JSON.parse(API.getLocalStorage('eco-user'));
-      let checkinPoints = [];
-      API.getUserData(user._id)
-          .then(res => {
-            let points = res.data[0].checkIns;
-            for (let i = 0; i < points.length; i++) {
-                checkinPoints.push(points[i].totalPoints);
-            }
-            this.setState({ chartdata: checkinPoints, rendered: true });
-          })
-          .catch(err => {
-              console.log(err);
-          })
+      if (user) {
+        let checkinPoints = [];
+        API.getUserData()
+            .then(res => {
+              let points = res.data;
+              for (let i = 0; i < points.length; i++) {
+                  checkinPoints.push(points[i].totalPoints);
+              }
+              this.setState({ chartdata: checkinPoints, rendered: true });
+            })
+            .catch(err => {
+                console.log(err);
+            })
+      } else {
+
+        // need else code 
+      }
+   
     }
 
     render() {

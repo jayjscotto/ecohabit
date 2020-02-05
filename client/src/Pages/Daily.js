@@ -3,7 +3,7 @@ import { Container, Grid } from '@material-ui/core';
 import LeftPane from '../Components/LeftPane';
 import RightPane from '../Components/RightPane';
 import CheckIn from '../Components/CheckIn';
-import confetti from 'canvas-confetti';
+// import confetti from 'canvas-confetti';
 
 const style = {
 	leftpane: {
