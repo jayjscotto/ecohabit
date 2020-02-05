@@ -53,7 +53,7 @@ const CheckIn = (props) => {
 	};
 
 	// conditional rendering
-	if (setDailyCheck !== false) {
+	if (setDailyCheck === false) {
 		return (
 			<FormControl component="fieldset">
 				{IntakeQuestions.questions.map((question, index) => (
