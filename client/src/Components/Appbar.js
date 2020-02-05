@@ -39,6 +39,7 @@ export default function ButtonAppBar(props) {
 
   const logout = () => {
     localStorage.removeItem('jwtToken');
+    localStorage.removeItem('eco-user')
     window.location.reload();
   };
 

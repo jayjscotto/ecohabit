@@ -1,7 +1,6 @@
 import React from 'react';
-import { Grid, Typography, Paper, Box } from '@material-ui/core';
-import { FormInput, FormButton } from './FormElements';
-import API from '../Utils/electric-api';
+import { Grid, Paper} from '@material-ui/core';
+// import API from '../Utils/electric-api';
 import { makeStyles } from '@material-ui/core/styles';
 
 let useStyles = makeStyles({
