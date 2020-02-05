@@ -18,6 +18,7 @@ class RightPane extends React.Component {
         let checkinPoints = [];
         API.getUserCheckins()
             .then(res => {
+              console.log(res.data)
               let points = res.data;
               for (let i = 0; i < points.length; i++) {
                   checkinPoints.push(points[i].totalPoints);

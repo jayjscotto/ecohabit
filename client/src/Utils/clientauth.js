@@ -53,7 +53,7 @@ export default {
       headers: { Authorization: token }
     });
   },
-  getUserCheckins: function(id) {
+  getUserCheckins: function() {
     let token = localStorage.getItem('jwtToken');
     return axios.get(`/api/survey/results`, {
       headers: { Authorization: token }

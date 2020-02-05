@@ -8,8 +8,6 @@ import { withRouter, Switch, Route } from 'react-router-dom';
 import API from './Utils/clientauth';
 
 class App extends Component {
-  
-  
 
   componentDidMount() {
     const user = JSON.parse(API.getLocalStorage('eco-user'));
