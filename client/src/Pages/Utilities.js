@@ -78,7 +78,7 @@ class Reminders extends React.Component {
       </Grid>
       {this.state.loading === true 
         ?
-        <iframe src="https://giphy.com/embed/l1KVcrdl7rJpFnY2s" width="" height="200" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+          <iframe src="https://giphy.com/embed/l1KVcrdl7rJpFnY2s" width="" height="200" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
         :
         <DataDisplay results={this.state.results} />}
       </Container>

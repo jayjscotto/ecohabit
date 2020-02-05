@@ -1,38 +1,31 @@
 import React from 'react';
 import { Grid, Paper, Typography } from '@material-ui/core';
 import { Bar, Line } from 'react-chartjs-2';
-import API from '../Utils/clientauth';
 import Reminders from './Reminders';
-
-let data = {
-    data: {
-        labels: ['Jan', 'Feb', 'March', 'April', 'May', 'June'],
-        datasets: [{
-            label: 'Ecohabits Daily Score',
-            data: [0, 3, 2, 2, 1, 4, 3, 1, 2, 5, 4, 2],
-            backgroundColor: [
-                'rgba(93, 103, 91, 0.2)'
-            ],
-            borderColor: [
-                // 'rgba(93, 103, 91, 1)',
-                'rgba(241, 187, 135, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-}
+import LineChart from './Chart';
+import API from '../Utils/clientauth';
 
 class RightPane extends React.Component {
 
+    state = {
+        chartdata: [],
+        rendered: false
+    }
+
     componentDidMount() {
-        let user = JSON.parse(API.getLocalStorage('eco-user'));
-        API.getUserData(user._id)
-            .then(res => {
-                console.log(res.data[0]);
-            })
-            .catch(err => {
-                console.log(err);
-            })
+      let user = JSON.parse(API.getLocalStorage('eco-user'));
+      let checkinPoints = [];
+      API.getUserData(user._id)
+          .then(res => {
+            let points = res.data[0].checkIns;
+            for (let i = 0; i < points.length; i++) {
+                checkinPoints.push(points[i].totalPoints);
+            }
+            this.setState({ chartdata: checkinPoints, rendered: true });
+          })
+          .catch(err => {
+              console.log(err);
+          })
     }
 
     render() {
@@ -43,12 +36,11 @@ class RightPane extends React.Component {
                         <Typography style={this.props.header}>
                             Daily Dashboard
                         </Typography>
-                        <Line
-                        data={data.data}
-                        width={100}
-                        height={40}
-                        options={{ maintainAspectRatio: true }}
-                        />
+                        {
+                            this.state.rendered === false ?
+                            null :
+                            <LineChart chartdata={this.state.chartdata}/>
+                        }
                     </Paper>
                 </Grid>
                 <Grid item sm={12}>
