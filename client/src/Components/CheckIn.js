@@ -25,16 +25,13 @@ const CheckIn = props => {
   const updateAnswers = event => {
     answers.push(parseInt(event));
     answers = answers.filter(answer => answer !== undefined);
-    console.log(answers);
   };
 
   // when component mounts, check from the db if the user has checked in today
   useEffect(() => {
-	  console.log(dailyCheck)
     // call API to see if the user has checked in today and update the state variable to update
     if (user) {
       API.getDailyCheck(user._id).then(result => {
-		console.log(result.data)
         setDailyCheck(result.data);
       });
     }

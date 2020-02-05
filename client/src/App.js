@@ -14,7 +14,7 @@ class App extends Component {
   componentDidMount() {
     const user = JSON.parse(API.getLocalStorage('eco-user'));
     if (user) {
-      API.getDailyCheck(user._id)
+      API.getDailyCheck()
       .then(res => {
         this.props.history.push('/');
       })
