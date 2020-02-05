@@ -8,16 +8,22 @@ import { withRouter, Switch, Route } from 'react-router-dom';
 import API from './Utils/clientauth';
 
 class App extends Component {
+  
+  
+
   componentDidMount() {
-    // API.getDailyCheck()
-    //   .then(res => {
-    //     this.props.history.push('/');
-    //   })
-    //   .catch(error => {
-    //     if (error.response.status === 401) {
-    //       this.props.history.push('/login');
-    //     }
-    //   });
+    const user = JSON.parse(API.getLocalStorage('eco-user'));
+    if (user) {
+      API.getDailyCheck(user._id)
+      .then(res => {
+        this.props.history.push('/');
+      })
+      .catch(error => {
+        if (error.response.status === 401) {
+          this.props.history.push('/login');
+        }
+      });
+    }
   }
 
   render() {
