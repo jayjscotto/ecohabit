@@ -34,6 +34,8 @@ export default {
   },
   // submit user daily check answers
   userSubmitDaily: function(user_id, answers) {
+    let token = this.getLocalStorage('jwtToken');
+	  console.log('submitting2')
     const reducer = (a, b) => {
       return a + b;
     };
@@ -45,15 +47,17 @@ export default {
       totalPoints: score,
       date: Date.now()
     };
-    return axios.post('/api/survey', checkInData);
-  },
-  getDailyCheck: function() {
-    let token = this.getLocalStorage('jwtToken');
-    return axios.get(`/api/survey/dailycheck/`, {
+    return axios.post('/api/survey', checkInData, {
       headers: { Authorization: token }
     });
   },
-  getUserCheckins: function() {
+  getDailyCheck: function() {
+    let token = this.getLocalStorage('jwtToken');
+    return axios.get(`/api/survey/dailycheck`, {
+      headers: { Authorization: token }
+    });
+  },
+  getUserData: function() {
     let token = localStorage.getItem('jwtToken');
     return axios.get(`/api/survey/results`, {
       headers: { Authorization: token }

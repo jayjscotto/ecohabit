@@ -1,6 +1,5 @@
 import React from 'react';
 import { Grid, Paper, Typography } from '@material-ui/core';
-import { Bar, Line } from 'react-chartjs-2';
 import Reminders from './Reminders';
 import LineChart from './Chart';
 import API from '../Utils/clientauth';
@@ -16,7 +15,7 @@ class RightPane extends React.Component {
       let user = JSON.parse(API.getLocalStorage('eco-user'));
       if (user) {
         let checkinPoints = [];
-        API.getUserCheckins()
+        API.getUserData()
             .then(res => {
               console.log(res.data)
               let points = res.data;

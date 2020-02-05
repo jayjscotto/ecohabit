@@ -16,11 +16,11 @@ class App extends Component {
       .then(res => {
         this.props.history.push('/');
       })
-      .catch(error => {
-        if (error.response.status === 401) {
-          this.props.history.push('/login');
-        }
-      });
+    //   .catch(error => {
+    //     if (error.response.status === 401) {
+    //       this.props.history.push('/login');
+    //     }
+    //   });
     } else {
       this.props.history.push('/login');
     }

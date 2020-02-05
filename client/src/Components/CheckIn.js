@@ -32,13 +32,15 @@ const CheckIn = props => {
     // call API to see if the user has checked in today and update the state variable to update
     if (user) {
       API.getDailyCheck(user._id).then(result => {
+		  console.log(result)
         setDailyCheck(result.data);
       });
     }
-  }, [dailyCheck]);
+  });
 
   //on form submit
   const submitSurvey = answers => {
+	  console.log('submitting')
     API.userSubmitDaily(user._id, answers).then(setDailyCheck(true));
   };
 
