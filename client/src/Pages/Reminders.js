@@ -1,14 +1,18 @@
 import React from 'react';
-import { Container, Typography, Box } from '@material-ui/core';
+import { Container, Typography, Box, Grid, Paper } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles'; 
 import { FormButton, FormInput } from '../Components/FormElements';
 import DataDisplay from '../Components/DataDisplay';
 import API from '../Utils/electric-api';
 
 let styles = {
-  header: {
-    margin: '2em'
-  }
+  root: {
+    backgroundImage: 'linear-gradient(30deg, #fff2ed, #fffde9)',
+    padding: '5px',
+    marginTop: '2em',
+    padding: '20px 60px',
+    marginBottom: '1em'
+  },
 };
 
 class Reminders extends React.Component {
@@ -50,28 +54,33 @@ class Reminders extends React.Component {
 
   render() {
     return (
-      <Container style={{ marginTop: '2em' }}>
-        <Box style={{ margin: '3em' }}>
-          <Typography variant="h3">It's electric!</Typography>
-          <Typography variant="h6">
-          If you've got an electric vehicle - or you're <em>thinking</em> about getting one - don't worry about where you'll be able to find a charging station. Below are a list of them based on your zip code, and you can even search for a new zip when you're out of town.
-        </Typography>
-        <FormButton onClick={() => { this.getData('08844')}}>Use your zip code</FormButton>
-        <FormInput
-          name="zipCode"
-          label="Zip Code"
-          variant="outlined"
-          onChange={this.handleInputChange}
-          value={this.state.zipCode}
-        />
-        <FormButton onClick={() => { this.getData(this.state.zipCode) }}>Search a different zip code</FormButton>
-      </Box>
-      {this.state.loading === true ?
+      <Container >
+      <Grid container>
+        <Grid item>
+          <Paper style={styles.root}>
+              <Box style={{ margin: '3em' }}>
+                <Typography variant="h3" style={styles.header}>It's electric!</Typography>
+                <Typography variant="h6">
+                If you've got an electric vehicle - or you're <em>thinking</em> about getting one - don't worry about where you'll be able to find a charging station. Below are a list of them based on your zip code, and you can even search for a new zip when you're out of town.
+              </Typography>
+              <FormInput
+                name="zipCode"
+                label="Zip Code"
+                variant="outlined"
+                onChange={this.handleInputChange}
+                value={this.state.zipCode}
+              />
+              <FormButton onClick={() => { this.getData('08844')}}>Use your zip code</FormButton>
+              <FormButton onClick={() => { this.getData(this.state.zipCode) }}>Search a different zip code</FormButton>
+            </Box>
+          </Paper>
+        </Grid>
+      </Grid>
+      {this.state.loading === true 
+        ?
         <iframe src="https://giphy.com/embed/l1KVcrdl7rJpFnY2s" width="" height="200" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
         :
-        <DataDisplay results={this.state.results} />
-      }
-      
+        <DataDisplay results={this.state.results} />}
       </Container>
     )
   }
