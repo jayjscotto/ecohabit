@@ -68,9 +68,8 @@ module.exports = {
 		const token = getToken(req.headers);
 		if (token) {
 			// find user based on submitted id
+			console.log(req.user)
 			// then respond with the boolean value of dailyCheck from database
-			console.log(typeof req.params.id)
-			console.log(req.params.id.length)
 			db.User.findById({ _id: req.params.id }).then(results => res.json(results.dailyCheck));
 		} else {
 			// else return error
