@@ -16,6 +16,10 @@ export default {
 	userLogin: function(obj) {
 		return axios.post('/api/auth/login', obj);
 	},
+	userLogout: function(obj) {
+		localStorage.removeItem('jwtToken');
+		localStorage.removeItem('eco-user');
+	},
 	userUpdate: function(data) {
 		return axios.post(`/api/auth/update`, data);
 	},
@@ -23,11 +27,9 @@ export default {
 		localStorage.setItem('jwtToken', userData.token);
 		localStorage.setItem('eco-user', JSON.stringify(userData.user));
 	},
-
 	getLocalStorage: function(key) {
 		return localStorage.getItem(key);
 	},
-
 	// submit user daily check answers
 	userSubmitDaily: function(user_id, answers) {
 		const reducer = (a, b) => {
