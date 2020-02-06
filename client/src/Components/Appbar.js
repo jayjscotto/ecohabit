@@ -2,6 +2,8 @@ import React, { useState, useEffect, Fragment } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 import { AppBar, Toolbar, Typography, Button } from '@material-ui/core';
+import Logo from '../images/eco-logo.png';
+import Cloud from '../images/cloud2.png';
 
 // import MenuIcon from '@material-ui/icons/Menu';
 
@@ -48,7 +50,9 @@ export default function ButtonAppBar(props) {
   return (
       <AppBar position="relative" className={classes.bar}>
         <Toolbar>
-          <Typography variant="h4" className={classes.title}>Ecohabit</Typography>
+          <Typography className={classes.title}>
+            <img src={Logo} height="48"/>
+          </Typography>
           {/* if user is true, render user's functionality */}
             {user ? (
               <Fragment>
