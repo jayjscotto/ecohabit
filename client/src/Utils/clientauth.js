@@ -35,15 +35,16 @@ export default {
   // submit user daily check answers
   userSubmitDaily: function(user_id, answers) {
     let token = this.getLocalStorage('jwtToken');
-	  console.log('submitting2')
+
     const reducer = (a, b) => {
       return a + b;
     };
-    const score = answers.reduce(reducer);
+    const userAnswers = answers.slice(5)
+    const score = userAnswers.reduce(reducer);
 
     const checkInData = {
       user_id,
-      userAnswers: [...answers],
+      userAnswers: [...userAnswers],
       totalPoints: score,
       date: Date.now()
     };

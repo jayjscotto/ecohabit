@@ -7,10 +7,10 @@ const CheckInSchema = new Schema({
     user_id: {
         type: String,
     },
-    userAnswer: {
-         type: Array,
+    userAnswers: [{
+         type: Number,
          required: true
-    },
+    }],
     totalPoints: {
         type: Number,
         required: true 

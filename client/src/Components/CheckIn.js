@@ -24,7 +24,8 @@ const CheckIn = props => {
 
   const updateAnswers = event => {
     answers.push(parseInt(event));
-    answers = answers.filter(answer => answer !== undefined);
+    answers = answers.filter(answer => answer !== 1 || answer !== 0);
+    console.log(answers)
   };
 
   // when component mounts, check from the db if the user has checked in today
@@ -47,7 +48,7 @@ const CheckIn = props => {
   // conditional rendering
     return (
 		<React.Fragment>
-		{dailyCheck ? (
+		{!dailyCheck ? (
 			<FormControl component='fieldset'>
 			{IntakeQuestions.questions.map((question, index) => (
 			  <GreenRadio
