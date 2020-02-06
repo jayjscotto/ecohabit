@@ -14,16 +14,17 @@ const useStyles = makeStyles({
     flexGrow: 1,
     display: 'flex',
     flexDirection: 'row',
-    alignItems: 'center'
+    alignItems: 'center',
+    marginTop: '10px'
   },
   question: {
     lineHeight: '1.5em',
     margin: '12px 20px',
-    fontSize: '16px',
+    fontSize: '14x',
     fontWeight: 'bold'
   },
   answers: {
-    margin: '0px 20px'
+    // margin: '0px 20px'
   }
 });
 

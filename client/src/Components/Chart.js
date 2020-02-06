@@ -24,7 +24,7 @@ class LineChart extends React.Component {
     return (
       <Line
       data={this.state.chartdata}
-      width={90}
+      width={100}
       height={30}
       options={{ 
 

@@ -4,7 +4,7 @@ import '../../../client/src/index.css';
 
 function LeftPane(props) {
     return (
-        <Grid container sm={5} >
+        <Grid container md={5} sm={12} xs={12}>
             <Grid item sm>
                 <Paper elevation={3} style={props.style} className="noscroll">
                     <Typography style={props.header}>

@@ -8,8 +8,8 @@ import CheckIn from '../Components/CheckIn';
 const style = {
 	leftpane: {
 		color: '#5D675B',
-		height: '650px',
-		margin: '20px',
+		height: '644px',
+		margin: '10px',
 		textAlign: 'left',
 		fontFamily: 'inherit',
 		padding: '5px 20px 20px 20px',
@@ -18,8 +18,8 @@ const style = {
 	},
 	rightpane: {
 		color: '#5D675B',
-		height: '285px',
-		margin: '20px',
+		height: '300px',
+		margin: '10px',
 		textAlign: 'left',
 		fontFamily: 'inherit',
 		padding: '5px 20px 20px 20px',
