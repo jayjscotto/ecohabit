@@ -45,7 +45,7 @@ class RightPane extends React.Component {
 
     render() {
         return (
-            <Grid container sm={6} >
+            <Grid container sm={7} >
                 <Grid item sm={12}>
                     <Paper elevation={3} style={this.props.style}>
                         <Typography style={this.props.header}>
