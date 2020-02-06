@@ -8,29 +8,30 @@ import CheckIn from '../Components/CheckIn';
 const style = {
 	leftpane: {
 		color: '#5D675B',
-		height: '650px',
-		margin: '20px',
+		height: '644px',
+		margin: '10px',
 		textAlign: 'left',
 		fontFamily: 'inherit',
-		padding: '20px 60px',
-		backgroundImage: 'linear-gradient(30deg, #fff2ed, #fffde9)'
+		padding: '5px 20px 20px 20px',
+		backgroundImage: 'linear-gradient(30deg, #fff2ed, #fffde9)',
+		overflow: 'auto',
 	},
 	rightpane: {
 		color: '#5D675B',
-		height: '285px',
-		margin: '20px',
+		height: '300px',
+		margin: '10px',
 		textAlign: 'left',
 		fontFamily: 'inherit',
-		padding: '20px 60px',
+		padding: '5px 20px 20px 20px',
 		backgroundImage: 'linear-gradient(30deg, #fff2ed, #fffde9)'
 	},
 	header: {
 		textTransform: 'uppercase',
 		borderBottom: '0.5px solid #5D675B',
-		margin: '0px 40px 20px 40px',
+		margin: '10px',
 		fontSize: '28px',
 		boxShadow: 'inset 0px -29px 25px -40px rgba(0,0,0,0.25)',
-		padding: '12px 0px'
+		padding: '10px'
 	}
 };
 
