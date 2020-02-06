@@ -9,7 +9,7 @@ let styles = {
     backgroundImage: 'linear-gradient(30deg, #fff2ed, #fffde9)',
     // padding: '5px',
     marginTop: '2em',
-    padding: '20px 60px',
+    padding: '20px 20px',
     marginBottom: '1em'
   },
 };

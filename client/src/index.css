@@ -15,6 +15,11 @@ body {
     background: #faefd7;
 }
 
+.noscroll::-webkit-scrollbar {
+    display: none;
+    -ms-overflow-style: none;
+}
+
 
 .class { 
     color: var(light-orange, rgb(99, 146, 90));
