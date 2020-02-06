@@ -47,7 +47,7 @@ const CheckIn = props => {
   // conditional rendering
     return (
 		<React.Fragment>
-		{!dailyCheck ? (
+		{dailyCheck ? (
 			<FormControl component='fieldset'>
 			{IntakeQuestions.questions.map((question, index) => (
 			  <GreenRadio
