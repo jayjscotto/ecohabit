@@ -27,7 +27,17 @@ class LineChart extends React.Component {
       width={100}
       height={30}
       options={{ 
-
+        scales: {
+          yAxes: [{
+              ticks: {
+                  beginAtZero:true,
+                  min: 0,
+                  max: 5,
+                  stepSize: 1
+              },
+              
+            }]
+         }
         // maintainAspectRatio: true 
       }}
       />
