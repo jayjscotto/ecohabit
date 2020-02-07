@@ -3,6 +3,8 @@ import { Container, Typography, Box, Grid, Paper } from '@material-ui/core';
 import { FormButton, FormInput } from '../Components/FormElements';
 import DataDisplay from '../Components/DataDisplay';
 import API from '../Utils/electric-api';
+import clientauth from '../Utils/clientauth';
+
 
 let styles = {
   root: {
@@ -21,7 +23,13 @@ class Reminders extends React.Component {
   state = {
     results: [],
     zipCode: '',
-    loading: false
+    loading: false,
+    state: ''
+  }
+
+  componentDidMount() {
+    let user = JSON.parse(clientauth.getLocalStorage('eco-user'));
+    this.setState({ zip: user.zip });
   }
 
   getData = (zip) => {
@@ -57,7 +65,7 @@ class Reminders extends React.Component {
     return (
       <Container >
         <Grid container>
-          <Grid item sm={4}>
+          <Grid item lg={4} md={6}>
             <Paper style={styles.root}>
                 <Box style={{ margin: '3em' }}>
                   <Typography variant="h3" style={styles.header}>It's electric!</Typography>
@@ -76,7 +84,7 @@ class Reminders extends React.Component {
               </Box>
             </Paper>
           </Grid>
-          <Grid item sm={8}>
+          <Grid item lg={8} md={6}>
           {this.state.loading === true 
             ?
               <iframe src="https://giphy.com/embed/l1KVcrdl7rJpFnY2s" width="" height="600" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>

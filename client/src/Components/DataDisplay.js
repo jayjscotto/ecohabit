@@ -33,7 +33,7 @@ function DataDisplay(props) {
   let stationList = props.results.map(res => {
     let googleLink = `${res.AddressInfo.AddressLine1}+${res.AddressInfo.Town}+${res.AddressInfo.StateOrProvince}+${res.AddressInfo.Postcode}`;
       return (
-        <Grid item sm={6}>
+        <Grid item lg={6} md={12} sm={12}>
         <Paper className={classes.root}>
           <ul className={classes.list}>
             <li>
@@ -51,7 +51,7 @@ function DataDisplay(props) {
   })
 
   return (
-    <Grid container spacing={3} style={{ margin: '1em' }}>
+    <Grid container spacing={2} style={{ margin: '1em' }}>
       {stationList}
     </Grid>
   )
