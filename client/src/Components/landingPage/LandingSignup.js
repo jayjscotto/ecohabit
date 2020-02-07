@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { Grid, Typography, Container } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 import { FormButtonWelcome } from '../../Components/FormElements';
 import { Link } from 'react-router-dom';
+import EarthGif from './welcomeImages/earth.gif';
+import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 
 export class Signup extends Component {
 	continue = (e) => {
@@ -20,33 +22,24 @@ export class Signup extends Component {
 				style={{ minHeight: '100vh' }}
 				elevation={3}
 			>
+				<Grid item>
+					<div style={{ display: 'flex', justifyContent: 'center' }}>
+						<img src={EarthGif} alt="smiling earth" height="200px" width="200px" />
+					</div>
+				</Grid>
 				<Grid item sm>
-					<h1>EcoHabit Place Holder</h1>
-					<Link to="/login">
+					<h1 style={{ color: 'rgb(93, 103, 91)' }}>Welcome to Eco Habit</h1>
+					<Link to="/login" style={{ textDecoration: 'none' }}>
 						<FormButtonWelcome fullWidth={true}> Login</FormButtonWelcome>
 					</Link>
-					<Link to="/register">
+					<Link to="/register" style={{ textDecoration: 'none' }}>
 						<FormButtonWelcome fullWidth={true}>Register</FormButtonWelcome>
 					</Link>
 				</Grid>
 				<br />
-				<Grid item>
-					<h2>About EcoHabit</h2>
-				</Grid>
-				<Grid item>
-					<Container alignItems="center" maxWidth="sm">
-						<p>
-							<em>
-								EcoHabit is a daily diary mean to keep it's users on track to becoming a better eco
-								Citizen. Designed with simplicity in mind, EcoHabit offers users an interactive and
-								inuitive experience.
-							</em>
-						</p>
-					</Container>
-				</Grid>
 				<Grid item sm>
 					<FormButtonWelcome label="tour" primary={true} onClick={this.continue}>
-						Take A Tour
+						Take A Tour <ArrowForwardIcon />
 					</FormButtonWelcome>
 				</Grid>
 			</Grid>

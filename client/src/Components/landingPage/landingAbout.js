@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { Grid, List, ListItem, ListItemText } from '@material-ui/core';
+import { Grid, Container } from '@material-ui/core';
 import { FormButton } from '../../Components/FormElements';
-// import Image1 from './welcomeImages/placeholder11';
-// import Image2 from './welcomeImages/placeholder22';
-import { Link } from 'react-router-dom';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
+import BackgroundGif from './welcomeImages/about.gif';
+//import './animate.css';
 
-export class About extends Component {
+class About extends Component {
 	continue = (e) => {
 		e.preventDefault();
 		this.props.nextStep();
@@ -16,49 +17,47 @@ export class About extends Component {
 	};
 	render() {
 		return (
-			<Grid container justify="center" style={{ minHeight: '100vh' }}>
-				<Grid item sm={4} style={{ padding: '100px 20px 0px 20px' }}>
-					<Grid item sm>
-						<h2>
-							<em>EcoHabit Helps...</em>
-						</h2>
-					</Grid>
+			<Grid
+				container
+				justify="center"
+				style={{
+					background: `url(${BackgroundGif}) no-repeat`,
+					backgroundSize: 'cover'
+				}}
+			>
+				<Grid item sm={12} style={{ padding: '150px 20px 0px 20px' }}>
 					<Grid item sm style={{ textAlign: 'center' }}>
-						<List>
-							<ListItem>
-								<ListItemText>Preform Daily Check ins with ease</ListItemText>
-							</ListItem>
-							<ListItem>
-								<ListItemText>Track your progress in live time</ListItemText>
-							</ListItem>
-							<ListItem>
-								<ListItemText>Set reminders that work for you</ListItemText>
-							</ListItem>
-							<ListItem>
-								<ListItemText>Use our build in extensions to </ListItemText>
-							</ListItem>
-						</List>
+						<h1 style={{ color: 'rgb(210,209,205)' }}>
+							<em>EcoHabit is here to Help.</em>
+						</h1>
 					</Grid>
-					<Grid item justify="center">
-						<FormButton label="Back" primary={true} onClick={this.back}>
-							<i className="fas fa-arrow-left" />
-						</FormButton>
-						<FormButton label="Continue" primary={false} onClick={this.continue}>
-							<i className="fas fa-arrow-right" />
-						</FormButton>
+					<Grid item sm />
+					<Grid item sm style={{ textAlign: 'center' }}>
+						<Container alignItems="center" maxWidth="sm">
+							<p style={{ lineHeight: '1.2', textAlign: 'center', color: 'rgb(210,209,205)' }}>
+								<em>
+									EcoHabit is a daily diary mean to keep it's users on track to becoming a better eco
+									Citizen. Designed with simplicity in mind, EcoHabit offers users an interactive and
+									inuitive experience.
+									<br />
+									EcoHabit is dedicated helping our users improve themselves. We're here daily to
+									remind you that you are important and you choice do matter. No matter how small or
+									how alien you may ever feel, we're here to remind you that <em>this</em> is home and{' '}
+									<em>we</em> are all going to work together to take care of it.
+								</em>
+							</p>
+						</Container>
 					</Grid>
-				</Grid>
-				<Grid item sm={4}>
-					<img
-						src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/field-of-amaranth-blooming-red-flowers-royalty-free-image-1060130606-1554736005.jpg?crop=0.524xw:0.787xh;0.476xw,0.213xh&resize=768:*"
-						alt="Image of goal keeping"
-					/>
-				</Grid>
-				<Grid item sm={4}>
-					<img
-						src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/red-canna-flower-royalty-free-image-174932106-1554841383.jpg?crop=0.635xw:0.953xh;0.357xw,0.0470xh&resize=768:*"
-						alt="Image of Daily Check component"
-					/>
+					<Grid item sm={12}>
+						<div style={{ display: 'flex', justifyContent: 'center', marginTop: '130px' }}>
+							<FormButton label="Back" primary={true} onClick={this.back}>
+								<ArrowBackIcon />
+							</FormButton>
+							<FormButton label="Continue" primary={false} onClick={this.continue}>
+								<ArrowForwardIcon />
+							</FormButton>
+						</div>
+					</Grid>
 				</Grid>
 			</Grid>
 		);
