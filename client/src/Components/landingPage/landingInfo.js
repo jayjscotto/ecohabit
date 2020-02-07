@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
 import { Grid, List, ListItem, ListItemText } from '@material-ui/core';
 import { FormButton } from '../../Components/FormElements';
-import { Link } from 'react-router-dom';
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
 
 export class Info extends Component {
 	continue = (e) => {
@@ -14,48 +20,98 @@ export class Info extends Component {
 	};
 	render() {
 		return (
-			<Grid
-				container
-				spacing={0}
-				direction="column"
-				alignItems="center"
-				justify="center"
-				style={{ minHeight: '100vh' }}
-				elevation={3}
-			>
-				<Grid item sm>
+			<Grid container alignItems="center" justify="center" spacing={3} style={{ paddingTop: '20px' }}>
+				<Grid item sm={12}>
+					<h2 style={{ textAlign: 'center' }}>
+						<em>Eco in Action</em>
+					</h2>
+				</Grid>
+				<Grid item sm={3}>
+					<Card style={{ maxWidth: '345' }}>
+						<CardActionArea>
+							<CardMedia
+								style={{ height: '140px' }}
+								image="/static/images/cards/contemplative-reptile.jpg"
+								title="Contemplative Reptile"
+							/>
+							<CardContent>
+								<Typography gutterBottom variant="h5" component="h2">
+									Check In
+								</Typography>
+								<Typography variant="body2" color="textSecondary" component="p">
+									Keeping a diary has never been easier with EcoHabit. Simply tally your daily habits
+									and see immediate results
+								</Typography>
+							</CardContent>
+						</CardActionArea>
+						<CardActions>
+							<Button size="small" color="primary">
+								Learn More
+							</Button>
+						</CardActions>
+					</Card>
+				</Grid>
+				{/* second card */}
+				<Grid item sm={3}>
 					<Grid item sm>
-						<h3>Eco In Action</h3>
-					</Grid>
-					<Grid item sm>
-						<List>
-							<ListItem>
-								<ListItemText>Set and accomplish goals</ListItemText>
-							</ListItem>
-							<ListItem>
-								<ListItemText>Learn More on the Impact of your Daily Actions</ListItemText>
-							</ListItem>
-							<ListItem>
-								<ListItemText>Scream</ListItemText>
-							</ListItem>
-							<ListItem>
-								<ListItemText>Scream </ListItemText>
-							</ListItem>
-						</List>
+						<Card style={{ maxWidth: '345' }}>
+							<CardActionArea>
+								<CardMedia
+									style={{ height: '140px' }}
+									image="/static/images/cards/contemplative-reptile.jpg"
+									title="Contemplative Reptile"
+								/>
+								<CardContent>
+									<Typography gutterBottom variant="h5" component="h2">
+										Data
+									</Typography>
+									<Typography variant="body2" color="textSecondary" component="p">
+										Track your progress instantly with our data visualization feature. Watch
+										yourself grow and improve as you build strong habits.
+									</Typography>
+								</CardContent>
+							</CardActionArea>
+							<CardActions>
+								<Button size="small" color="primary">
+									Learn More
+								</Button>
+							</CardActions>
+						</Card>
 					</Grid>
 				</Grid>
-				<Grid item sm>
+				{/* third card  */}
+				<Grid item sm={3}>
+					<Card style={{ maxWidth: '345' }}>
+						<CardActionArea>
+							<CardMedia
+								style={{ height: '140px' }}
+								image="/static/images/cards/contemplative-reptile.jpg"
+								title="Contemplative Reptile"
+							/>
+							<CardContent>
+								<Typography gutterBottom variant="h5" component="h2">
+									Add-ons
+								</Typography>
+								<Typography variant="body2" color="textSecondary" component="p">
+									Set set reminders at times that work for you. Our addons help our users find
+									additional resources in their local community.
+								</Typography>
+							</CardContent>
+						</CardActionArea>
+						<CardActions>
+							<Button size="small" color="primary">
+								Learn More
+							</Button>
+						</CardActions>
+					</Card>
+				</Grid>
+				<Grid item sm={12}>
 					<FormButton label="Back" primary={true} onClick={this.back}>
 						Back
-						<i class="fas fa-arrow-left" />
 					</FormButton>
 					<FormButton label="Continue" primary={false} onClick={this.continue}>
-						Next
-						<i class="fas fa-arrow-right" />
+						More
 					</FormButton>
-				</Grid>
-				<Grid item sm>
-					<h1>Here is where I wil put gifs</h1>
 				</Grid>
 			</Grid>
 		);

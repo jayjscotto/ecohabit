@@ -25,6 +25,7 @@ class App extends Component {
 		}
 	}
 
+<<<<<<< HEAD
 	render() {
 		return (
 			<div className="container">
@@ -39,6 +40,38 @@ class App extends Component {
 			</div>
 		);
 	}
+=======
+  componentDidMount() {
+    const user = JSON.parse(API.getLocalStorage('eco-user'));
+    if (user) {
+      API.getDailyCheck()
+      .then(res => {
+        this.props.history.push('/');
+      })
+    //   .catch(error => {
+    //     if (error.response.status === 401) {
+    //       this.props.history.push('/login');
+    //     }
+    //   });
+    } else {
+      this.props.history.push('/login');
+    }
+  }
+
+  render() {
+    return (
+      <div className='container'>
+        <Switch>
+          <Route exact path='/login' component={Login} />
+          <Route exact path='/register' component={Register} />
+          <Route exact path='/utilities' component={Utilities} />
+          <Route exact path='/' component={Daily} />
+          <Route exact path='/account' component={UserDash} />
+        </Switch>
+      </div>
+    );
+  }
+>>>>>>> 5c4cfa06dc419682f4ce14b885a0aa7cdc3d5e18
 }
 
 export default withRouter(App);

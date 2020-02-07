@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Grid, Typography, Container } from '@material-ui/core';
-import { FormButton } from '../../Components/FormElements';
+import { FormButtonWelcome } from '../../Components/FormElements';
 import { Link } from 'react-router-dom';
 
 export class Signup extends Component {
@@ -8,6 +8,7 @@ export class Signup extends Component {
 		e.preventDefault();
 		this.props.nextStep();
 	};
+
 	render() {
 		return (
 			<Grid
@@ -20,28 +21,33 @@ export class Signup extends Component {
 				elevation={3}
 			>
 				<Grid item sm>
-					<h1>EcoHabit</h1>
-				</Grid>
-				<Grid item sm>
+					<h1>EcoHabit Place Holder</h1>
 					<Link to="/login">
-						<FormButton>Login</FormButton>
+						<FormButtonWelcome fullWidth={true}> Login</FormButtonWelcome>
 					</Link>
-					<br />
 					<Link to="/register">
-						<FormButton>Register</FormButton>
+						<FormButtonWelcome fullWidth={true}>Register</FormButtonWelcome>
 					</Link>
 				</Grid>
-				<Grid item sm>
+				<br />
+				<Grid item>
 					<h2>About EcoHabit</h2>
+				</Grid>
+				<Grid item>
 					<Container alignItems="center" maxWidth="sm">
-						EcoHabit is a daily diary mean to keep it's users on track to becoming a better eco Citizen.
-						Designed with simplicity in mind, EcoHabit offers users an interactive and inuitive experience.
+						<p>
+							<em>
+								EcoHabit is a daily diary mean to keep it's users on track to becoming a better eco
+								Citizen. Designed with simplicity in mind, EcoHabit offers users an interactive and
+								inuitive experience.
+							</em>
+						</p>
 					</Container>
 				</Grid>
 				<Grid item sm>
-					<FormButton label="tour" primary={true} onClick={this.continue}>
+					<FormButtonWelcome label="tour" primary={true} onClick={this.continue}>
 						Take A Tour
-					</FormButton>
+					</FormButtonWelcome>
 				</Grid>
 			</Grid>
 		);
