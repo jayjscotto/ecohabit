@@ -54,12 +54,18 @@ module.exports = {
 
 		console.log(req.body)
 			
-		db.CheckIn.create(checkIn).then((created) => {
+		db.CheckIn.create(checkIn)
+		.then(created => {
 			db.User.findOneAndUpdate( 
 			{_id: req.body.user_id}, 
 			{ $push: { checkIns: created }, $set: { dailyCheck: true }  },
-			{ new: true }).then(updated => res.status(201).send({ success: true, msg: 'CheckIn submitted'}));
-		})} else {
+			{ new: true })
+			.then(updated => {
+				const userDailyCheckinValue = updated.dailyCheck;
+				return res.status(201).send(userDailyCheckinValue);
+			})
+		});
+		} else {
 			return res.status(403).send({ success: false, msg: 'Unauthorized.' });
 		}
 	},
