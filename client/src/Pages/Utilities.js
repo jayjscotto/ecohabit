@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Container, Typography, Box, Grid, Paper } from '@material-ui/core';
 import { FormButton, FormInput } from '../Components/FormElements';
 import DataDisplay from '../Components/DataDisplay';
@@ -89,8 +89,8 @@ class Reminders extends React.Component {
             ?
               <iframe style={{width: '50%', margin: '0 auto', textAlign: 'center'}}></iframe>
             :
-          
-          <DataDisplay results={this.state.results} />}
+              <DataDisplay results={this.state.results} />
+            }
           </Grid>
         </Grid>
       </Container>
