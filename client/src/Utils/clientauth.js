@@ -39,12 +39,11 @@ export default {
     const reducer = (a, b) => {
       return a + b;
     };
-    const userAnswers = answers.slice(5)
-    const score = userAnswers.reduce(reducer);
+    const score = answers.reduce(reducer);
 
     const checkInData = {
       user_id,
-      userAnswers: [...userAnswers],
+      answers: [...answers],
       totalPoints: score,
       date: Date.now()
     };

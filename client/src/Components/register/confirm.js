@@ -30,7 +30,7 @@ export class Confirm extends Component {
 	};
 
 	render() {
-		const { values: { userName, password, password2, firstName, lastName, zipCode } } = this.props;
+		const { values: { userName, firstName, lastName, zipCode } } = this.props;
 
 		return (
 			<Grid

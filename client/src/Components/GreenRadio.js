@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment } from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import {
   Radio,
@@ -6,7 +6,7 @@ import {
   FormLabel,
   RadioGroup,
   Grid,
-  StylesProvider
+  Box
 } from '@material-ui/core';
 
 const useStyles = makeStyles({
@@ -39,6 +39,7 @@ export default function RadioButtons(props) {
 
   useEffect(() => {
     props.updateAnswers(selectedValue);
+    // eslint-disable-next-line
   }, [selectedValue]);
 
   return (
@@ -48,7 +49,7 @@ export default function RadioButtons(props) {
           <FormLabel className={classes.question} component='legend'>{props.question}</FormLabel>
         </Grid>
         <Grid item lg={6} md={12}>
-        <Fragment className={classes.answers}>
+        <Box className={classes.answers}>
           <RadioGroup
           aria-label='position'
           name='position'
@@ -64,7 +65,6 @@ export default function RadioButtons(props) {
               <Radio
                 value={1}
                 checked={selectedValue === "1"}
-                color='success'
                 index={props.index}
               />
             }
@@ -78,7 +78,6 @@ export default function RadioButtons(props) {
               <Radio
                 value={0}
                 checked={selectedValue === "0"}
-                color='success'
                 index={props.index}
               />
             }
@@ -86,7 +85,7 @@ export default function RadioButtons(props) {
             labelPlacement='top'
           />
         </RadioGroup>
-        </Fragment>
+        </Box>
         </Grid>
       </Grid>
     </div>
