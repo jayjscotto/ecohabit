@@ -51,8 +51,6 @@ module.exports = {
 				totalPoints: req.body.totalPoints,
 				Date: Date.now()
 			};
-
-		console.log(req.body)
 			
 		db.CheckIn.create(checkIn)
 		.then(created => {
