@@ -24,15 +24,14 @@ class Reminders extends React.Component {
     results: [],
     zipCode: '',
     loading: false,
-    state: ''
+    zipCodeInput: ''
   }
-
-  
 
   componentDidMount() {
     let user = JSON.parse(clientauth.getLocalStorage('eco-user'));
-    this.setState({ zip: user.zip });
+    this.setState({ zipCode: user.zipCode });
   }
+
   getData = (zip) => {
     this.setState({ loading: true });
     API.getLatLng(zip)
@@ -74,21 +73,21 @@ class Reminders extends React.Component {
                   If you've got an electric vehicle - or you're <em>thinking</em> about getting one - don't worry about where you'll be able to find a charging station. Below are a list of them based on your zip code, and you can even search for a new zip when you're out of town.
                 </Typography>
                 <FormInput
-                  name="zipCode"
+                  name="zipCodeInput"
                   label="Zip Code"
                   variant="outlined"
                   onChange={this.handleInputChange}
-                  value={this.state.zipCode}
+                  value={this.state.zipCodeInput}
                 />
-                <FormButton onClick={() => { this.getData(this.state.zipCode) }}>Search a new zip code</FormButton>
-                <FormButton onClick={() => { this.getData('08844')}}>Or use your zip code</FormButton>
+                <FormButton onClick={() => { this.getData(this.state.zipCodeInput) }}>Search a new zip code</FormButton>
+                <FormButton onClick={() => { this.getData(this.state.zipCode)}}>Or use your zip code</FormButton>
               </Box>
             </Paper>
           </Grid>
-          <Grid item lg={8} md={6}>
+          <Grid item lg={8} md={6} style={{ height: '100vh', overflow: 'scroll' }} className="noscroll">
           {this.state.loading === true 
             ?
-              <iframe></iframe>
+              <iframe style={{width: '50%', margin: '0 auto', textAlign: 'center'}}></iframe>
             :
           
           <DataDisplay results={this.state.results} />}
