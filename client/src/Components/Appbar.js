@@ -1,10 +1,9 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
-import { AppBar, Toolbar, Typography, Button } from '@material-ui/core';
+import { AppBar, Toolbar, Typography, Button, Select, MenuItem } from '@material-ui/core';
 import Logo from '../images/eco-logo.png';
-
-// import MenuIcon from '@material-ui/icons/Menu';
+import EcoIcon from '@material-ui/icons/Eco';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -25,12 +24,15 @@ const useStyles = makeStyles(theme => ({
   link: {
     textDecoration: 'none',
     color: 'inherit',
+  },
+  leaf: {
+    marginLeft: '4em',
+    filter: 'invert(1)'
   }
 }));
 
 export default function ButtonAppBar(props) {
   const classes = useStyles();
-
   const [user, setUser] = useState(false);
 
   useEffect(() => {
@@ -63,11 +65,29 @@ export default function ButtonAppBar(props) {
                   <Button style={{ color: 'inherit' }}>Utilities</Button>
                 </Link>
 
-                <Link to='/account' className={classes.link}>
-                  <Button style={{ color: 'inherit' }}>Account</Button>
-                </Link>
+                
 
-                <Button color='inherit' onClick={logout}>Logout</Button>
+                <Select labelId="label" id="select" value="1" autowidth="true" 
+                className={classes.leaf} disableUnderline>
+
+                  <MenuItem value="1">
+                    <EcoIcon fontSize="large"></EcoIcon>
+                  </MenuItem>
+                  
+                  <MenuItem value="10">
+                    <Link to='/account' className={classes.link}>
+                        <Button style={{ color: 'inherit' }}>Account</Button>
+                    </Link>
+                  </MenuItem>
+
+                  <MenuItem value="20">
+                    <Button color='inherit' onClick={logout}>Logout</Button>
+                  </MenuItem>
+
+                  
+
+                </Select>
+
               </Fragment>
               ) : (
               <Fragment>
