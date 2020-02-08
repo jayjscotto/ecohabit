@@ -39,8 +39,11 @@ const CheckIn = props => {
 
   //on form submit
   const submitSurvey = answers => {
-    setDailyCheck(true)
-    API.userSubmitDaily(user._id, answers);
+    
+    API.userSubmitDaily(user._id, answers).then(response => {
+      console.log(response);
+      setDailyCheck(response.dailyCheck)
+    });
   };
 
   // conditional rendering
