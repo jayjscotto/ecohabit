@@ -8,6 +8,7 @@ const app = express();
 var survey = require('./routes/survey');
 var auth = require('./routes/auth');
 const api = require('./routes/api/api-route');
+const cors = require('cors');
 const connection = mongoose.connection;
 
 // middleware
@@ -32,6 +33,7 @@ connection.once('open', function callback() {
 	console.log('Connected to MongoDB!');
 });
 
+app.use(cors());
 app.use('/api/survey', survey);
 app.use('/api/auth', auth);
 app.use(api);

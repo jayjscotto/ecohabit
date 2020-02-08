@@ -42,7 +42,7 @@ const Reminders = props => {
   return (
     <FormControl component='fieldset'>
       <FormLabel component='legend'>Toggle Reminders</FormLabel>
-      <FormGroup>
+      <FormGroup style={{ width: '100%', margin: '0 auto', textAlign: 'center' }}>
         <FormControlLabel
           control={
             <Switch

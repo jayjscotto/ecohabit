@@ -7,6 +7,7 @@ let useStyles = makeStyles({
   root: {
     padding: '1em',
     backgroundImage: 'linear-gradient(30deg, #fff2ed, #fffde9)',
+    minHeight: '260px'
   },
   title: {
     paddingRight: '2em'
