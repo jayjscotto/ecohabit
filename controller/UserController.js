@@ -62,7 +62,7 @@ module.exports = {
 			{ new: true })
 			.then(updated => {
 				const userDailyCheckinValue = updated.dailyCheck;
-				return res.status(201).send(userDailyCheckinValue);
+				return res.status(201).send({dailyCheck: userDailyCheckinValue});
 			})
 		});
 		} else {
