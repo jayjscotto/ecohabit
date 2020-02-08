@@ -29,7 +29,7 @@ const UserSchema = new Schema({
 		default: Date.now
 	},
 	zipCode: {
-		type: Number,
+		type: String,
 		required: true,
 		min: [ 5, 'Zip Code must be 5 Digits long' ],
 		// max: 5

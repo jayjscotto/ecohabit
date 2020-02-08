@@ -49,7 +49,7 @@ app.listen(PORT, () => {
 //  daily cron job
 const CronJob = require('cron').CronJob;
 const job = new CronJob('0 1 * * *', function() {
-	db.Users.find({}, { $set: { dailyCheck: false } });
+	db.User.find({}, { $set: { dailyCheck: false } });
 });
 
 job.start();
