@@ -14,16 +14,16 @@ const style = {
 		padding: '5px 20px 20px 20px',
 		backgroundImage: 'linear-gradient(30deg, #fff2ed, #fffde9)',
 		overflow: 'auto',
-	},
+	}, // 689
 	rightpane: {
 		color: '#5D675B',
-		height: '300px',
+		height: '304px',
 		margin: '10px',
 		textAlign: 'left',
 		fontFamily: 'inherit',
 		padding: '5px 20px 20px 20px',
 		backgroundImage: 'linear-gradient(30deg, #fff2ed, #fffde9)'
-	},
+	}, // 600 + 40 + 50
 	header: {
 		textTransform: 'uppercase',
 		borderBottom: '0.5px solid #5D675B',
