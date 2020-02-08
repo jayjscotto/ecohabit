@@ -6,15 +6,18 @@ import { Button, Tabs, Paper }  from '@material-ui/core';
 const useStyles = makeStyles({
   root: {
     flexGrow: 1,
-    background: '#5D675B',
+    background: '#6d8468',
     padding: '12px',
-    color: '#ffffff',
+ 
     margin: '0 auto',
     position: 'fixed',
     bottom: '0',
     right: '0',
     left: '0'
   },
+  button: {
+   color: '#ffffff',
+  }
 });
 
 export default function CenteredTabs() {
