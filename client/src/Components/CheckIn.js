@@ -39,10 +39,9 @@ const CheckIn = props => {
 
   //on form submit
   const submitSurvey = answers => {
-    
+   
     API.userSubmitDaily(user._id, answers).then(response => {
-      console.log(response);
-      setDailyCheck(response.dailyCheck)
+      setDailyCheck(response.data.dailyCheck)
     });
   };
 
