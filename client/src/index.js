@@ -4,13 +4,13 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import App from './App';
 import './index.css';
 import Appbar from './Components/Appbar';
-import Tabs from './Components/Tabs'
+import Footer from './Components/Footer'
 
 ReactDOM.render(
   <Router>
     <Appbar />
     <App />
-    <Tabs />
+    <Footer />
   </Router>,
   document.getElementById('root')
 );
