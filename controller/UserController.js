@@ -54,13 +54,12 @@ module.exports = {
 
 		console.log(req.body)
 			
-		db.CheckIn.create(checkIn).then((created) => db.User.findOneAndUpdate( 
-				{_id: req.body.user_id}, 
-				{ $push: { checkIns: created }, $set: { dailyCheck: true }  },
-				{ new: true }));
-		
-		return res.status(201).send({ success: true, msg: 'CheckIn submitted'})
-		} else {
+		db.CheckIn.create(checkIn).then((created) => {
+			db.User.findOneAndUpdate( 
+			{_id: req.body.user_id}, 
+			{ $push: { checkIns: created }, $set: { dailyCheck: true }  },
+			{ new: true }).then(updated => res.status(201).send({ success: true, msg: 'CheckIn submitted'}));
+		})} else {
 			return res.status(403).send({ success: false, msg: 'Unauthorized.' });
 		}
 	},
