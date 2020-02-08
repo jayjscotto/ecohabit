@@ -5,10 +5,11 @@ import App from './App';
 import './index.css';
 import Appbar from './Components/Appbar';
 
+
 ReactDOM.render(
   <Router>
-    <Appbar />
-    <App />
+      <Appbar />
+      <App />
   </Router>,
   document.getElementById('root')
 );

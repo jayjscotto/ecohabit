@@ -1,74 +1,35 @@
-import React from 'react';
+import React, { useEffect, useState, useContext } from 'react';
+import ChartContex from './ChartContext';
 import { Grid, Paper, Typography } from '@material-ui/core';
 import Reminders from './Reminders';
 import LineChart from './Chart';
 import API from '../Utils/clientauth';
 import moment from 'moment';
 
-class RightPane extends React.Component {
+const RightPane = props => {
+  const { chartdata, dates, chartRendered } = useContext(ChartContext);
 
-    state = {
-        chartdata: [],
-        dates: [],
-        rendered: false
-    }
-
-    componentDidMount() {
-        this.updateUserData();
-    }
-
-    componentDidUpdate() {
-        this.updateUserData();
-    }
-
-    updateUserData() {
-        let user = JSON.parse(API.getLocalStorage('eco-user'));
-        if (user) {
-            let checkinPoints = [];
-            let dates = [];
-            API.getUserData(user._id)
-                .then(res => {
-                  let points = res.data;
-                  for (let i = 0; i < points.length; i++) {
-                      checkinPoints.push(points[i].totalPoints);
-                      dates.push(moment(points[i].date).format('MMM D'));
-                  }
-                  this.setState({ chartdata: checkinPoints, dates: dates, rendered: true });
-                })
-                .catch(err => {
-                    console.log(err);
-                })
-        } else {
-        // need else code 
-      }
-    }
-
-    render() {
-        return (
-            <Grid container md={7} sm={12} xs={12}>
-                <Grid item lg={12} md={12} sm={12}>
-                    <Paper elevation={3} style={this.props.style}>
-                        <Typography style={this.props.header}>
-                            Daily Dashboard
-                        </Typography>
-                        {
-                            this.state.rendered === false ?
-                            null :
-                            <LineChart chartdata={this.state.chartdata} dates={this.state.dates} />
-                        }
-                    </Paper>
-                </Grid>
-                <Grid item lg={12} md={12} sm={12}>
-                    <Paper elevation={3} style={this.props.style}>
-                        <Typography style={this.props.header}>
-                            Reminders
-                        </Typography>
-                        <Reminders />
-                    </Paper>
-                </Grid>
-            </Grid>
-        )
-    }
-}
+  return (
+    <Grid container md={7} sm={12} xs={12}>
+      <Grid item lg={12} md={12} sm={12}>
+        <Paper elevation={3} style={this.props.style}>
+          <Typography style={this.props.header}>Daily Dashboard</Typography>
+          {chartRendered === false ? null : (
+            <LineChart
+              chartdata={chartdata}
+              dates={dates}
+            />
+          )}
+        </Paper>
+      </Grid>
+      <Grid item lg={12} md={12} sm={12}>
+        <Paper elevation={3} style={this.props.style}>
+          <Typography style={this.props.header}>Reminders</Typography>
+          <Reminders />
+        </Paper>
+      </Grid>
+    </Grid>
+  );
+};
 
 export default RightPane;
