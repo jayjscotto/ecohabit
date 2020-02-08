@@ -58,6 +58,8 @@ export class RegisterPage extends Component {
 				return <Confirm nextStep={this.nextStep} prevStep={this.prevStep} values={values} />;
 			case 4:
 				return <Redirect to={'/login'} />;
+			default:
+				return;
 		}
 	}
 }

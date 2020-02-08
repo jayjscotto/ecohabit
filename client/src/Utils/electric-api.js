@@ -7,5 +7,5 @@ export default {
   getElectricData: function(lat, lng) {
     const url = `https://api.openchargemap.io/v3/poi/?output=json&countrycode=US&maxresults=20&compact=true&verbose=false&latitude=${lat}&longitude=${lng}`;
     return axios.get(url);
-  }
+  },
 }
