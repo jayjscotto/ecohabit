@@ -27,11 +27,12 @@ class Reminders extends React.Component {
     state: ''
   }
 
+  
+
   componentDidMount() {
     let user = JSON.parse(clientauth.getLocalStorage('eco-user'));
     this.setState({ zip: user.zip });
   }
-
   getData = (zip) => {
     this.setState({ loading: true });
     API.getLatLng(zip)
@@ -87,7 +88,7 @@ class Reminders extends React.Component {
           <Grid item lg={8} md={6}>
           {this.state.loading === true 
             ?
-              <iframe src="https://giphy.com/embed/l1KVcrdl7rJpFnY2s" width="" height="600" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+              <iframe src="https://giphy.com/embed/l1KVcrdl7rJpFnY2s" width="" height="600" frameBorder="0" class="giphy-embed" title="earth loading screen" allowFullScreen></iframe>
             :
           
           <DataDisplay results={this.state.results} />}

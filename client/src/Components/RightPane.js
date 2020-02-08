@@ -1,5 +1,5 @@
-import React from 'react';
-import { Grid, Paper, Typography } from '@material-ui/core';
+import React, { Fragment } from 'react';
+import { Paper, Typography } from '@material-ui/core';
 import Reminders from './Reminders';
 import LineChart from './Chart';
 import API from '../Utils/clientauth';
@@ -14,10 +14,6 @@ class RightPane extends React.Component {
     }
 
     componentDidMount() {
-        this.updateUserData();
-    }
-
-    componentDidUpdate() {
         this.updateUserData();
     }
 
@@ -45,28 +41,24 @@ class RightPane extends React.Component {
 
     render() {
         return (
-            <Grid container md={7} sm={12} xs={12}>
-                <Grid item lg={12} md={12} sm={12}>
-                    <Paper elevation={3} style={this.props.style}>
-                        <Typography style={this.props.header}>
-                            Daily Dashboard
-                        </Typography>
-                        {
-                            this.state.rendered === false ?
-                            null :
-                            <LineChart chartdata={this.state.chartdata} dates={this.state.dates} />
-                        }
-                    </Paper>
-                </Grid>
-                <Grid item lg={12} md={12} sm={12}>
-                    <Paper elevation={3} style={this.props.style}>
-                        <Typography style={this.props.header}>
-                            Reminders
-                        </Typography>
-                        <Reminders />
-                    </Paper>
-                </Grid>
-            </Grid>
+            <Fragment>
+                <Paper elevation={3} style={this.props.style}>
+                    <Typography style={this.props.header}>
+                        Daily Dashboard
+                    </Typography>
+                    {
+                        this.state.rendered === false ?
+                        null :
+                        <LineChart chartdata={this.state.chartdata} dates={this.state.dates} />
+                    }
+                </Paper>
+                <Paper elevation={3} style={this.props.style}>
+                    <Typography style={this.props.header}>
+                        Reminders
+                    </Typography>
+                    <Reminders />
+                </Paper>
+            </Fragment>
         )
     }
 }
