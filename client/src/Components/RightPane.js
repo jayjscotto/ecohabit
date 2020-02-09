@@ -10,7 +10,8 @@ import moment from 'moment';
 const RightPane = props => {
   const { user } = useContext(UserContext);
   const {
-    chartdata,
+    dailyCheck,
+    chartData,
     setChartData,
     dates,
     setDates,
@@ -18,42 +19,38 @@ const RightPane = props => {
     setChartRendered
   } = useContext(CheckinContext);
 
-  const updateUserData = () => {
-    if (user) {
-      let checkinPoints = [];
-      let dates = [];
-      API.getUserData(user._id)
-        .then(res => {
-          let points = res.data;
-          for (let i = 0; i < points.length; i++) {
-            checkinPoints.push(points[i].totalPoints);
-            dates.push(moment(points[i].date).format('MMM D'));
-          }
-          setChartData(checkinPoints);
-          setDates(dates);
-          setChartRendered(true);
-        })
-        .catch(err => {
-          console.log(err);
-        });
-    } else {
-      // need else code
-    }
-  };
+  useEffect(() => {
+    let checkinPoints = [];
+    let checkinDates = [];
+    API.getUserData()
+      .then(res => {
+        for (let checkin in res.data) {
+          checkinPoints.push(res.data[checkin].totalPoints);
+          checkinDates.push(moment(res.data[checkin].date).format('MMM D'));
+        }
+        setChartData(checkinPoints);
+        setDates(checkinDates);
+        setChartRendered(true);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }, [dailyCheck]);
+
 
   return (
     <Grid container md={7} sm={12} xs={12}>
       <Grid item lg={12} md={12} sm={12}>
-        <Paper elevation={3} style={this.props.style}>
-          <Typography style={this.props.header}>Daily Dashboard</Typography>
-          {chartRendered === false ? null : (
-            <LineChart chartdata={chartdata} dates={dates} />
+        <Paper elevation={3} style={props.style}>
+          <Typography style={props.header}>Daily Dashboard</Typography>
+          {!chartRendered ? null : (
+            <LineChart chartdata={chartData} dates={dates} />
           )}
         </Paper>
       </Grid>
       <Grid item lg={12} md={12} sm={12}>
-        <Paper elevation={3} style={this.props.style}>
-          <Typography style={this.props.header}>Reminders</Typography>
+        <Paper elevation={3} style={props.style}>
+          <Typography style={props.header}>Reminders</Typography>
           <Reminders />
         </Paper>
       </Grid>

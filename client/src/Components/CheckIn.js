@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useContext } from 'react';
 import { CheckinContext } from './CheckinContext';
 import { UserContext } from '../Components/UserContext';
 import { makeStyles } from '@material-ui/core/styles';
@@ -7,9 +7,7 @@ import { FormControl } from '@material-ui/core';
 import { FormButton } from './FormElements';
 import API from '../Utils/clientauth';
 import SurveyComplete from './conditionalRenders/surveyComplete';
-
-
-const IntakeQuestions = require('../Utils/checkin-questions.json');
+import IntakeQuestions from '../Utils/checkin-questions.json';
 
 const useStyles = makeStyles({
   buttonSubmit: {
@@ -20,24 +18,24 @@ const useStyles = makeStyles({
 const CheckIn = props => {
   const classes = useStyles();
   const { user } = useContext(UserContext);
-  const { answers, setAnswers, submitSurvey, dailyCheck, setDailyCheck } = useContext(CheckinContext);
+  const { answers, setAnswers, dailyCheck, setDailyCheck } = useContext(CheckinContext);
 
   const updateAnswers = event => {
     let userAnswers = [...answers, parseInt(event)];
-    userAnswers = answers.filter(answer => answer !== 1 || answer !== 0);
     setAnswers(userAnswers);
   };
 
-  // when component mounts, check from the db if the user has checked in today
-  useEffect(() => {
-    // call API to see if the user has checked in today and update the state variable to update
-    if (user._id) {
-      // call the API to see if the user has checked in today and set the boolean in state
-      API.getDailyCheck(user._id).then(result => {
-        setDailyCheck(result.data);
-      });
-    }
-  });
+  // useEffect(() => {
+
+  // })
+
+  //on form submit
+  const submitCheckin = (id, answers) => {
+    // call the API to submit the checkin to the backend
+    API.userSubmitDaily(id, answers.slice(1)).then(results => {
+      setDailyCheck(results.data.dailyCheck);
+    });
+  };
 
   // conditional rendering
   return (
@@ -54,7 +52,7 @@ const CheckIn = props => {
             />
           ))}
           <FormButton
-            onClick={() => submitSurvey(user._id, answers)}
+            onClick={() => submitCheckin(user._id, answers)}
             className={classes.buttonSubmit}
           >
             Submit

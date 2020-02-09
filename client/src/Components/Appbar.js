@@ -1,12 +1,11 @@
-import React, { useState, useEffect, Fragment } from 'react';
+import React, { useState, useContext, Fragment } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 import { AppBar, Toolbar, Typography, Button } from '@material-ui/core';
 import { Select } from '@material-ui/core';
 import Logo from '../images/eco-logo.png';
 import Cloud from '../images/cloud2.png';
-
-// import MenuIcon from '@material-ui/icons/Menu';
+import  { UserContext } from './UserContext';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -32,15 +31,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function ButtonAppBar(props) {
   const classes = useStyles();
-
-  const [user, setUser] = useState(false);
-
-  useEffect(() => {
-    const token = localStorage.getItem('jwtToken');
-    if (token) {
-      setUser(true)
-    }
-  });
+  const {user} = useContext(UserContext)
 
   const logout = () => {
     localStorage.removeItem('jwtToken');

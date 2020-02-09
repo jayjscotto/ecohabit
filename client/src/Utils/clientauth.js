@@ -33,7 +33,7 @@ export default {
     return localStorage.getItem(key);
   },
   // submit user daily check answers
-  userSubmitDaily: function(user_id, answers) {
+  userSubmitDaily: function(id, answers) {
     let token = this.getLocalStorage('jwtToken');
 
     const reducer = (a, b) => {
@@ -42,7 +42,7 @@ export default {
     const score = answers.reduce(reducer);
 
     const checkInData = {
-      user_id,
+      user_id: id,
       userAnswers: [...answers],
       totalPoints: score,
       date: Date.now()

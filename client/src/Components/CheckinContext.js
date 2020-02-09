@@ -1,18 +1,9 @@
 import React, { createContext, useState, useContext } from 'react';
-import API from '../Utils/clientauth'
-
 
 export const CheckinContext = createContext(null);
 
-//on form submit
-const submitCheckin = (id, answers) => {
-  // call the API to submit the checkin to the backend
-  API.userSubmitDaily(id, answers)
-};
-
-
 export const CheckinContextProvider = props => {
-  const [answers, setAnswers] = useState(null);
+  const [answers, setAnswers] = useState([]);
   const [dailyCheck, setDailyCheck] = useState(false);
   const [chartData, setChartData] = useState(null);
   const [chartRendered, setChartRendered] = useState(false);
@@ -23,7 +14,6 @@ export const CheckinContextProvider = props => {
     setDailyCheck,
     answers,
     setAnswers,
-    submitCheckin,
     dates,
     setDates,
     chartData,

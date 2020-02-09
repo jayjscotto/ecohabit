@@ -4,12 +4,17 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import App from './App';
 import './index.css';
 import Appbar from './Components/Appbar';
-
+import { UserContextProvider } from './Components/UserContext';
+import { CheckinContextProvider } from './Components/CheckinContext';
 
 ReactDOM.render(
   <Router>
-      <Appbar />
-      <App />
+    <UserContextProvider>
+      <CheckinContextProvider>
+        <Appbar />
+        <App />
+      </CheckinContextProvider>
+    </UserContextProvider>
   </Router>,
   document.getElementById('root')
 );
