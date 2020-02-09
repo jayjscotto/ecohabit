@@ -12,14 +12,20 @@ import { CheckinContext } from './Components/CheckinContext';
 
 const App = props => {
   const { user, setUser } = useContext(UserContext);
-  const { setDailyCheck } = useContext(CheckinContext);
+  const { dailyCheck, setDailyCheck } = useContext(CheckinContext);
 
   useEffect(() => {
- 
     const userObj = JSON.parse(API.getLocalStorage('eco-user'));
-    console.log(userObj)
-    setUser(userObj);
-    setDailyCheck(userObj.dailyCheck);
+    if (userObj) {
+      setUser(userObj);
+      API.getDailyCheck().then(results => {
+        console.log(results)
+        setDailyCheck(results.data);
+      })
+      
+    } else {
+      props.history.push('/login')
+    }
   }, []);
 
   return (
