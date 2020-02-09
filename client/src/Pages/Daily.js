@@ -13,7 +13,7 @@ const style = {
 		fontFamily: 'inherit',
 		padding: '5px 20px 20px 20px',
 		background: 'f1f1f1',
-		// backgroundImage: 'linear-gradient(30deg, #fff2ed, #fffde9)',
+		// backgroundImage: 'linear-gradient(45deg, #faf4b6, #f7f3c2)',
 		overflow: 'auto',
 	}, // 689
 	rightpane: {
@@ -23,7 +23,7 @@ const style = {
 		textAlign: 'left',
 		fontFamily: 'inherit',
 		padding: '5px 20px 20px 20px',
-		// backgroundImage: 'linear-gradient(30deg, #fff2ed, #fffde9)'
+		// backgroundImage: 'linear-gradient(45deg, #faf4b6, #f7f3c2)'
 	}, // 600 + 40 + 50
 	header: {
 		textTransform: 'uppercase',

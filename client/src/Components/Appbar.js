@@ -1,35 +1,30 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
-import { AppBar, Toolbar, Typography, Button, Select, MenuItem } from '@material-ui/core';
-import Logo from '../images/eco-logo.png';
+import { AppBar, Toolbar, Typography, Button } from '@material-ui/core';
 import EcoIcon from '@material-ui/icons/Eco';
-import ClickAwayListener from '@material-ui/core/ClickAwayListener';
-import Grow from '@material-ui/core/Grow';
-import Paper from '@material-ui/core/Paper';
-import Popper from '@material-ui/core/Popper';
-import MenuList from '@material-ui/core/MenuList';
+import Logo from '../images/eco-logo.png';
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    flexGrow: 1
-  },
-  menuButton: {
-    marginRight: theme.spacing(2)
-  },
-  title: {
-    flexGrow: 1,
-    color: '#F1BB87',
-    textShadow: '-2px 2px 3px rgba(247, 239, 153,0.25)',
-  },
-  bar: {
-    background: '#6d8468',
-    padding: '2px'
-  },
-  link: {
-    textDecoration: 'none',
-    color: 'inherit',
-  },
+const useStyles = makeStyles((theme) => ({
+	root: {
+		flexGrow: 1
+	},
+	menuButton: {
+		marginRight: theme.spacing(2)
+	},
+	title: {
+		flexGrow: 1,
+		color: '#F1BB87',
+		textShadow: '-2px 2px 3px rgba(247, 239, 153,0.25)'
+	},
+	bar: {
+		background: '#6d8468',
+		padding: '2px'
+	},
+	link: {
+		textDecoration: 'none',
+		color: 'inherit'
+	},
   leaf: {
     filter: 'invert(1)'
   }
@@ -92,11 +87,6 @@ export default function ButtonAppBar(props) {
                 <Link to='/' className={classes.link}>
                   <Button style={{ color: 'inherit' }}>Daily Dashboard</Button>
                 </Link>
-
-                <Link to='/utilities' className={classes.link}>
-                  <Button style={{ color: 'inherit' }}>Utilities</Button>
-                </Link>
-
                 <Button
                   ref={anchorRef}
                   aria-controls={open ? 'menu-list-grow' : undefined}

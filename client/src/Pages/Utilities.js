@@ -32,6 +32,10 @@ class Reminders extends React.Component {
     this.setState({ zipCode: user.zipCode });
   }
 
+  componentWillUnmount() {
+    this.setState({ zipCode: '', zipCodeInput: '' })
+  }
+
   getData = (zip) => {
     this.setState({ loading: true });
     API.getLatLng(zip)
@@ -84,7 +88,7 @@ class Reminders extends React.Component {
               </Box>
             </Paper>
           </Grid>
-          <Grid item lg={8} md={6} style={{ height: '100vh', overflow: 'scroll' }} className="noscroll">
+          <Grid item lg={8} md={6} style={{ height: '100vh', overflowX: 'visible', overflowY: 'scroll' }} className="noscroll">
           {this.state.loading === true 
             ?
               <iframe style={{width: '50%', margin: '0 auto', textAlign: 'center'}}></iframe>
