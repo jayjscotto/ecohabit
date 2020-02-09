@@ -4,6 +4,11 @@ import { Link } from 'react-router-dom';
 import { AppBar, Toolbar, Typography, Button, Select, MenuItem } from '@material-ui/core';
 import Logo from '../images/eco-logo.png';
 import EcoIcon from '@material-ui/icons/Eco';
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
+import Grow from '@material-ui/core/Grow';
+import Paper from '@material-ui/core/Paper';
+import Popper from '@material-ui/core/Popper';
+import MenuList from '@material-ui/core/MenuList';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -26,7 +31,6 @@ const useStyles = makeStyles(theme => ({
     color: 'inherit',
   },
   leaf: {
-    marginLeft: '4em',
     filter: 'invert(1)'
   }
 }));
@@ -34,6 +38,34 @@ const useStyles = makeStyles(theme => ({
 export default function ButtonAppBar(props) {
   const classes = useStyles();
   const [user, setUser] = useState(false);
+  const [open, setOpen] = useState(false);
+  const anchorRef = React.useRef(null);
+
+  const handleToggle = () => {
+    setOpen(prevOpen => !prevOpen);
+  }
+
+  const handleClose = event => {
+    if (anchorRef.current && anchorRef.current.contains(event.target)) {
+      return;
+    }
+    setOpen(false);
+  }
+
+  function handleListKeyDown(event) {
+    if (event.key === 'Tab') {
+      event.preventDefault();
+      setOpen(false);
+    }
+  }
+
+  const prevOpen = React.useRef(open);
+  React.useEffect(() => {
+    if (prevOpen.current === true && open === false) {
+      anchorRef.current.focus();
+    }
+    prevOpen.current = false;
+  }, [open]);
 
   useEffect(() => {
     const token = localStorage.getItem('jwtToken');
@@ -65,29 +97,43 @@ export default function ButtonAppBar(props) {
                   <Button style={{ color: 'inherit' }}>Utilities</Button>
                 </Link>
 
-                
-
-                <Select labelId="label" id="select" value="1" autowidth="true" 
-                className={classes.leaf} disableUnderline>
-
-                  <MenuItem value="1">
-                    <EcoIcon fontSize="large"></EcoIcon>
-                  </MenuItem>
-                  
-                  <MenuItem value="10">
-                    <Link to='/account' className={classes.link}>
-                        <Button style={{ color: 'inherit' }}>Account</Button>
-                    </Link>
-                  </MenuItem>
-
-                  <MenuItem value="20">
-                    <Button color='inherit' onClick={logout}>Logout</Button>
-                  </MenuItem>
-
-                  
-
-                </Select>
-
+                <Button
+                  ref={anchorRef}
+                  aria-controls={open ? 'menu-list-grow' : undefined}
+                  aria-haspopup="true"
+                  onClick={handleToggle}
+                >
+                  <EcoIcon fontSize="large" className={classes.leaf}></EcoIcon>
+                </Button>
+                <Popper
+                  open={open} 
+                  anchorEl={anchorRef.current}
+                  role={undefined}
+                  transition
+                  disablePortal
+                >
+                  {({ TransitionProps, placement }) => (
+                    <Grow
+                      {...TransitionProps}
+                      style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
+                    >
+                      <Paper>
+                        <ClickAwayListener onClickAway={handleClose}>
+                          <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
+                            <MenuItem onClick={handleClose}>
+                              <Link to='/account' className={classes.link}>
+                                <Button style={{ color: 'inherit' }}>Account</Button>
+                              </Link>
+                            </MenuItem>
+                            <MenuItem onClick={handleClose}>
+                              <Button color='inherit' onClick={logout}>Logout</Button>
+                            </MenuItem>
+                          </MenuList>
+                        </ClickAwayListener>
+                      </Paper>
+                    </Grow>
+                  )}
+                </Popper>
               </Fragment>
               ) : (
               <Fragment>
