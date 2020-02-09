@@ -2,8 +2,17 @@ import React, { useState, useEffect, Fragment } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 import { AppBar, Toolbar, Typography, Button } from '@material-ui/core';
+import { Popper, Grow, Paper, ClickAwayListener, MenuList, MenuItem } from '@material-ui/core';
 import EcoIcon from '@material-ui/icons/Eco';
 import Logo from '../images/eco-logo.png';
+
+// Line 99:18:   'Popper' is not defined             react/jsx-no-undef
+  // Line 107:22:  'Grow' is not defined               react/jsx-no-undef
+  // Line 111:24:  'Paper' is not defined              react/jsx-no-undef
+  // Line 112:26:  'ClickAwayListener' is not defined  react/jsx-no-undef
+  // Line 113:28:  'MenuList' is not defined           react/jsx-no-undef
+  // Line 114:30:  'MenuItem' is not defined           react/jsx-no-undef
+  // Line 119:30:  'MenuItem' is not defined  
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -86,6 +95,9 @@ export default function ButtonAppBar(props) {
               <Fragment>
                 <Link to='/' className={classes.link}>
                   <Button style={{ color: 'inherit' }}>Daily Dashboard</Button>
+                </Link>
+                <Link to='/utilities' className={classes.link}>
+                  <Button style={{ color: 'inherit' }}>Utilities</Button>
                 </Link>
                 <Button
                   ref={anchorRef}

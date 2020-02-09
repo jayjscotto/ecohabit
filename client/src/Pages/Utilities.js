@@ -4,11 +4,10 @@ import { FormButton, FormInput } from '../Components/FormElements';
 import DataDisplay from '../Components/DataDisplay';
 import API from '../Utils/electric-api';
 import clientauth from '../Utils/clientauth';
-
+import EarthGif from '../Components/landingPage/welcomeImages/earth.gif';
 
 let styles = {
   root: {
-    backgroundImage: 'linear-gradient(30deg, #fff2ed, #fffde9)',
     marginTop: '2em',
     padding: '20px 20px',
     marginBottom: '1em'
@@ -29,7 +28,9 @@ class Reminders extends React.Component {
 
   componentDidMount() {
     let user = JSON.parse(clientauth.getLocalStorage('eco-user'));
-    this.setState({ zipCode: user.zipCode });
+    if (user) {
+      this.setState({ zipCode: user.zipCode });
+    }
   }
 
   componentWillUnmount() {
@@ -38,7 +39,7 @@ class Reminders extends React.Component {
 
   getData = (zip) => {
     this.setState({ loading: true });
-    API.getLatLng(zip)
+      API.getLatLng(zip)
       .then(res => { 
         let lat, lng;
         for (let i = 0; i < res.data.length; i++) {
@@ -88,14 +89,21 @@ class Reminders extends React.Component {
               </Box>
             </Paper>
           </Grid>
-          <Grid item lg={8} md={6} style={{ height: '100vh', overflowX: 'visible', overflowY: 'scroll' }} className="noscroll">
+          
           {this.state.loading === true 
             ?
-              <iframe style={{width: '50%', margin: '0 auto', textAlign: 'center'}}></iframe>
+              // <Grid item>
+                <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', margin: '0 auto' }}>
+                  <img src={EarthGif} alt="Earthboy" width="300" />
+                </div>
+                
+              // </Grid>
             :
-              <DataDisplay results={this.state.results} />
+              <Grid item lg={8} md={6} style={{ height: '100vh', overflowX: 'visible', overflowY: 'scroll' }} className="noscroll">
+                <DataDisplay results={this.state.results} />
+              </Grid>
             }
-          </Grid>
+          
         </Grid>
       </Container>
     )

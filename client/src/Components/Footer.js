@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Grid, Container } from '@material-ui/core';
+import { Grid, Container, Link } from '@material-ui/core';
 import GitHubIcon from '@material-ui/icons/GitHub';
 
 const useStyles = makeStyles(theme => ({
@@ -22,8 +22,10 @@ export default function CenteredTabs() {
   };
 
   return (
-    <Grid container style={{margin: '20px auto'}}>
-      <GitHubIcon className={classes.icon} fontSize="large"/>
+    <Grid container style={{width: '100%', margin: '20px auto'}} justify="center">
+      <a href="https://github.com/jayjscotto/ecohabit" target="_blank" rel="noopener noreferrer">
+        <GitHubIcon className={classes.icon} fontSize="large"/>
+      </a>
     </Grid>
   );
 }
