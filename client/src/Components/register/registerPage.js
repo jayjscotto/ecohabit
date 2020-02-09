@@ -59,7 +59,7 @@ export class RegisterPage extends Component {
 			case 4:
 				return <Redirect to={'/login'} />;
 			default:
-				return;
+				return <Form1 nextStep={this.nextStep} handleChange={this.handleChange} values={values} />;
 		}
 	}
 }
