@@ -3,7 +3,6 @@ import { Container, Grid } from '@material-ui/core';
 import LeftPane from '../Components/LeftPane';
 import RightPane from '../Components/RightPane';
 import CheckIn from '../Components/CheckIn';
-// import confetti from 'canvas-confetti';
 
 const style = {
 	leftpane: {
@@ -15,16 +14,16 @@ const style = {
 		padding: '5px 20px 20px 20px',
 		backgroundImage: 'linear-gradient(30deg, #fff2ed, #fffde9)',
 		overflow: 'auto',
-	},
+	}, // 689
 	rightpane: {
 		color: '#5D675B',
-		height: '300px',
+		height: '304px',
 		margin: '10px',
 		textAlign: 'left',
 		fontFamily: 'inherit',
 		padding: '5px 20px 20px 20px',
 		backgroundImage: 'linear-gradient(30deg, #fff2ed, #fffde9)'
-	},
+	}, // 600 + 40 + 50
 	header: {
 		textTransform: 'uppercase',
 		borderBottom: '0.5px solid #5D675B',
@@ -41,10 +40,14 @@ class Daily extends Component {
 		return (
 			<Container style={{ marginTop: '2em' }}>
 				<Grid container>
-					<LeftPane style={style.leftpane} header={style.header}>
-						<CheckIn />
-					</LeftPane>
-					<RightPane style={style.rightpane} header={style.header} />
+					<Grid item md={5} sm={12} xs={12}>
+						<LeftPane style={style.leftpane} header={style.header}>
+							<CheckIn />
+						</LeftPane>
+					</Grid>
+					<Grid item md={7} sm={12} xs={12}>
+						<RightPane style={style.rightpane} header={style.header} />
+					</Grid>
 				</Grid>
 			</Container>
 		);

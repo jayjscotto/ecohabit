@@ -25,7 +25,6 @@ const CheckIn = props => {
   const updateAnswers = event => {
     answers.push(parseInt(event));
     answers = answers.filter(answer => answer !== 1 || answer !== 0);
-    console.log(answers)
   };
 
   // when component mounts, check from the db if the user has checked in today
@@ -33,7 +32,6 @@ const CheckIn = props => {
     // call API to see if the user has checked in today and update the state variable to update
     if (user) {
       API.getDailyCheck(user._id).then(result => {
-		  console.log(result)
         setDailyCheck(result.data);
       });
     }
@@ -41,8 +39,10 @@ const CheckIn = props => {
 
   //on form submit
   const submitSurvey = answers => {
-	  console.log('submitting')
-    API.userSubmitDaily(user._id, answers).then(setDailyCheck(true));
+   
+    API.userSubmitDaily(user._id, answers).then(response => {
+      setDailyCheck(response.data.dailyCheck)
+    });
   };
 
   // conditional rendering
@@ -52,6 +52,7 @@ const CheckIn = props => {
 			<FormControl component='fieldset'>
 			{IntakeQuestions.questions.map((question, index) => (
 			  <GreenRadio
+        key={question.id}
 				index={index}
 				updateAnswers={e => {
 				  updateAnswers(e);

@@ -17,13 +17,16 @@ class UserDash extends Component {
 	componentDidMount() {
 		const localStorageObject = clientauth.getLocalStorage('eco-user');
 		const userObject = JSON.parse(localStorageObject);
-		this.setState({
-			_id: userObject._id,
-			firstName: userObject.firstName,
-			userName: userObject.userName,
-			lastName: userObject.lastName,
-			zipCode: userObject.zipCode
-		});
+
+		if (userObject) {
+			this.setState({
+				_id: userObject._id,
+				firstName: userObject.firstName,
+				userName: userObject.userName,
+				lastName: userObject.lastName,
+				zipCode: userObject.zipCode
+			});
+		}
 	}
 	// handle live change of inputs
 	handleChange = (input) => (e) => {

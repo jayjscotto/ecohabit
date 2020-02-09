@@ -37,7 +37,7 @@ EcoHabit is a web app dedicated to every-day environmentally friendly habits.
 * Proceed to create users in the application and use freely.
 
 ## Contributors
-Jason Scotto - [jayjscotto](https://github.com/jayjscotto)
-Laura DiTomasso - [lmd808](https://github.com/lmd808)
-Matt Pignatore - [mpaitgt](https://github.com/mpaitgt)
-Angeli Elliot - [AElliot10](https://github.com/AElliott10)
+* Jason Scotto - [jayjscotto](https://github.com/jayjscotto)
+* Laura DiTomasso - [lmd808](https://github.com/lmd808)
+* Matt Pignatore - [mpaitgt](https://github.com/mpaitgt)
+* Angeli Elliot - [AElliot10](https://github.com/AElliott10)
