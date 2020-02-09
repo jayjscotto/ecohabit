@@ -1,6 +1,6 @@
-import React, { useState, useEffect, Fragment } from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Radio, FormControlLabel, FormLabel, RadioGroup, Grid } from '@material-ui/core';
+import { Radio, FormControlLabel, FormLabel, RadioGroup, Grid, Box } from '@material-ui/core';
 
 const useStyles = makeStyles({
 	root: {
@@ -46,7 +46,7 @@ export default function RadioButtons(props) {
 					</FormLabel>
 				</Grid>
 				<Grid item lg={6} md={12}>
-					<Fragment className={classes.answers}>
+					<Box className={classes.answers}>
 						<RadioGroup
 							aria-label="position"
 							name="position"
@@ -84,7 +84,7 @@ export default function RadioButtons(props) {
 								labelPlacement="top"
 							/>
 						</RadioGroup>
-					</Fragment>
+					</Box>
 				</Grid>
 			</Grid>
 		</div>

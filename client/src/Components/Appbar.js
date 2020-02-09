@@ -2,10 +2,8 @@ import React, { useState, useEffect, Fragment } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 import { AppBar, Toolbar, Typography, Button } from '@material-ui/core';
-//import { Select } from '@material-ui/core';
+import EcoIcon from '@material-ui/icons/Eco';
 import Logo from '../images/eco-logo.png';
-//import Cloud from '../images/cloud2.png';
-
 // import MenuIcon from '@material-ui/icons/Menu';
 
 const useStyles = makeStyles((theme) => ({
@@ -27,7 +25,10 @@ const useStyles = makeStyles((theme) => ({
 	link: {
 		textDecoration: 'none',
 		color: 'inherit'
-	}
+	},
+    leaf: {
+    filter: 'invert(1)'
+  }
 }));
 
 export default function ButtonAppBar(props) {
@@ -47,6 +48,7 @@ export default function ButtonAppBar(props) {
 		localStorage.removeItem('eco-user');
 		window.location.reload();
 	};
+
 
 	return (
 		<AppBar position="relative" className={classes.bar}>
