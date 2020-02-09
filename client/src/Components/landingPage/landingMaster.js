@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import About from './landingAbout';
 import Info from './landingInfo';
 import Signup from './LandingSignup';
-import Today from './landingRegToday';
 
 export class RegisterPage extends Component {
 	state = {
@@ -30,13 +28,11 @@ export class RegisterPage extends Component {
 			case 1:
 				return <Signup nextStep={this.nextStep} />;
 			case 2:
-				return <About nextStep={this.nextStep} prevStep={this.prevStep} />;
-			case 3:
 				return <Info nextStep={this.nextStep} prevStep={this.prevStep} />;
-			case 4:
-				return <Today nextStep={this.nextStep} prevStep={this.prevStep} />;
-			default:
+			case 3:
 				return <Signup nextStep={this.nextStep} />;
+			default:
+				return; 
 		}
 	}
 }

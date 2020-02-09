@@ -13,7 +13,6 @@ import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import CheckIn from './welcomeImages/checkin.gif';
 import Util from './welcomeImages/util.gif';
 import Data from './welcomeImages/data.jpg';
-//import '../../index.css';
 
 export class Info extends Component {
 	continue = (e) => {
