@@ -1,8 +1,8 @@
-import { createContext, useState, useMemo } from 'react';
+import React, { createContext, useState, useMemo } from 'react';
 
 export const UserContext = createContext(null);
 
-export const CheckinContextProvider = props => {
+export const UserContextProvider = props => {
   const [user, setUser] = useState(null);
   const contextValue = useMemo(() => ({user, setUser}), [user, setUser])
 

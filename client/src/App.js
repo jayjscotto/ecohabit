@@ -1,4 +1,4 @@
-import React, { Component, useContext } from 'react';
+import React, { Component, useContext, useEffect } from 'react';
 import Daily from './Pages/Daily';
 import UserDash from './Components/userDash/userDash';
 import Login from './Components/Login';
@@ -6,9 +6,8 @@ import Register from './Components/Register';
 import Utilities from './Pages/Utilities';
 import { withRouter, Switch, Route } from 'react-router-dom';
 import API from './Utils/clientauth';
-import UserContextProvider from '../Components/UserContext';
-import CheckinContextProvider from './Components/CheckinContext';
-import ChartContextProvider from './Components/CheckinContext';
+import  {UserContext, UserContextProvider} from './Components/UserContext';
+import { CheckinContextProvider } from './Components/CheckinContext';
 
 const App = props => {
   const { user, setUser } = useContext(UserContext);
@@ -28,7 +27,6 @@ const App = props => {
   return (
     <UserContextProvider>
       <CheckinContextProvider>
-        <ChartContextProvider>
           <div className='container'>
             <Switch>
               <Route exact path='/login' component={Login} />
@@ -38,7 +36,6 @@ const App = props => {
               <Route exact path='/account' component={UserDash} />
             </Switch>
           </div>
-        </ChartContextProvider>
       </CheckinContextProvider>
     </UserContextProvider>
   );

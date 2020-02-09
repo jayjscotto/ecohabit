@@ -4,6 +4,7 @@ import LeftPane from '../Components/LeftPane';
 import RightPane from '../Components/RightPane';
 import CheckIn from '../Components/CheckIn';
 import API from '../Utils/clientauth';
+import CheckinContextProvider from '../Components/CheckinContext';
 
 const style = {
   leftpane: {
@@ -36,8 +37,6 @@ const style = {
 };
 
 const Daily = props => {
-
-
   return (
     <Container style={{ marginTop: '2em' }}>
       <Grid container>

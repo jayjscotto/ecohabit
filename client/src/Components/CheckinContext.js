@@ -1,4 +1,6 @@
-import { createContext, useState } from 'react';
+import React, { createContext, useState, useContext } from 'react';
+import API from '../Utils/clientauth'
+
 
 export const CheckinContext = createContext(null);
 
@@ -7,6 +9,7 @@ const submitCheckin = (id, answers) => {
   // call the API to submit the checkin to the backend
   API.userSubmitDaily(id, answers)
 };
+
 
 export const CheckinContextProvider = props => {
   const [answers, setAnswers] = useState(null);
@@ -25,7 +28,8 @@ export const CheckinContextProvider = props => {
     setDates,
     chartData,
     setChartData,
-    updateUserData
+    chartRendered,
+    setChartRendered
   };
 
   return (
@@ -35,27 +39,3 @@ export const CheckinContextProvider = props => {
   );
 };
 
-const updateUserData = () => {
-  if (userObj) {
-    let checkinPoints = [];
-    let dates = [];
-    API.getUserData(user._id)
-      .then(res => {
-        let points = res.data;
-        for (let i = 0; i < points.length; i++) {
-          checkinPoints.push(points[i].totalPoints);
-          dates.push(moment(points[i].date).format('MMM D'));
-        }
-        this.setState({
-          chartdata: checkinPoints,
-          dates: dates,
-          rendered: true
-        });
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  } else {
-    // need else code
-  }
-};

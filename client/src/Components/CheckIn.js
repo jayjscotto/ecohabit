@@ -1,12 +1,13 @@
 import React, { useEffect, useContext } from 'react';
 import { CheckinContext } from './CheckinContext';
+import { UserContext } from '../Components/UserContext';
 import { makeStyles } from '@material-ui/core/styles';
 import GreenRadio from './GreenRadio';
 import { FormControl } from '@material-ui/core';
 import { FormButton } from './FormElements';
 import API from '../Utils/clientauth';
 import SurveyComplete from './conditionalRenders/surveyComplete';
-import CheckinContext from '../Components/CheckinContext';
+
 
 const IntakeQuestions = require('../Utils/checkin-questions.json');
 
@@ -18,13 +19,13 @@ const useStyles = makeStyles({
 
 const CheckIn = props => {
   const classes = useStyles();
-  const { user } = useContext();
-  const { setAnswers, submitSurvey, dailyCheck } = useContext(CheckinContext);
+  const { user } = useContext(UserContext);
+  const { answers, setAnswers, submitSurvey, dailyCheck, setDailyCheck } = useContext(CheckinContext);
 
   const updateAnswers = event => {
-    let answers = [...answers, parseInt(event)];
-    answers = answers.filter(answer => answer !== 1 || answer !== 0);
-    setAnswers(answers);
+    let userAnswers = [...answers, parseInt(event)];
+    userAnswers = answers.filter(answer => answer !== 1 || answer !== 0);
+    setAnswers(userAnswers);
   };
 
   // when component mounts, check from the db if the user has checked in today
