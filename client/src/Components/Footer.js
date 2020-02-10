@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Grid, Container, Link } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 import GitHubIcon from '@material-ui/icons/GitHub';
 
 const useStyles = makeStyles(theme => ({
@@ -15,11 +15,6 @@ const useStyles = makeStyles(theme => ({
 
 export default function CenteredTabs() {
   const classes = useStyles();
-  const [value, setValue] = React.useState(0);
-
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
 
   return (
     <Grid container style={{width: '100%', margin: '20px auto'}} justify="center">
