@@ -1,6 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import { Grid, Box, Container } from '@material-ui/core';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
+import UserIcon from '../../images/icon.png';
+import LeafIcon from '../../images/leaf-icon.png';
 import CheckIn from './welcomeImages/checkin.gif';
 import Util from './welcomeImages/util.gif';
 import { FormButtonWelcome } from '../../Components/FormElements';
@@ -60,9 +62,12 @@ export class Signup extends Component {
 				{/* begin card 1 sign up  */}
 				<Grid item sm={3}>
 					<Box boxShadow={3}>
-					<Card justify="center" style={{ maxWidth: '345', color: 'rgb(93, 103, 91)', }}>
+					<Card justify="center" style={{ maxWidth: '300', color: 'rgb(93, 103, 91)', }}>
 							<CardActionArea>
-								<CardMedia style={{ height: '150px' }} image={CheckIn} title="Contemplative Reptile" />
+								<div style={{ textAlign: 'center' }}>
+									<img src={UserIcon} width="150" style={{ padding: '20px 20px 0px 20px' }}></img>
+								</div>
+								{/* <CardMedia style={{ width: '200px' }} image={Icon} title="Contemplative Reptile" /> */}
 								<CardContent>
 									<Typography gutterBottom variant="h3" component="h2" style={{textAlign: 'center'}}>
 										Sign Up
@@ -88,7 +93,10 @@ export class Signup extends Component {
 					<Box boxShadow={3} style={{ background: '' }}>
 					<Card justify="center" style={{ maxWidth: '345', color: 'rgb(93, 103, 91)' }}>
 							<CardActionArea>
-								<CardMedia style={{ height: '150px' }} image={Util} title="Contemplative Reptile" />
+								<div style={{ textAlign: 'center' }}>
+									<img src={LeafIcon} width="150" style={{ padding: '20px 20px 0px 20px' }}></img>
+								</div>
+								{/* <CardMedia style={{ height: '150px' }} image={Util} title="Contemplative Reptile" /> */}
 								<CardContent>
 									<Typography gutterBottom variant="h3" component="h2" style={{textAlign: 'center'}}>
 										Take A Tour
