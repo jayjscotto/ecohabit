@@ -34,6 +34,7 @@ export default function RadioButtons(props) {
 		() => {
 			props.updateAnswers(selectedValue);
 		},
+		// eslint-disable-next-line
 		[ selectedValue ]
 	);
 

@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { Container, Typography, Box, Grid, Paper } from '@material-ui/core';
 import { FormButton, FormInput } from '../Components/FormElements';
 import DataDisplay from '../Components/DataDisplay';
