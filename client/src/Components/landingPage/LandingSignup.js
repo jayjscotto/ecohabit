@@ -11,8 +11,6 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
-import GitHubIcon from '@material-ui/icons/GitHub';
-import HelpIcon from '@material-ui/icons/Help';
 import Logo from '../../images/eco-logo.png';
 
 export class Signup extends Component {

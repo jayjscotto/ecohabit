@@ -47,9 +47,7 @@ export default function HelpModal(props) {
       open={props.open}
       TransitionComponent={Transition}
       keepMounted
-      onClose={
-        props.handleClose
-      }
+      onClose={props.handleClose}
       aria-labelledby='alert-dialog-slide-title'
       aria-describedby='alert-dialog-slide-description'
     >
@@ -119,7 +117,7 @@ export default function HelpModal(props) {
         <ExpansionPanelDetails>
           <Typography>
             EcoHabit offers utilities such as a electric car charging station
-            locator, and a recycling locator.
+            locator, and (coming soon) informational recycling utilities.
           </Typography>
         </ExpansionPanelDetails>
       </ExpansionPanel>
@@ -136,13 +134,14 @@ export default function HelpModal(props) {
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <Typography>
-            Nunc vitae orci ultricies, auctor nunc in, volutpat nisl. Integer
-            sit amet egestas eros, vitae egestas augue. Duis vel est augue.
+            This project and it's creators assure that data is kept secure and
+            will not be sold or processed in any way other than the utilization
+            of the Utilities inside of this application.
           </Typography>
         </ExpansionPanelDetails>
       </ExpansionPanel>
       <DialogActions>
-        <Button onClick={props.handleClose} color='inherit'>
+        <Button onClick={props.close} color='inherit'>
           Close
         </Button>
       </DialogActions>
