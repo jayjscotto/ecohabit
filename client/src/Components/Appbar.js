@@ -2,9 +2,17 @@ import React, { useState, useEffect, Fragment } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 import { AppBar, Toolbar, Typography, Button } from '@material-ui/core';
+import { Popper, Grow, Paper, ClickAwayListener, MenuList, MenuItem } from '@material-ui/core';
 import EcoIcon from '@material-ui/icons/Eco';
 import Logo from '../images/eco-logo.png';
-// import MenuIcon from '@material-ui/icons/Menu';
+
+// Line 99:18:   'Popper' is not defined             react/jsx-no-undef
+  // Line 107:22:  'Grow' is not defined               react/jsx-no-undef
+  // Line 111:24:  'Paper' is not defined              react/jsx-no-undef
+  // Line 112:26:  'ClickAwayListener' is not defined  react/jsx-no-undef
+  // Line 113:28:  'MenuList' is not defined           react/jsx-no-undef
+  // Line 114:30:  'MenuItem' is not defined           react/jsx-no-undef
+  // Line 119:30:  'MenuItem' is not defined  
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -26,72 +34,120 @@ const useStyles = makeStyles((theme) => ({
 		textDecoration: 'none',
 		color: 'inherit'
 	},
-    leaf: {
+  leaf: {
     filter: 'invert(1)'
   }
 }));
 
 export default function ButtonAppBar(props) {
-	const classes = useStyles();
+  const classes = useStyles();
+  const [user, setUser] = useState(false);
+  const [open, setOpen] = useState(false);
+  const anchorRef = React.useRef(null);
 
-	const [ user, setUser ] = useState(false);
+  const handleToggle = () => {
+    setOpen(prevOpen => !prevOpen);
+  }
 
-	useEffect(() => {
-		const token = localStorage.getItem('jwtToken');
-		if (token) {
-			setUser(true);
-		}
-	});
+  const handleClose = event => {
+    if (anchorRef.current && anchorRef.current.contains(event.target)) {
+      return;
+    }
+    setOpen(false);
+  }
 
-	const logout = () => {
-		localStorage.removeItem('jwtToken');
-		localStorage.removeItem('eco-user');
-		window.location.reload();
-	};
+  function handleListKeyDown(event) {
+    if (event.key === 'Tab') {
+      event.preventDefault();
+      setOpen(false);
+    }
+  }
 
+  const prevOpen = React.useRef(open);
+  React.useEffect(() => {
+    if (prevOpen.current === true && open === false) {
+      anchorRef.current.focus();
+    }
+    prevOpen.current = false;
+  }, [open]);
 
-	return (
-		<AppBar position="relative" className={classes.bar}>
-			<Toolbar>
-				<Typography className={classes.title}>
-					<img src={Logo} height="48" />
-				</Typography>
-				{/* if user is true, render user's functionality */}
-				{user ? (
-					<Fragment>
-						<Link to="/" className={classes.link}>
-							<Button style={{ color: 'inherit' }} variant="h6">
-								Daily Dashboard
-							</Button>
-						</Link>
+  useEffect(() => {
+    const token = localStorage.getItem('jwtToken');
+    if (token) {
+      setUser(true)
+    }
+  }, []);
 
-						<Link to="/utilities" className={classes.link}>
-							<Button style={{ color: 'inherit' }} variant="h6">
-								Utilities
-							</Button>
-						</Link>
+  const logout = () => {
+    localStorage.removeItem('jwtToken');
+    localStorage.removeItem('eco-user')
+    window.location.reload();
+  };
 
-						<Link to="/account" className={classes.link}>
-							<Button style={{ color: 'inherit' }} variant="h6">
-								Account
-							</Button>
-						</Link>
-
-						<Button color="inherit" onClick={logout}>
-							Logout
-						</Button>
-					</Fragment>
-				) : (
-					<Fragment>
-						<Link className={classes.link} to="/login">
-							<Button color="inherit">Login</Button>
-						</Link>
-						<Link className={classes.link} to="/register">
-							<Button color="inherit">Register</Button>
-						</Link>
-					</Fragment>
-				)}
-			</Toolbar>
-		</AppBar>
-	);
+  return (
+      <AppBar position="relative" className={classes.bar}>
+        <Toolbar>
+          <Typography className={classes.title}>
+            <img src={Logo} height="48" alt="EcoHabit"/>
+          </Typography>
+          {/* if user is true, render user's functionality */}
+            {user ? (
+              <Fragment>
+                <Link to='/' className={classes.link}>
+                  <Button style={{ color: 'inherit' }}>Daily Dashboard</Button>
+                </Link>
+                <Link to='/utilities' className={classes.link}>
+                  <Button style={{ color: 'inherit' }}>Utilities</Button>
+                </Link>
+                <Button
+                  ref={anchorRef}
+                  aria-controls={open ? 'menu-list-grow' : undefined}
+                  aria-haspopup="true"
+                  onClick={handleToggle}
+                >
+                  <EcoIcon fontSize="large" className={classes.leaf}></EcoIcon>
+                </Button>
+                <Popper
+                  open={open} 
+                  anchorEl={anchorRef.current}
+                  role={undefined}
+                  transition
+                  disablePortal
+                >
+                  {({ TransitionProps, placement }) => (
+                    <Grow
+                      {...TransitionProps}
+                      style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
+                    >
+                      <Paper>
+                        <ClickAwayListener onClickAway={handleClose}>
+                          <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
+                            <MenuItem onClick={handleClose}>
+                              <Link to='/account' className={classes.link}>
+                                <Button style={{ color: 'inherit' }}>Account</Button>
+                              </Link>
+                            </MenuItem>
+                            <MenuItem onClick={handleClose}>
+                              <Button color='inherit' onClick={logout}>Logout</Button>
+                            </MenuItem>
+                          </MenuList>
+                        </ClickAwayListener>
+                      </Paper>
+                    </Grow>
+                  )}
+                </Popper>
+              </Fragment>
+              ) : (
+              <Fragment>
+                <Link className={classes.link} to='/login'>
+                  <Button color='inherit'>Login</Button>
+                </Link>
+                <Link className={classes.link} to='/register'>
+                  <Button color='inherit'>Register</Button>
+                </Link>
+              </Fragment>
+            )}
+        </Toolbar>
+      </AppBar>
+  );
 }
