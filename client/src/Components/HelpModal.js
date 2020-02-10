@@ -71,8 +71,8 @@ export default function HelpModal(props) {
         <ExpansionPanelDetails>
           <Typography>
             EcoHabit was created to inform and educate our users on building
-            environmentally friendly habits. Things such as carpooling, or using
-            a refillable waterbottle, that can add up to create a positive
+            environmentally friendly habits such as carpooling, or using
+            a refillable waterbottle and reusable grocery bags, that can add up to create a positive
             effect on the environment.
           </Typography>
         </ExpansionPanelDetails>
