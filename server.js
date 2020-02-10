@@ -14,6 +14,7 @@ const connection = mongoose.connection;
 // middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(favicon(__dirname + 'client/public/favicon.ico'));
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === 'production') {
