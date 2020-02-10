@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Grid, Box, Container } from '@material-ui/core';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import CheckIn from './welcomeImages/checkin.gif';
@@ -13,6 +13,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import HelpIcon from '@material-ui/icons/Help';
+import Logo from '../../images/eco-logo.png';
 
 export class Signup extends Component {
 	continue = (e) => {
@@ -31,24 +32,26 @@ export class Signup extends Component {
 				elevation={3}
 			>
 				<Grid item sm={1} style={{backgroundColor: 'white'}}/>
-				<Grid item sm={8} style={{backgroundColor: 'white', justifyContent: 'center'}}>
-				<Box boxShadow={3}>
+				<Grid item sm={8} style={{ justifyContent: 'center'}}>
+				<Fragment boxShadow={3}>
 				<div style={{display: 'flex' ,justifyContent: 'center', alignItems:'center' }}>					
 					
-					<img src={EarthGif} alt="smiling earth" height="200px" width="200px" />
+					
 					
 					<Container alignItems="left" maxWidth="md" spacing={0}>
+						<div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+							<img src={EarthGif} alt="smiling earth" height="200px" width="200px" />
+							<img src={Logo} alt="smiling earth" width="600px" />
+						</div>
 					
-						<h1 style={{ color: 'rgb(93, 103, 91)' }}>EcoHabit</h1>
-					
-					<p style={{ lineHeight: '1.4', color: 'rgb(93, 103, 91)'}}>
-					EcoHabit is a eco-diary application engineered to assist it's users in becoming better
-					eco-Citizens. Designed with simplicity in mind, EcoHabit offers users an interactive
-					and inuitive experience.
-					</p>
+						<p style={{ lineHeight: '1.4', color: 'white', textAlign: 'center', fontSize: '20px'}}>
+						EcoHabit is a eco-diary application engineered to assist it's users in becoming better
+						eco-Citizens. Designed with simplicity in mind, EcoHabit offers users an interactive
+						and inuitive experience.
+						</p>
 				</Container>				
 				</div>
-				</Box>
+				</Fragment>
 	
 				</Grid>
 				<Grid item sm={1} style={{backgroundColor: 'white', justifyContent: 'center'}}/>
@@ -84,7 +87,7 @@ export class Signup extends Component {
 				<Grid item sm={1}/>
 				{/* Begin second card tour  */}
 				<Grid item sm={3}>
-					<Box boxShadow={3}>
+					<Box boxShadow={3} style={{ background: '' }}>
 					<Card justify="center" style={{ maxWidth: '345', color: 'rgb(93, 103, 91)' }}>
 							<CardActionArea>
 								<CardMedia style={{ height: '150px' }} image={Util} title="Contemplative Reptile" />
@@ -103,13 +106,6 @@ export class Signup extends Component {
 					</Box>
 				</Grid>
 				{/* end second card tour  */}
-				{/* footer row */}
-				<Grid item sm={12}>
-				<div style={{ display: 'flex', justifyContent: 'center' }}>
-						<GitHubIcon/> &nbsp; <HelpIcon/>
-				</div>
-				</Grid>	
-
 			</Grid>
 		);
 	}
