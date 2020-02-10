@@ -139,7 +139,7 @@ export default function HelpModal(props) {
         </ExpansionPanelDetails>
       </ExpansionPanel>
       <DialogActions>
-        <Button onClick={props.close} color='inherit'>
+        <Button onClick={props.handleClose} color='inherit'>
           Close
         </Button>
       </DialogActions>
