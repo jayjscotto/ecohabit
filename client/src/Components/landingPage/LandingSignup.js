@@ -47,7 +47,7 @@ export class Signup extends Component {
 						<p style={{ lineHeight: '1.4', color: 'white', textAlign: 'center', fontSize: '20px'}}>
 						EcoHabit is a eco-diary application engineered to assist it's users in becoming better
 						eco-Citizens. Designed with simplicity in mind, EcoHabit offers users an interactive
-						and inuitive experience.
+						and intuitive experience.
 						</p>
 				</Container>				
 				</div>
