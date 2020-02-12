@@ -32,7 +32,7 @@ export class RegisterPage extends Component {
 			case 3:
 				return <Signup nextStep={this.nextStep} />;
 			default:
-				return; 
+				return;
 		}
 	}
 }
