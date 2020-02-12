@@ -17,7 +17,7 @@ import Data from './welcomeImages/data.gif';
 export class Info extends Component {
 	continue = (e) => {
 		e.preventDefault();
-		this.props.nextStep();
+		window.location.reload(false);
 	};
 	back = (e) => {
 		e.preventDefault();
