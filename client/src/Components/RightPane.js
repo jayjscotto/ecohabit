@@ -20,6 +20,7 @@ const RightPane = props => {
   } = useContext(CheckinContext);
 
   useEffect(() => {
+    setChartRendered(false);
     let checkinPoints = [];
     let checkinDates = [];
     API.getUserData()
@@ -28,6 +29,7 @@ const RightPane = props => {
           checkinPoints.push(res.data[checkin].totalPoints);
           checkinDates.push(moment(res.data[checkin].date).format('MMM D'));
         }
+        console.log(checkinPoints, checkinDates)
         setChartData(checkinPoints);
         setDates(checkinDates);
         setChartRendered(true);
@@ -35,7 +37,7 @@ const RightPane = props => {
       .catch(err => {
         console.log(err);
       });
-  }, [dailyCheck]);
+  }, [dailyCheck]); 
 
 
   return (
