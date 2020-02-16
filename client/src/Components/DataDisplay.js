@@ -6,7 +6,7 @@ import { makeStyles } from '@material-ui/core/styles';
 let useStyles = makeStyles({
   root: {
     padding: '1em',
-    backgroundImage: 'linear-gradient(30deg, #fff2ed, #fffde9)',
+    minHeight: '220px'
   },
   title: {
     paddingRight: '2em'
@@ -39,7 +39,7 @@ function DataDisplay(props) {
             <li>
               <h2>{res.AddressInfo.Title}</h2>
               <h4 className={classes.distance}>{parseFloat(res.AddressInfo.Distance).toFixed(1)}  miles away</h4>
-              <a className={classes.link} href={`https://www.google.com/maps/place/${googleLink}`} target="_blank">{res.AddressInfo.AddressLine1}<br></br>
+              <a className={classes.link} href={`https://www.google.com/maps/place/${googleLink}`} rel="noopener noreferrer"target="_blank">{res.AddressInfo.AddressLine1}<br></br>
               {res.AddressInfo.Town}, {res.AddressInfo.StateOrProvince}, {res.AddressInfo.Postcode}</a>
               <p>{res.AddressInfo.ContactTelephone}</p>
               <p>{res.AddressInfo.AccessComments}</p>

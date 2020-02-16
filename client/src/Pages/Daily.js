@@ -3,8 +3,6 @@ import { Container, Grid } from '@material-ui/core';
 import LeftPane from '../Components/LeftPane';
 import RightPane from '../Components/RightPane';
 import CheckIn from '../Components/CheckIn';
-import API from '../Utils/clientauth';
-import CheckinContextProvider from '../Components/CheckinContext';
 
 const style = {
   leftpane: {

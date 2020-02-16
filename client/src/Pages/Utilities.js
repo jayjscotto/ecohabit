@@ -4,11 +4,10 @@ import { FormButton, FormInput } from '../Components/FormElements';
 import DataDisplay from '../Components/DataDisplay';
 import API from '../Utils/electric-api';
 import clientauth from '../Utils/clientauth';
-
+import EarthGif from '../Components/landingPage/welcomeImages/earth.gif';
 
 let styles = {
   root: {
-    backgroundImage: 'linear-gradient(30deg, #fff2ed, #fffde9)',
     marginTop: '2em',
     padding: '20px 20px',
     marginBottom: '1em'
@@ -24,17 +23,23 @@ class Reminders extends React.Component {
     results: [],
     zipCode: '',
     loading: false,
-    state: ''
+    zipCodeInput: ''
   }
 
   componentDidMount() {
     let user = JSON.parse(clientauth.getLocalStorage('eco-user'));
-    this.setState({ zip: user.zip });
+    if (user) {
+      this.setState({ zipCode: user.zipCode });
+    }
+  }
+
+  componentWillUnmount() {
+    this.setState({ zipCode: '', zipCodeInput: '' })
   }
 
   getData = (zip) => {
     this.setState({ loading: true });
-    API.getLatLng(zip)
+      API.getLatLng(zip)
       .then(res => { 
         let lat, lng;
         for (let i = 0; i < res.data.length; i++) {
@@ -73,25 +78,32 @@ class Reminders extends React.Component {
                   If you've got an electric vehicle - or you're <em>thinking</em> about getting one - don't worry about where you'll be able to find a charging station. Below are a list of them based on your zip code, and you can even search for a new zip when you're out of town.
                 </Typography>
                 <FormInput
-                  name="zipCode"
+                  name="zipCodeInput"
                   label="Zip Code"
                   variant="outlined"
                   onChange={this.handleInputChange}
-                  value={this.state.zipCode}
+                  value={this.state.zipCodeInput}
                 />
-                <FormButton onClick={() => { this.getData(this.state.zipCode) }}>Search a new zip code</FormButton>
-                <FormButton onClick={() => { this.getData('08844')}}>Or use your zip code</FormButton>
+                <FormButton onClick={() => { this.getData(this.state.zipCodeInput) }}>Search a new zip code</FormButton>
+                <FormButton onClick={() => { this.getData(this.state.zipCode)}}>Or use your zip code</FormButton>
               </Box>
             </Paper>
           </Grid>
-          <Grid item lg={8} md={6}>
+          
           {this.state.loading === true 
             ?
-              <iframe src="https://giphy.com/embed/l1KVcrdl7rJpFnY2s" width="" height="600" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+              // <Grid item>
+                <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', margin: '0 auto' }}>
+                  <img src={EarthGif} alt="Earthboy" width="300" />
+                </div>
+                
+              // </Grid>
             :
+              <Grid item lg={8} md={6} style={{ height: '100vh', overflowX: 'visible', overflowY: 'scroll' }} className="noscroll">
+                <DataDisplay results={this.state.results} />
+              </Grid>
+            }
           
-          <DataDisplay results={this.state.results} />}
-          </Grid>
         </Grid>
       </Container>
     )
