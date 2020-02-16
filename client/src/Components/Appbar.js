@@ -13,7 +13,6 @@ import {
   MenuItem
 } from '@material-ui/core';
 import EcoIcon from '@material-ui/icons/Eco';
-import Logo from '../images/eco-logo.png';
 import HelpModal from './HelpModal';
 
 

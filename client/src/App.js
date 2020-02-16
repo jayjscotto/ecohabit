@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import Daily from './Pages/Daily';
 import UserDash from './Components/userDash/userDash';
 import Login from './Components/Login';
@@ -11,22 +11,22 @@ import { CheckinContext } from './Components/CheckinContext';
 
 
 const App = props => {
-  const { user, setUser } = useContext(UserContext);
-  const { dailyCheck, setDailyCheck } = useContext(CheckinContext);
+  const { setUser } = useContext(UserContext);
+  const { setDailyCheck } = useContext(CheckinContext);
 
   useEffect(() => {
     const userObj = JSON.parse(API.getLocalStorage('eco-user'));
     if (userObj) {
       setUser(userObj);
       API.getDailyCheck().then(results => {
-        console.log(results)
         setDailyCheck(results.data);
       })
       
     } else {
       props.history.push('/login')
     }
-  }, []);
+  }, // eslint-disable-next-line 
+  []);
 
   return (
 

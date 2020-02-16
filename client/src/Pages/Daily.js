@@ -12,17 +12,16 @@ const style = {
     textAlign: 'left',
     fontFamily: 'inherit',
     padding: '5px 20px 20px 20px',
-    backgroundImage: 'linear-gradient(30deg, #fff2ed, #fffde9)',
+    background: 'f1f1f1',
     overflow: 'auto'
   },
   rightpane: {
     color: '#5D675B',
-    height: '300px',
-    margin: '10px',
+    height: '295px',
+    margin: '10px 30px 30px 30px',
     textAlign: 'left',
     fontFamily: 'inherit',
-    padding: '5px 20px 20px 20px',
-    backgroundImage: 'linear-gradient(30deg, #fff2ed, #fffde9)'
+    padding: '5px 20px 20px 20px'
   },
   header: {
     textTransform: 'uppercase',
@@ -38,10 +37,14 @@ const Daily = props => {
   return (
     <Container style={{ marginTop: '2em' }}>
       <Grid container>
+        <Grid item xl={4} md={5} sm={12} xs={12}>
           <LeftPane style={style.leftpane} header={style.header}>
             <CheckIn />
           </LeftPane>
+        </Grid>
+        <Grid item xl={10} md={7} sm={12} xs={12}>
           <RightPane style={style.rightpane} header={style.header} />
+        </Grid>
       </Grid>
     </Container>
   );

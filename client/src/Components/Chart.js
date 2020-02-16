@@ -21,7 +21,6 @@ class LineChart extends React.Component {
   }
 
   render() {
-    console.log(this.props)
     return (
       <Line
       data={this.state.chartInfo}

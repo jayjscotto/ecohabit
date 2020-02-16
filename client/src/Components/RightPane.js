@@ -1,14 +1,13 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useContext, Fragment } from 'react';
 import { CheckinContext } from './CheckinContext';
-import { UserContext } from './UserContext';
-import { Grid, Paper, Typography } from '@material-ui/core';
+import { Paper, Typography } from '@material-ui/core';
 import Reminders from './Reminders';
 import LineChart from './Chart';
 import API from '../Utils/clientauth';
 import moment from 'moment';
 
 const RightPane = props => {
-  const { user } = useContext(UserContext);
+
   const {
     dailyCheck,
     chartData,
@@ -29,7 +28,6 @@ const RightPane = props => {
           checkinPoints.push(res.data[checkin].totalPoints);
           checkinDates.push(moment(res.data[checkin].date).format('MMM D'));
         }
-        console.log(checkinPoints, checkinDates)
         setChartData(checkinPoints);
         setDates(checkinDates);
         setChartRendered(true);
@@ -37,26 +35,22 @@ const RightPane = props => {
       .catch(err => {
         console.log(err);
       });
-  }, [dailyCheck]); 
-
+  }, // eslint-disable-next-line 
+  [dailyCheck]);
 
   return (
-    <Grid container md={7} sm={12} xs={12}>
-      <Grid item lg={12} md={12} sm={12}>
-        <Paper elevation={3} style={props.style}>
-          <Typography style={props.header}>Daily Dashboard</Typography>
-          {!chartRendered ? null : (
-            <LineChart chartdata={chartData} dates={dates} />
-          )}
-        </Paper>
-      </Grid>
-      <Grid item lg={12} md={12} sm={12}>
-        <Paper elevation={3} style={props.style}>
-          <Typography style={props.header}>Reminders</Typography>
-          <Reminders />
-        </Paper>
-      </Grid>
-    </Grid>
+    <Fragment>
+      <Paper elevation={3} style={props.style}>
+        <Typography style={props.header}>Daily Dashboard</Typography>
+        {!chartRendered ? null : (
+          <LineChart chartdata={chartData} dates={dates} />
+        )}
+      </Paper>
+      <Paper elevation={3} style={props.style}>
+        <Typography style={props.header}>Reminders</Typography>
+        <Reminders />
+      </Paper>
+    </Fragment>
   );
 };
 

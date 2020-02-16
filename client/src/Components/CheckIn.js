@@ -44,6 +44,7 @@ const CheckIn = props => {
         <FormControl component='fieldset'>
           {IntakeQuestions.questions.map((question, index) => (
             <GreenRadio
+              key={index}
               index={index}
               updateAnswers={e => {
                 updateAnswers(e);
