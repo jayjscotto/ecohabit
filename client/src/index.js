@@ -4,6 +4,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import App from './App';
 import './index.css';
 import Appbar from './Components/Appbar';
+import Footer from './Components/Footer';
 import { UserContextProvider } from './Components/UserContext';
 import { CheckinContextProvider } from './Components/CheckinContext';
 
@@ -13,6 +14,7 @@ ReactDOM.render(
       <CheckinContextProvider>
         <Appbar />
         <App />
+        <Footer />
       </CheckinContextProvider>
     </UserContextProvider>
   </Router>,

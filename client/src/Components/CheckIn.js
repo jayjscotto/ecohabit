@@ -24,11 +24,7 @@ const CheckIn = props => {
     let userAnswers = [...answers, parseInt(event)];
     setAnswers(userAnswers);
   };
-
-  // useEffect(() => {
-
-  // })
-
+  
   //on form submit
   const submitCheckin = (id, answers) => {
     // call the API to submit the checkin to the backend

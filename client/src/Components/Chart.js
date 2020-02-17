@@ -2,7 +2,6 @@ import React from 'react';
 import { Line } from 'react-chartjs-2';
 
 class LineChart extends React.Component {
-
   state = {
     chartInfo: {
       labels: this.props.dates,

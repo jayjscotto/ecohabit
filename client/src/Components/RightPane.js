@@ -7,7 +7,6 @@ import API from '../Utils/clientauth';
 import moment from 'moment';
 
 const RightPane = props => {
-
   const {
     dailyCheck,
     chartData,

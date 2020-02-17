@@ -7,7 +7,7 @@ export const CheckinContextProvider = props => {
   const [dailyCheck, setDailyCheck] = useState(false);
   const [chartData, setChartData] = useState(null);
   const [chartRendered, setChartRendered] = useState(false);
-  const [dates, setDates] = useState(null)
+  const [dates, setDates] = useState(null);
 
   const contextValue = {
     dailyCheck,
