@@ -1,66 +1,56 @@
-import React, { Fragment } from 'react';
+import React, { useEffect, useContext, Fragment } from 'react';
+import { CheckinContext } from './CheckinContext';
 import { Paper, Typography } from '@material-ui/core';
 import Reminders from './Reminders';
 import LineChart from './Chart';
 import API from '../Utils/clientauth';
 import moment from 'moment';
 
-class RightPane extends React.Component {
+const RightPane = props => {
+  const {
+    dailyCheck,
+    chartData,
+    setChartData,
+    dates,
+    setDates,
+    chartRendered,
+    setChartRendered
+  } = useContext(CheckinContext);
 
-    state = {
-        chartdata: [],
-        dates: [],
-        rendered: false
-    }
+  useEffect(() => {
+    setChartRendered(false);
+    let checkinPoints = [];
+    let checkinDates = [];
+    API.getUserData()
+      .then(res => {
+        for (let checkin in res.data) {
+          checkinPoints.push(res.data[checkin].totalPoints);
+          checkinDates.push(moment(res.data[checkin].date).format('MMM D'));
+        }
+        setChartData(checkinPoints);
+        setDates(checkinDates);
+        setChartRendered(true);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }, // eslint-disable-next-line 
+  [dailyCheck]);
 
-    componentDidMount() {
-        this.updateUserData();
-    }
-
-    updateUserData() {
-        let user = JSON.parse(API.getLocalStorage('eco-user'));
-        if (user) {
-            let checkinPoints = [];
-            let dates = [];
-            API.getUserData(user._id)
-                .then(res => {
-                  let points = res.data;
-                  for (let i = 0; i < points.length; i++) {
-                      checkinPoints.push(points[i].totalPoints);
-                      dates.push(moment(points[i].date).format('MMM D'));
-                  }
-                  this.setState({ chartdata: checkinPoints, dates: dates, rendered: true });
-                })
-                .catch(err => {
-                    console.log(err);
-                })
-        } else {
-        // need else code 
-      }
-    }
-
-    render() {
-        return (
-            <Fragment>
-                <Paper elevation={3} style={this.props.style}>
-                    <Typography style={this.props.header}>
-                        Daily Dashboard
-                    </Typography>
-                    {
-                        this.state.rendered === false ?
-                        null :
-                        <LineChart chartdata={this.state.chartdata} dates={this.state.dates} />
-                    }
-                </Paper>
-                <Paper elevation={3} style={this.props.style}>
-                    <Typography style={this.props.header}>
-                        Reminders
-                    </Typography>
-                    <Reminders />
-                </Paper>
-            </Fragment>
-        )
-    }
-}
+  return (
+    <Fragment>
+      <Paper elevation={3} style={props.style}>
+        <Typography style={props.header}>Daily Dashboard</Typography>
+        {!chartRendered ? null : (
+          <LineChart chartdata={chartData} dates={dates} />
+        )}
+      </Paper>
+      <Paper elevation={3} style={props.style}>
+        <Typography style={props.header}>Reminders</Typography>
+        <Reminders />
+      </Paper>
+    </Fragment>
+  );
+};
 
 export default RightPane;

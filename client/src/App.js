@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useContext, useEffect } from 'react';
 import Daily from './Pages/Daily';
 import UserDash from './Components/userDash/userDash';
 import Login from './Components/Login';
@@ -6,39 +6,41 @@ import Register from './Components/Register';
 import Utilities from './Pages/Utilities';
 import { withRouter, Switch, Route } from 'react-router-dom';
 import API from './Utils/clientauth';
-import LandingPage from './Components/landingPage/landingMaster';
+import { UserContext } from './Components/UserContext';
+import { CheckinContext } from './Components/CheckinContext';
 
-class App extends Component {
-	componentDidMount() {
-		const user = JSON.parse(API.getLocalStorage('eco-user'));
-		if (user) {
-			API.getDailyCheck().then((res) => {
-				this.props.history.push('/');
-			});
-			//   .catch(error => {
-			//     if (error.response.status === 401) {
-			//       this.props.history.push('/login');
-			//     }
-			//   });
-		} else {
-			this.props.history.push('/welcome');
-		}
-	}
 
-	render() {
-		return (
-			<div className="container">
-				<Switch>
-					<Route exact path="/login" component={Login} />
-					<Route exact path="/register" component={Register} />
-					<Route exact path="/utilities" component={Utilities} />
-					<Route exact path="/welcome" component={LandingPage} />
-					<Route exact path="/" component={Daily} />
-					<Route exact path="/account" component={UserDash} />
-				</Switch>
-			</div>
-		);
-	}
-}
+const App = props => {
+  const { setUser } = useContext(UserContext);
+  const { setDailyCheck } = useContext(CheckinContext);
+
+  useEffect(() => {
+    const userObj = JSON.parse(API.getLocalStorage('eco-user'));
+    if (userObj) {
+      setUser(userObj);
+      API.getDailyCheck().then(results => {
+        setDailyCheck(results.data);
+      })
+      
+    } else {
+      props.history.push('/login')
+    }
+  }, // eslint-disable-next-line 
+  []);
+
+  return (
+
+      <div className='container'>
+        <Switch>
+          <Route exact path='/login' component={Login} />
+          <Route exact path='/register' component={Register} />
+          <Route exact path='/utilities' component={Utilities} />
+          <Route exact path='/' component={Daily} />
+          <Route exact path='/account' component={UserDash} />
+        </Switch>
+      </div>
+
+  );
+};
 
 export default withRouter(App);

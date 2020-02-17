@@ -5,12 +5,18 @@ import App from './App';
 import './index.css';
 import Appbar from './Components/Appbar';
 import Footer from './Components/Footer';
+import { UserContextProvider } from './Components/UserContext';
+import { CheckinContextProvider } from './Components/CheckinContext';
 
 ReactDOM.render(
   <Router>
-    <Appbar />
-    <App />
-    <Footer />
+    <UserContextProvider>
+      <CheckinContextProvider>
+        <Appbar />
+        <App />
+        <Footer />
+      </CheckinContextProvider>
+    </UserContextProvider>
   </Router>,
   document.getElementById('root')
 );

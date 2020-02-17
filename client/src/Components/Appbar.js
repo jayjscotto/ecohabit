@@ -1,7 +1,9 @@
-import React, { useState, useEffect, Fragment } from 'react';
+import React, { useState, useContext, useEffect, useRef, Fragment } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 import { AppBar, Toolbar, Typography, Button } from '@material-ui/core';
+import Logo from '../images/eco-logo.png';
+import  { UserContext } from './UserContext';
 import {
   Popper,
   Grow,
@@ -11,16 +13,8 @@ import {
   MenuItem
 } from '@material-ui/core';
 import EcoIcon from '@material-ui/icons/Eco';
-import Logo from '../images/eco-logo.png';
 import HelpModal from './HelpModal';
 
-// Line 99:18:   'Popper' is not defined             react/jsx-no-undef
-// Line 107:22:  'Grow' is not defined               react/jsx-no-undef
-// Line 111:24:  'Paper' is not defined              react/jsx-no-undef
-// Line 112:26:  'ClickAwayListener' is not defined  react/jsx-no-undef
-// Line 113:28:  'MenuList' is not defined           react/jsx-no-undef
-// Line 114:30:  'MenuItem' is not defined           react/jsx-no-undef
-// Line 119:30:  'MenuItem' is not defined
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -49,10 +43,11 @@ const useStyles = makeStyles(theme => ({
 
 export default function ButtonAppBar(props) {
   const classes = useStyles();
-  const [user, setUser] = useState(false);
+  const {user} = useContext(UserContext)
+
   const [open, setOpen] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
-  const anchorRef = React.useRef(null);
+  const anchorRef = useRef(null);
 
   const handleToggle = () => {
     setOpen(prevOpen => !prevOpen);
@@ -73,19 +68,12 @@ export default function ButtonAppBar(props) {
   }
 
   const prevOpen = React.useRef(open);
-  React.useEffect(() => {
+  useEffect(() => {
     if (prevOpen.current === true && open === false) {
       anchorRef.current.focus();
     }
     prevOpen.current = false;
   }, [open]);
-
-  useEffect(() => {
-    const token = localStorage.getItem('jwtToken');
-    if (token) {
-      setUser(true);
-    }
-  }, []);
 
   const logout = () => {
     localStorage.removeItem('jwtToken');

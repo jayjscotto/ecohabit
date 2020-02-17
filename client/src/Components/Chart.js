@@ -2,9 +2,8 @@ import React from 'react';
 import { Line } from 'react-chartjs-2';
 
 class LineChart extends React.Component {
-  
   state = {
-    chartdata: {
+    chartInfo: {
       labels: this.props.dates,
       datasets: [{
         label: 'Ecohabits Daily Score',
@@ -23,7 +22,7 @@ class LineChart extends React.Component {
   render() {
     return (
       <Line
-      data={this.state.chartdata}
+      data={this.state.chartInfo}
       width={100}
       height={35}
       options={{ 

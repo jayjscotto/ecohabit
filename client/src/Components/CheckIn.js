@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext } from 'react';
+import { CheckinContext } from './CheckinContext';
+import { UserContext } from '../Components/UserContext';
 import { makeStyles } from '@material-ui/core/styles';
 import GreenRadio from './GreenRadio';
 import { FormControl } from '@material-ui/core';
 import { FormButton } from './FormElements';
 import API from '../Utils/clientauth';
 import SurveyComplete from './conditionalRenders/surveyComplete';
-
-const IntakeQuestions = require('../Utils/checkin-questions.json');
+import IntakeQuestions from '../Utils/checkin-questions.json';
 
 const useStyles = makeStyles({
   buttonSubmit: {
@@ -15,63 +16,50 @@ const useStyles = makeStyles({
 });
 
 const CheckIn = props => {
-  const [dailyCheck, setDailyCheck] = useState();
   const classes = useStyles();
-
-  let answers = [];
-  
-  const user = JSON.parse(API.getLocalStorage('eco-user'));
+  const { user } = useContext(UserContext);
+  const { answers, setAnswers, dailyCheck, setDailyCheck } = useContext(CheckinContext);
 
   const updateAnswers = event => {
-    answers.push(parseInt(event));
-    answers = answers.filter(answer => answer !== 1 || answer !== 0);
+    let userAnswers = [...answers, parseInt(event)];
+    setAnswers(userAnswers);
   };
-
-  // when component mounts, check from the db if the user has checked in today
-  useEffect(() => {
-    // call API to see if the user has checked in today and update the state variable to update
-    if (user) {
-      API.getDailyCheck(user._id).then(result => {
-        setDailyCheck(result.data);
-      });
-    }
-  });
-
+  
   //on form submit
-  const submitSurvey = answers => {
-   
-    API.userSubmitDaily(user._id, answers).then(response => {
-      setDailyCheck(response.data.dailyCheck)
+  const submitCheckin = (id, answers) => {
+    // call the API to submit the checkin to the backend
+    API.userSubmitDaily(id, answers.slice(1)).then(results => {
+      setDailyCheck(results.data.dailyCheck);
     });
   };
 
   // conditional rendering
-    return (
-		<React.Fragment>
-		{!dailyCheck ? (
-			<FormControl component='fieldset'>
-			{IntakeQuestions.questions.map((question, index) => (
-			  <GreenRadio
-        key={question.id}
-				index={index}
-				updateAnswers={e => {
-				  updateAnswers(e);
-				}}
-				question={question.question}
-			  />
-			))}
-			<FormButton
-			  onClick={() => submitSurvey(answers)}
-			  className={classes.buttonSubmit}
-			>
-			  Submit
-			</FormButton>
-		  </FormControl>
-		) : (
-			<SurveyComplete />
-		)}
-		</React.Fragment>
-	)
+  return (
+    <React.Fragment>
+      {!dailyCheck ? (
+        <FormControl component='fieldset'>
+          {IntakeQuestions.questions.map((question, index) => (
+            <GreenRadio
+              key={index}
+              index={index}
+              updateAnswers={e => {
+                updateAnswers(e);
+              }}
+              question={question.question}
+            />
+          ))}
+          <FormButton
+            onClick={() => submitCheckin(user._id, answers)}
+            className={classes.buttonSubmit}
+          >
+            Submit
+          </FormButton>
+        </FormControl>
+      ) : (
+        <SurveyComplete />
+      )}
+    </React.Fragment>
+  );
 };
 
 export default CheckIn;
