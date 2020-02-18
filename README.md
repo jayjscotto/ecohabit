@@ -2,10 +2,10 @@
 EcoHabit is a web app dedicated to every-day environmentally friendly habits.
 
 ## Using Ecohabit
-* Deployment URL:
+* Deployment URL: https://ecohabit.herokuapp.com
 * Take a tour on the home page
 * Sign up if you'd like OR use the test account:
-    * Login: test@test.com
+    * Login: test@gmail.com
     * Password: test1234
 * Each day, submit the 'check-in' survey, and the chart will track your results
 * If needed, head to the Utilities page for:
