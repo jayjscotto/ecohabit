@@ -22,12 +22,6 @@ function Reminders() {
   const [inputZipCode, setInputZip] = useState('');
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
-  // state = {
-  //   results: [],
-  //   zipCode: '',
-  //   loading: false,
-  //   zipCodeInput: ''
-  // }
 
   useEffect(
     () => {
@@ -38,7 +32,6 @@ function Reminders() {
     }, 
     []
   )
-
 
   // componentWillUnmount() {
   //   setUserZip('');
