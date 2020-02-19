@@ -4,6 +4,8 @@ import UserDash from './Components/userDash/userDash';
 import Login from './Components/Login';
 import Register from './Components/Register';
 import Utilities from './Pages/Utilities';
+import LandingPage from './Components/landingPage/landingMaster';
+
 import { withRouter, Switch, Route } from 'react-router-dom';
 import API from './Utils/clientauth';
 import { UserContext } from './Components/UserContext';
@@ -23,7 +25,7 @@ const App = props => {
       })
       
     } else {
-      props.history.push('/login')
+      props.history.push('/welcome')
     }
   }, // eslint-disable-next-line 
   []);
@@ -35,6 +37,8 @@ const App = props => {
           <Route exact path='/login' component={Login} />
           <Route exact path='/register' component={Register} />
           <Route exact path='/utilities' component={Utilities} />
+          <Route exact path='/welcome' component={LandingPage} />
+
           <Route exact path='/' component={Daily} />
           <Route exact path='/account' component={UserDash} />
         </Switch>
