@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, Fragment} from 'react';
 import { Grid, Paper} from '@material-ui/core';
 // import API from '../Utils/electric-api';
 import { makeStyles } from '@material-ui/core/styles';
@@ -29,18 +29,33 @@ let useStyles = makeStyles({
 
 function DataDisplay(props) {
   let classes = useStyles();
+  const [modalOpen, setModalOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    console.log('open!')
+    setModalOpen(true);
+  }
+
+  const handleClose = () => {
+    setModalOpen(false);
+  }
 
   let stationList = props.results.map(res => {
     let googleLink = `${res.AddressInfo.AddressLine1}+${res.AddressInfo.Town}+${res.AddressInfo.StateOrProvince}+${res.AddressInfo.Postcode}`;
       return (
         <Grid item lg={6} md={12} sm={12}>
-        <Paper className={classes.root}>
+        <Paper className={classes.root} onClick={handleClickOpen}>
           <ul className={classes.list}>
             <li>
               <h2>{res.AddressInfo.Title}</h2>
               <h4 className={classes.distance}>{parseFloat(res.AddressInfo.Distance).toFixed(1)}  miles away</h4>
-              <a className={classes.link} href={`https://www.google.com/maps/place/${googleLink}`} rel="noopener noreferrer"target="_blank">{res.AddressInfo.AddressLine1}<br></br>
-              {res.AddressInfo.Town}, {res.AddressInfo.StateOrProvince}, {res.AddressInfo.Postcode}</a>
+              {/* <a className={classes.link} href={`https://www.google.com/maps/place/${googleLink}`} rel="noopener noreferrer"target="_blank"> */}
+              <Fragment>
+                {res.AddressInfo.AddressLine1}<br></br>
+                {res.AddressInfo.Town}, {res.AddressInfo.StateOrProvince}, {res.AddressInfo.Postcode}
+              </Fragment>
+              
+              {/* </a> */}
               <p>{res.AddressInfo.ContactTelephone}</p>
               <p>{res.AddressInfo.AccessComments}</p>
             </li>

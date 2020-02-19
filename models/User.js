@@ -41,7 +41,7 @@ const UserSchema = new Schema({
 	checkIns: [{
 		type: Schema.Types.ObjectId,
 		ref: 'CheckIn'
-	}]
+	}],
 });
 
 UserSchema.pre('save', function(next) {
