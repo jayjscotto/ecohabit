@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import { FormButton, FormCard, FormCardContent, FormAction } from '../../Components/FormElements';
 import { Grid, List, ListItem, ListItemText, TextField } from '@material-ui/core';
-import clientauth from '../../Utils/clientauth';
+import API from '../../Utils/clientauth';
 
 class UserDash extends Component {
 	state = {
 		_id: '',
-		dailyCheck: false,
 		firstName: '',
 		userName: '',
 		lastName: '',
@@ -15,7 +14,7 @@ class UserDash extends Component {
 	};
 
 	componentDidMount() {
-		const localStorageObject = clientauth.getLocalStorage('eco-user');
+		const localStorageObject = API.getLocalStorage('eco-user');
 		const userObject = JSON.parse(localStorageObject);
 
 		if (userObject) {
@@ -44,8 +43,7 @@ class UserDash extends Component {
 		// call api here
 		console.log('api call working');
 		const { _id, firstName, lastName, userName, zipCode } = this.state;
-		clientauth
-			.userUpdate({ _id, firstName, lastName, userName, zipCode })
+		API.userUpdate({ _id, firstName, lastName, userName, zipCode })
 			.then((res) => {
 				this.setState({ displayTextFields: false });
 			})
@@ -56,6 +54,15 @@ class UserDash extends Component {
 				}
 			});
 	};
+
+	capitalize = (o) => {
+		if (o !== 'undefined') {
+			const obj = Object.values(o);
+			const str = obj[0];
+			return str.charAt(0).toUpperCase() + str.slice(1);
+		}
+	};
+
 	render() {
 		const { firstName, lastName, userName, zipCode } = this.state;
 
@@ -72,7 +79,9 @@ class UserDash extends Component {
 				<Grid item>
 					<FormCard>
 						<FormCardContent>
-							<FormAction title="User Dash">Confirm Your Details</FormAction>
+							<FormAction title="User Dash">
+								{this.capitalize({ firstName })}'s Account Information
+							</FormAction>
 							<List>
 								<ListItem>
 									{!this.state.displayTextFields ? (
@@ -137,14 +146,14 @@ class UserDash extends Component {
 							</List>
 
 							{this.state.displayTextFields ? (
-								<FormButton label="Save Details" primary={false} onClick={this.confirmUpdate}>
-									Confirm Details
+								<FormButton label="Save Details" onClick={this.confirmUpdate} fullWidth={true}>
+									Confirm Your Details
 								</FormButton>
 							) : null}
 
 							{!this.state.displayTextFields ? (
-								<FormButton label="Update Details" primary="true" onClick={this.enterUpdate}>
-									Update Details
+								<FormButton label="Update Details" onClick={this.enterUpdate} fullWidth={true}>
+									Update Your Details
 								</FormButton>
 							) : null}
 						</FormCardContent>

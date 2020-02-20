@@ -8,16 +8,14 @@ const router = express.Router();
 const User = require('../models/User');
 const controller = require('../controller/UserController');
 
-router.post('/update', passport.authenticate('jwt', { session: false }), controller.userUpdate);
-// changed the way req.body is being parsed to data from post request can be accessed
 router.post('/register', function(req, res, err) {
 	if (
-		// added .values so data can be parsed
-		!req.body.values.userName ||
-		!req.body.values.password ||
-		!req.body.values.firstName ||
-		!req.body.values.lastName ||
-		!req.body.values.zipCode
+		!req.body.userName ||
+		!req.body.password ||
+		!req.body.password2 ||
+		!req.body.firstName ||
+		!req.body.lastName ||
+		!req.body.zipCode
 	) {
 		res.status(500).send({ success: false, msg: 'Authentication failed. You must fill in all fields' });
 		res.msg = 'You must fill in all fields';
@@ -26,11 +24,11 @@ router.post('/register', function(req, res, err) {
 		// create new user variable
 		const newUser = new User({
 			// this contains new parsing params
-			userName: req.body.values.userName,
-			password: req.body.values.password,
-			firstName: req.body.values.firstName,
-			lastName: req.body.values.lastName,
-			zipCode: req.body.values.zipCode
+			userName: req.body.userName,
+			password: req.body.password,
+			firstName: req.body.firstName,
+			lastName: req.body.lastName,
+			zipCode: req.body.zipCode
 		});
 		// save the user
 		newUser

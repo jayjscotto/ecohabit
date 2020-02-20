@@ -11,40 +11,37 @@ import API from './Utils/clientauth';
 import { UserContext } from './Components/UserContext';
 import { CheckinContext } from './Components/CheckinContext';
 
+const App = (props) => {
+	const { setUser } = useContext(UserContext);
+	const { setDailyCheck } = useContext(CheckinContext);
 
-const App = props => {
-  const { setUser } = useContext(UserContext);
-  const { setDailyCheck } = useContext(CheckinContext);
+	useEffect(
+		() => {
+			const userObj = JSON.parse(API.getLocalStorage('eco-user'));
+			if (userObj) {
+				setUser(userObj);
+				API.getDailyCheck().then((results) => {
+					setDailyCheck(results.data);
+				});
+			} else {
+				props.history.push('/welcome');
+			}
+		}, // eslint-disable-next-line
+		[]
+	);
 
-  useEffect(() => {
-    const userObj = JSON.parse(API.getLocalStorage('eco-user'));
-    if (userObj) {
-      setUser(userObj);
-      API.getDailyCheck().then(results => {
-        setDailyCheck(results.data);
-      })
-      
-    } else {
-      props.history.push('/welcome')
-    }
-  }, // eslint-disable-next-line 
-  []);
-
-  return (
-
-      <div className='container'>
-        <Switch>
-          <Route exact path='/login' component={Login} />
-          <Route exact path='/register' component={Register} />
-          <Route exact path='/utilities' component={Utilities} />
-          <Route exact path='/welcome' component={LandingPage} />
-
-          <Route exact path='/' component={Daily} />
-          <Route exact path='/account' component={UserDash} />
-        </Switch>
-      </div>
-
-  );
+	return (
+		<div className="container">
+			<Switch>
+				<Route exact path="/login" component={Login} />
+				<Route exact path="/register" component={Register} />
+				<Route exact path="/utilities" component={Utilities} />
+				<Route exact path="/welcome" component={LandingPage} />
+				<Route exact path="/" component={Daily} />
+				<Route exact path="/account" component={UserDash} />
+			</Switch>
+		</div>
+	);
 };
 
 export default withRouter(App);
