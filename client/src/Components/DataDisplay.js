@@ -1,5 +1,5 @@
 import React, {useState, Fragment} from 'react';
-import { Grid, Paper} from '@material-ui/core';
+import { Grid, Box} from '@material-ui/core';
 // import API from '../Utils/electric-api';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
@@ -16,8 +16,10 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 let useStyles = makeStyles({
   root: {
-    padding: '1em',
-    minHeight: '220px'
+    padding: '0.5em',
+    minHeight: '220px',
+    maxWidth: '600px',
+    background: '#ffffffa1'
   },
   title: {
     paddingRight: '2em'
@@ -41,11 +43,9 @@ let useStyles = makeStyles({
 function DataDisplay(props) {
   let classes = useStyles();
   const [modalOpen, setModalOpen] = React.useState(false);
-  const [loading, setLoading] = React.useState(true);
 
   const handleClickOpen = () => {
     console.log('open!')
-    setLoading(false);
     setModalOpen(true);
   }
 
@@ -56,46 +56,25 @@ function DataDisplay(props) {
   let stationList = props.results.map(res => {
     let googleLink = `${res.AddressInfo.AddressLine1}+${res.AddressInfo.Town}+${res.AddressInfo.StateOrProvince}+${res.AddressInfo.Postcode}`;
       return (
-        <Grid item lg={6} md={12} sm={12}>
-        <Paper className={classes.root} onClick={handleClickOpen}>
-          <ul className={classes.list}>
-            <li>
-              <h2>{res.AddressInfo.Title}</h2>
-              <h4 className={classes.distance}>{parseFloat(res.AddressInfo.Distance).toFixed(1)}  miles away</h4>
-              {/* <a className={classes.link} href={`https://www.google.com/maps/place/${googleLink}`} rel="noopener noreferrer"target="_blank"> */}
-              <Fragment>
-                {res.AddressInfo.AddressLine1}<br></br>
-                {res.AddressInfo.Town}, {res.AddressInfo.StateOrProvince}, {res.AddressInfo.Postcode}
-              </Fragment>
-              
-              {/* </a> */}
-              <p>{res.AddressInfo.ContactTelephone}</p>
-              <p>{res.AddressInfo.AccessComments}</p>
-            </li>
-          </ul>
-        </Paper>
-        <Dialog
-          open={modalOpen}
-          TransitionComponent={Transition}
-          keepMounted
-          onClose={handleClose}
-          aria-labelledby="alert-dialog-slide-title"
-          aria-describedby="alert-dialog-slide-description"
-        >
-          <DialogTitle>Map Modal</DialogTitle>
-          <DialogContent>
-            {loading
-            ?
-            null
-            :
-            <iframe src={`https://www.google.com/maps/place/${googleLink}`} width="400" />
-            }
-            
-          </DialogContent>
-          <DialogActions></DialogActions>
-        </Dialog>
+        <Grid item lg={12} md={12} sm={12}>
+          <Box className={classes.root} onClick={handleClickOpen}>
+            <ul className={classes.list}>
+              <li>
+                <h2>{res.AddressInfo.Title}</h2>
+                <h4 className={classes.distance}>{parseFloat(res.AddressInfo.Distance).toFixed(1)}  miles away</h4>
+                {/* <a className={classes.link} href={`https://www.google.com/maps/place/${googleLink}`} rel="noopener noreferrer"target="_blank"> */}
+                <Fragment>
+                  {res.AddressInfo.AddressLine1},
+                  {res.AddressInfo.Town}, {res.AddressInfo.StateOrProvince}, {res.AddressInfo.Postcode}
+                </Fragment>
+                
+                {/* </a> */}
+                <p>{res.AddressInfo.ContactTelephone}</p>
+                <p>{res.AddressInfo.AccessComments}</p>
+              </li>
+            </ul>
+          </Box>
         </Grid>
-
       )
   })
 

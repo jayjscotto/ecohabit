@@ -99,7 +99,7 @@ function Reminders() {
               
             // </Grid>
           :
-            <Grid item lg={8} md={6} style={{ height: '100vh', overflowX: 'visible', overflowY: 'scroll' }} className="noscroll">
+            <Grid item lg={8} md={6} style={{ height: '100vh', overflowY: 'scroll' }} className="noscroll">
               <DataDisplay results={results} />
             </Grid>
           }
