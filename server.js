@@ -1,12 +1,11 @@
 const express = require('express');
 const favicon = require('express-favicon');
 const mongoose = require('mongoose');
-const db = require('./models');
 const path = require('path');
 const PORT = process.env.PORT || 3001;
 const app = express();
-var survey = require('./routes/survey');
-var auth = require('./routes/auth');
+const survey = require('./routes/survey');
+const auth = require('./routes/auth');
 const api = require('./routes/api/api-route');
 const cors = require('cors');
 const connection = mongoose.connection;
@@ -48,10 +47,3 @@ app.listen(PORT, () => {
 	console.log(`🌎 ==> API server now on port ${PORT}!`);
 });
 
-//  daily cron job
-const CronJob = require('cron').CronJob;
-const job = new CronJob('0 1 * * *', function() {
-	db.User.find({}, { $set: { dailyCheck: false } });
-});
-
-job.start();
