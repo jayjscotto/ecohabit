@@ -4,13 +4,14 @@ const passport = require('passport');
 require('../config/passport')(passport);
 const controller = require('../controller/UserController');
 
+router.post('/update', passport.authenticate('jwt', { session: false }), controller.userUpdate);
 /* GET */
 router.get('/', passport.authenticate('jwt', { session: false }), controller.getDailyCheck);
 
 /* GET */
 router.get('/results', passport.authenticate('jwt', { session: false }), controller.getCheckInResults);
 
-router.get('/dailycheck', passport.authenticate('jwt', { session: false}), controller.getDailyCheck);
+router.get('/dailycheck', passport.authenticate('jwt', { session: false }), controller.getDailyCheck);
 
 /* Post */
 router.post('/', passport.authenticate('jwt', { session: false }), controller.userSubmitDaily);

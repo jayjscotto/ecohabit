@@ -1,40 +1,26 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Info from './landingInfo';
 import Signup from './LandingSignup';
+import { useStep } from 'react-hooks-helper';
 
-export class RegisterPage extends Component {
-	state = {
-		step: 1
-	};
+const steps = [ { id: 'signup' }, { id: 'info' } ];
 
-	// method to proceed to next step
-	nextStep = () => {
-		const { step } = this.state;
-		this.setState({
-			step: step + 1
-		});
-	};
-	// method to go back one step
-	prevStep = () => {
-		const { step } = this.state;
-		this.setState({
-			step: step - 1
-		});
-	};
+const LandingPage = () => {
+	const { step, navigation } = useStep({ initialStep: 0, steps });
+	const { id } = step;
 
-	render() {
-		const { step } = this.state;
-		switch (step) {
-			case 1:
-				return <Signup nextStep={this.nextStep} />;
-			case 2:
-				return <Info nextStep={this.nextStep} prevStep={this.prevStep} />;
-			case 3:
-				return <Signup nextStep={this.nextStep} />;
-			default:
-				return;
-		}
+	const props = { navigation };
+
+	switch (id) {
+		case 'signup':
+			return <Signup {...props} />;
+		case 'info':
+			return <Info {...props} />;
+		case 'reload':
+			return window.location.reload(false);
+		default:
+			return null;
 	}
-}
+};
 
-export default RegisterPage;
+export default LandingPage;

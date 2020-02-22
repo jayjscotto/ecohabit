@@ -1,59 +1,60 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { FormInput, FormButton, FormCard, FormCardContent, FormAction } from '../../Components/FormElements';
 import { Grid } from '@material-ui/core';
 
+const Form1 = ({ setForm, formData, navigation }) => {
+	const { firstName, lastName, userName } = formData;
 
-export class Form1 extends Component {
-	continue = (e) => {
-		e.preventDefault();
-		this.props.nextStep();
-	};
-	render() {
-		const { values, handleChange } = this.props;
+	const { next } = navigation;
 
-		return (
-			<Grid 
+	return (
+		<Grid
 			container
 			spacing={0}
 			direction="column"
 			alignItems="center"
 			justify="center"
 			style={{ minHeight: '100vh' }}
-			elevation={3} 
-			>
-				<Grid item>
-					<FormCard>
-						<FormCardContent>
+			elevation={3}
+		>
+			<Grid item>
+				<FormCard>
+					<FormCardContent>
 						<FormAction>Enter User Details</FormAction>
 						<FormInput
 							id="firstName"
+							name="firstName"
 							label="First Name"
 							variant="outlined"
-							onChange={handleChange('firstName')}
-							defaultValue={values.firstName}
+							onChange={setForm}
+							value={firstName}
 						/>
 						<FormInput
 							id="lastName"
+							name="lastName"
 							label="Last Name"
 							variant="outlined"
-							onChange={handleChange('lastName')}
-							defaultValue={values.lastName}
+							onChange={setForm}
+							value={lastName}
 						/>
 						<FormInput
 							id="userName"
+							name="userName"
 							label="email"
 							variant="outlined"
-							onChange={handleChange('userName')}
-							defaultValue={values.userName}
+							onChange={setForm}
+							value={userName}
 							type="email"
 						/>
-						<FormButton label="Continue" primary={true} onClick={this.continue}>Continue</FormButton>
-						</FormCardContent>
-					</FormCard>
+
+						<FormButton label="Continue" onClick={next}>
+							Continue
+						</FormButton>
+					</FormCardContent>
+				</FormCard>
 			</Grid>
-	</Grid>
-		);
-	}
-}
+		</Grid>
+	);
+};
 
 export default Form1;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Grid, Container } from '@material-ui/core';
 
-function SurveyComplete() {
+const SurveyComplete = (props) => {
 	return (
 		<Grid
 			container
@@ -18,7 +18,7 @@ function SurveyComplete() {
 				</Container>
 			</Grid>
 		</Grid>
-	)
-}
+	);
+};
 
 export default SurveyComplete;

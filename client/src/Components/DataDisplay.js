@@ -1,5 +1,5 @@
 import React, {useState, Fragment} from 'react';
-import { Grid, Box} from '@material-ui/core';
+import { Grid, Paper} from '@material-ui/core';
 // import API from '../Utils/electric-api';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
@@ -14,12 +14,13 @@ import MapModal from '../Components/MapModal';
 let useStyles = makeStyles({
   root: {
     padding: '0.5em',
-    minHeight: '220px',
+    // minHeight: '220px',
     maxWidth: '600px',
-    background: '#ffffff'
+    background: '#ffffff',
+    cursor: 'pointer'
   },
   title: {
-    paddingRight: '2em'
+    // paddingRight: '2em'
   },
   list: {
     listStyle: 'none'
@@ -27,11 +28,6 @@ let useStyles = makeStyles({
   distance: {
     fontSize: '20px'
   },
-  link: {
-    textDecoration: 'none',
-    fontWeight: 'bold',
-    color: '#6d8468'
-  }
 })
 
 // for user's zip code, call get local storage?
@@ -53,17 +49,17 @@ function DataDisplay(props) {
 
   let stationList = props.results.map(res => {
     let googleLink = `${res.AddressInfo.AddressLine1}+${res.AddressInfo.Town}+${res.AddressInfo.StateOrProvince}+${res.AddressInfo.Postcode}`;
+
       return (
         <Grid item lg={12} md={12} sm={12}>
-          <Box className={classes.root} onClick={() => {handleModalOpen(googleLink)}}>
+          <Paper className={classes.root} onClick={() => {handleModalOpen(googleLink)}}>
             <ul className={classes.list}>
               <li>
-                <h2>{res.AddressInfo.Title}</h2>
-                <h4 className={classes.distance}>{parseFloat(res.AddressInfo.Distance).toFixed(1)}  miles away</h4>
+                <h2>{res.AddressInfo.Title} <span className={classes.distance}> // {parseFloat(res.AddressInfo.Distance).toFixed(1)}  miles away</span></h2>
                 {/* <a className={classes.link} href={`https://www.google.com/maps/place/${googleLink}`} rel="noopener noreferrer"target="_blank"> */}
                 <Fragment>
-                  {res.AddressInfo.AddressLine1},
-                  {res.AddressInfo.Town}, {res.AddressInfo.StateOrProvince}, {res.AddressInfo.Postcode}
+                  {res.AddressInfo.AddressLine1}, 
+                   {res.AddressInfo.Town}, {res.AddressInfo.StateOrProvince}, {res.AddressInfo.Postcode}
                 </Fragment>
                 
                 {/* </a> */}
@@ -71,7 +67,7 @@ function DataDisplay(props) {
                 <p>{res.AddressInfo.AccessComments}</p>
               </li>
             </ul>
-          </Box>
+          </Paper>
         </Grid>
       )
   })
@@ -81,7 +77,7 @@ function DataDisplay(props) {
       <Grid container spacing={2} style={{ margin: '1em' }}>
         {stationList}
       </Grid>
-      <MapModal open={modalOpen} handleClose={handleModalClose} link={link} />
+      <MapModal open={modalOpen} handleClose={handleModalClose} link={link}/>
     </Fragment>
   )
 

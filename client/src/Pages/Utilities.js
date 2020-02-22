@@ -92,12 +92,9 @@ function Reminders() {
         
         {loading
           ?
-            // <Grid item>
-              <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', margin: '0 auto' }}>
-                <img src={EarthGif} alt="Earthboy" width="300" />
-              </div>
-              
-            // </Grid>
+            <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', margin: '0 auto' }}>
+              <img src={EarthGif} alt="Earthboy" width="300" />
+            </div>
           :
             <Grid item lg={8} md={6} style={{ height: '100vh', overflowY: 'scroll' }} className="noscroll">
               <DataDisplay results={results} />

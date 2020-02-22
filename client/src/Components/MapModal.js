@@ -12,9 +12,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 })
 
 export default function MapModal(props) {
-  
-  const key = 'AIzaSyAthCDcx1gfJg7bZ25BEnf6CMk5B5CMeLw';
-  console.log(`https://www.google.com/maps/embed/v1/place?key=${key}&q=${props.link}`);
+
   return (
     <Dialog
       open={props.open}
@@ -24,16 +22,16 @@ export default function MapModal(props) {
       aria-labelledby="alert-dialog-slide-title"
       aria-describedby="alert-dialog-slide-description"
     >
-    <DialogTitle>Map Modal</DialogTitle>
+    <DialogTitle>Map</DialogTitle>
     <DialogContent>
     <iframe
-      width="600"
+      // width="600"
       height="450"
       frameborder="0"
-      src={`https://www.google.com/maps/embed/v1/place?key=${key}
-        &q=${props.link}`}>
+      // maxWidth="lg"
+      fullWidth
+      src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyBTI7BblFM-qoFIqXdoB1ZeIhZcW2JYxwc&q=${props.link}`}>
     </iframe>
-      {/* <iframe src={`https://www.google.com/maps/embed/v1/place?q=${props.googleLink}`} width="400" /> */}
       <DialogContentText>This is the map modal</DialogContentText>
     </DialogContent>
     <DialogActions></DialogActions>
