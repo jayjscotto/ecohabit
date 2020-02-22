@@ -10,7 +10,8 @@ let styles = {
   root: {
     marginTop: '2em',
     padding: '20px 20px',
-    marginBottom: '1em'
+    marginBottom: '1em',
+    color: 'white'
   },
   header: {
     marginBottom: '1em',
@@ -70,13 +71,17 @@ function Reminders() {
   return (
     <Container >
       <Grid container>
-        <Grid item lg={4} md={6}>
-          <Paper style={styles.root}>
-              <Box style={{ margin: '3em' }}>
+        
+          <div style={styles.root}>
+            <Grid item lg={6} md={6}>
+              <Box style={{ margin: '0em' }}>
                 <Typography variant="h3" style={styles.header}>It's electric!</Typography>
                 <Typography variant="body1">
-                If you've got an electric vehicle - or you're <em>thinking</em> about getting one - don't worry about where you'll be able to find a charging station. Below are a list of them based on your zip code, and you can even search for a new zip when you're out of town.
-              </Typography>
+                  If you've got an electric vehicle - or you're <em>thinking</em> about getting one - don't worry about where you'll be able to find a charging station. Below are a list of them based on your zip code, and you can even search for a new zip when you're out of town.
+                </Typography>
+              </Box>
+            </Grid>
+            <Grid item lg={6} md={6}>
               <FormInput
                 name="zipCodeInput"
                 label="Zip Code"
@@ -86,17 +91,15 @@ function Reminders() {
               />
               <FormButton onClick={() => { getData(inputZipCode) }}>Search a new zip code</FormButton>
               <FormButton onClick={() => { getData(userZipCode)}}>Or use your zip code</FormButton>
-            </Box>
-          </Paper>
-        </Grid>
-        
+            </Grid>
+          </div>
         {loading
           ?
             <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', margin: '0 auto' }}>
               <img src={EarthGif} alt="Earthboy" width="300" />
             </div>
           :
-            <Grid item lg={8} md={6} style={{ height: '100vh', overflowY: 'scroll' }} className="noscroll">
+            <Grid item lg={12} md={12} style={{ height: '100vh', overflowY: 'scroll' }} className="noscroll">
               <DataDisplay results={results} />
             </Grid>
           }

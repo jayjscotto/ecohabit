@@ -1,15 +1,18 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import { Container, Grid, Paper, Box, Typography } from '@material-ui/core';
 import products from '../Utils/products.json';
 import CardComponent from '../Components/cardComponent';
 
 const styles = {
   root: {
-    margin: '2em auto',
-    padding: '20px 20px'
+    margin: '0em auto 3em auto',
+    padding: '20px 20px',
+    color: 'white',
+    borderBottom: '5px solid white'
   },
   header: {
-    marginBottom: '0.5em'
+    marginBottom: '0.5em',
+    color: 'white',
   },
   card: {
     margin: '1em',
@@ -22,7 +25,7 @@ const ShopContainer = () => {
     <Container>
       <Grid container>
         <Grid item>
-          <Paper style={styles.root} elevation={15}>
+          <div style={styles.root} elevation={15}>
             <Box style={{ margin: '3em' }}>
               <Typography variant='h3' style={styles.header}>
                 Habit-dashery
@@ -34,7 +37,7 @@ const ShopContainer = () => {
                 they are helping you on your quest for the best EcoHabits.
               </Typography>
             </Box>
-          </Paper>
+          </div>
         </Grid>
         <Grid container spacing={7}>
           {products.products.map((product, index) => {

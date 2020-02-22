@@ -63,8 +63,8 @@ function DataDisplay(props) {
                 </Fragment>
                 
                 {/* </a> */}
-                <p>{res.AddressInfo.ContactTelephone}</p>
-                <p>{res.AddressInfo.AccessComments}</p>
+                {/* <p>{res.AddressInfo.ContactTelephone}</p> */}
+                {/* <p>{res.AddressInfo.AccessComments}</p> */}
               </li>
             </ul>
           </Paper>
