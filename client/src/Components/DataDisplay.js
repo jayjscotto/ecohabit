@@ -39,9 +39,11 @@ let useStyles = makeStyles({
 
 function DataDisplay(props) {
   let classes = useStyles();
+  const [link, setLink] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
 
-  const handleModalOpen = () => {
+  const handleModalOpen = link => {
+    setLink(link);
     setModalOpen(true);
   }
 
@@ -53,7 +55,7 @@ function DataDisplay(props) {
     let googleLink = `${res.AddressInfo.AddressLine1}+${res.AddressInfo.Town}+${res.AddressInfo.StateOrProvince}+${res.AddressInfo.Postcode}`;
       return (
         <Grid item lg={12} md={12} sm={12}>
-          <Box className={classes.root} onClick={handleModalOpen}>
+          <Box className={classes.root} onClick={() => {handleModalOpen(googleLink)}}>
             <ul className={classes.list}>
               <li>
                 <h2>{res.AddressInfo.Title}</h2>
@@ -79,7 +81,7 @@ function DataDisplay(props) {
       <Grid container spacing={2} style={{ margin: '1em' }}>
         {stationList}
       </Grid>
-      <MapModal open={modalOpen} handleClose={handleModalClose} />
+      <MapModal open={modalOpen} handleClose={handleModalClose} link={link} />
     </Fragment>
   )
 
