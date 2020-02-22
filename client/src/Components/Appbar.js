@@ -111,7 +111,7 @@ export default function ButtonAppBar(props) {
                 <Button style={{ color: 'inherit' }}>Shop</Button>
               </Link>
               <Link to='/utilities' className={classes.link}>
-                <Button style={{ color: 'inherit' }}>Utilities</Button>
+                <Button style={{ color: 'inherit' }}>Drive</Button>
               </Link>
               <Button
                 ref={anchorRef}
