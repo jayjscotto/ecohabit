@@ -52,7 +52,6 @@ const Signup = ({ navigation }) => {
 									style={{ padding: '20px 20px 0px 20px' }}
 								/>
 							</div>
-							{/* <CardMedia style={{ width: '200px' }} image={Icon} title="Contemplative Reptile" /> */}
 							<CardContent>
 								<Typography gutterBottom variant="h3" component="h2" style={{ textAlign: 'center' }}>
 									Sign Up
