@@ -9,17 +9,14 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Slide from '@material-ui/core/Slide';
-
-const Transition = React.forwardRef(function Transition(props, ref) {
-  return <Slide direction="up" ref={ref} {...props} />;
-})
+import MapModal from '../Components/MapModal';
 
 let useStyles = makeStyles({
   root: {
     padding: '0.5em',
     minHeight: '220px',
     maxWidth: '600px',
-    background: '#ffffffa1'
+    background: '#ffffff'
   },
   title: {
     paddingRight: '2em'
@@ -42,14 +39,13 @@ let useStyles = makeStyles({
 
 function DataDisplay(props) {
   let classes = useStyles();
-  const [modalOpen, setModalOpen] = React.useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
 
-  const handleClickOpen = () => {
-    console.log('open!')
+  const handleModalOpen = () => {
     setModalOpen(true);
   }
 
-  const handleClose = () => {
+  const handleModalClose = () => {
     setModalOpen(false);
   }
 
@@ -57,7 +53,7 @@ function DataDisplay(props) {
     let googleLink = `${res.AddressInfo.AddressLine1}+${res.AddressInfo.Town}+${res.AddressInfo.StateOrProvince}+${res.AddressInfo.Postcode}`;
       return (
         <Grid item lg={12} md={12} sm={12}>
-          <Box className={classes.root} onClick={handleClickOpen}>
+          <Box className={classes.root} onClick={handleModalOpen}>
             <ul className={classes.list}>
               <li>
                 <h2>{res.AddressInfo.Title}</h2>
@@ -79,9 +75,12 @@ function DataDisplay(props) {
   })
 
   return (
-    <Grid container spacing={2} style={{ margin: '1em' }}>
-      {stationList}
-    </Grid>
+    <Fragment>
+      <Grid container spacing={2} style={{ margin: '1em' }}>
+        {stationList}
+      </Grid>
+      <MapModal open={modalOpen} handleClose={handleModalClose} />
+    </Fragment>
   )
 
 }
