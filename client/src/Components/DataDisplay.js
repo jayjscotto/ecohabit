@@ -1,6 +1,7 @@
 import React, {useState, Fragment} from 'react';
 import { Grid, Paper} from '@material-ui/core';
 // import API from '../Utils/electric-api';
+import RoomIcon from '@material-ui/icons/Room';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
@@ -51,18 +52,16 @@ function DataDisplay(props) {
     let googleLink = `${res.AddressInfo.AddressLine1}+${res.AddressInfo.Town}+${res.AddressInfo.StateOrProvince}+${res.AddressInfo.Postcode}`;
 
       return (
-        <Grid item lg={12} md={12} sm={12}>
+        <Grid item lg={8} md={8} sm={8}>
           <Paper className={classes.root} onClick={() => {handleModalOpen(googleLink)}}>
             <ul className={classes.list}>
               <li>
+                <RoomIcon style={{ float: 'right', marginRight: '20px' }}/>
                 <h2>{res.AddressInfo.Title} <span className={classes.distance}> // {parseFloat(res.AddressInfo.Distance).toFixed(1)}  miles away</span></h2>
-                {/* <a className={classes.link} href={`https://www.google.com/maps/place/${googleLink}`} rel="noopener noreferrer"target="_blank"> */}
                 <Fragment>
                   {res.AddressInfo.AddressLine1}, 
                    {res.AddressInfo.Town}, {res.AddressInfo.StateOrProvince}, {res.AddressInfo.Postcode}
                 </Fragment>
-                
-                {/* </a> */}
                 {/* <p>{res.AddressInfo.ContactTelephone}</p> */}
                 {/* <p>{res.AddressInfo.AccessComments}</p> */}
               </li>

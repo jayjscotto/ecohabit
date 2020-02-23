@@ -25,7 +25,7 @@ const ShopContainer = () => {
     <Container>
       <Grid container>
         <Grid item>
-          <div style={styles.root} elevation={15}>
+          <div style={styles.root}>
             <Box style={{ margin: '3em' }}>
               <Typography variant='h3' style={styles.header}>
                 Habit-dashery

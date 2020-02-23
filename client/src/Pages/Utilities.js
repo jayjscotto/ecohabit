@@ -8,13 +8,18 @@ import EarthGif from '../Components/landingPage/welcomeImages/earth.gif';
 
 let styles = {
   root: {
-    marginTop: '2em',
+    margin: '0em auto 3em auto',
     padding: '20px 20px',
-    marginBottom: '1em',
-    color: 'white'
+    color: 'white',
+    borderBottom: '5px solid white',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   header: {
-    marginBottom: '1em',
+    marginBottom: '0.5em',
+    color: 'white',
   }
 };
 
@@ -30,19 +35,14 @@ function Reminders() {
       if (user) {
         setUserZip(user.zipCode);
       }
-    }, 
+    },
     []
   )
 
-  // componentWillUnmount() {
-  //   setUserZip('');
-  //   setInputZip('');
-  // }
- 
   const getData = (zip) => {
     setLoading(true);
       API.getLatLng(zip)
-      .then(res => { 
+      .then(res => {
         let lat, lng;
         for (let i = 0; i < res.data.length; i++) {
           if (res.data[i].components.country_code === 'us') {
@@ -71,39 +71,41 @@ function Reminders() {
   return (
     <Container >
       <Grid container>
-        
-          <div style={styles.root}>
+      <div style={styles.root}>
             <Grid item lg={6} md={6}>
-              <Box style={{ margin: '0em' }}>
+              
+              <Box style={{ marginTop: '3em', marginBottom: '3em' }}>
                 <Typography variant="h3" style={styles.header}>It's electric!</Typography>
                 <Typography variant="body1">
                   If you've got an electric vehicle - or you're <em>thinking</em> about getting one - don't worry about where you'll be able to find a charging station. Below are a list of them based on your zip code, and you can even search for a new zip when you're out of town.
                 </Typography>
               </Box>
+            
             </Grid>
-            <Grid item lg={6} md={6}>
+            <Grid item lg={6} md={6} style={{ textAlign: 'right' }}>
               <FormInput
                 name="zipCodeInput"
                 label="Zip Code"
-                variant="outlined"
+                variant="filled"
                 onChange={handleInputChange}
                 value={inputZipCode}
+                style={{ textAlign: 'right' }}
               />
               <FormButton onClick={() => { getData(inputZipCode) }}>Search a new zip code</FormButton>
               <FormButton onClick={() => { getData(userZipCode)}}>Or use your zip code</FormButton>
             </Grid>
-          </div>
+            </div>
         {loading
           ?
             <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', margin: '0 auto' }}>
               <img src={EarthGif} alt="Earthboy" width="300" />
             </div>
           :
-            <Grid item lg={12} md={12} style={{ height: '100vh', overflowY: 'scroll' }} className="noscroll">
+            <Grid item lg={12} md={12} style={{ height: '100vh' }} className="noscroll">
               <DataDisplay results={results} />
             </Grid>
           }
-        
+
       </Grid>
     </Container>
   )
