@@ -91,8 +91,8 @@ function Reminders() {
                 value={inputZipCode}
                 style={{ textAlign: 'right' }}
               />
-              <FormButton onClick={() => { getData(inputZipCode) }}>Search a new zip code</FormButton>
-              <FormButton onClick={() => { getData(userZipCode)}}>Or use your zip code</FormButton>
+              <FormButton onClick={() => { getData(inputZipCode) }}>Anywhere</FormButton>
+              <FormButton onClick={() => { getData(userZipCode)}}>Near you</FormButton>
             </Grid>
             </div>
         {loading
@@ -101,7 +101,7 @@ function Reminders() {
               <img src={EarthGif} alt="Earthboy" width="300" />
             </div>
           :
-            <Grid item lg={12} md={12} style={{ height: '100vh' }} className="noscroll">
+            <Grid item lg={12} md={12} style={{ height: '' }} className="">
               <DataDisplay results={results} />
             </Grid>
           }

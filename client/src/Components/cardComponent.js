@@ -22,7 +22,7 @@ const useStyles = makeStyles({
     padding: '20px'
   },
   card: {
-    width: '350px',
+    width: '300px',
     minHeight: '500px',
     color: 'rgb(93, 103, 91)',
     background: 'transparent'

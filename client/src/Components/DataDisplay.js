@@ -15,7 +15,7 @@ import MapModal from '../Components/MapModal';
 let useStyles = makeStyles({
   root: {
     padding: '0.5em',
-    // minHeight: '220px',
+    minWidth: '600px',
     maxWidth: '600px',
     background: '#ffffff',
     cursor: 'pointer'
@@ -27,7 +27,9 @@ let useStyles = makeStyles({
     listStyle: 'none'
   }, 
   distance: {
-    fontSize: '20px'
+    fontSize: '14px',
+    display: 'block',
+    marginTop: '10px'
   },
 })
 
@@ -52,7 +54,7 @@ function DataDisplay(props) {
     let googleLink = `${res.AddressInfo.AddressLine1}+${res.AddressInfo.Town}+${res.AddressInfo.StateOrProvince}+${res.AddressInfo.Postcode}`;
 
       return (
-        <Grid item lg={8} md={8} sm={8}>
+        <Grid item lg={12} md={12} sm={12} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <Paper className={classes.root} onClick={() => {handleModalOpen(googleLink)}}>
             <ul className={classes.list}>
               <li>
