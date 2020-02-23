@@ -1,5 +1,4 @@
-import React, {useState} from 'react';
-import Button from '@material-ui/core/Button';
+import React from 'react';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -30,6 +29,7 @@ export default function MapModal(props) {
       frameborder="0"
       // maxWidth="lg"
       fullWidth
+      title={`map of ${props.link}`}
       src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyBTI7BblFM-qoFIqXdoB1ZeIhZcW2JYxwc&q=${props.link}`}>
     </iframe>
       <DialogContentText>This is the map modal</DialogContentText>

@@ -1,29 +1,24 @@
-import React, {useState, Fragment} from 'react';
-import Slide from '@material-ui/core/Slide';
+import React, {useState} from 'react';
+import Fade from '@material-ui/core/Fade';
 import { FormButton } from './FormElements';
 import {
   Card,
-  CardActionArea,
+  // CardActionArea,
   CardContent,
+  CardMedia,
   Typography,
   Paper,
-  BottomNavigation,
+  // BottomNavigation,
   makeStyles
 } from '@material-ui/core';
 
 const useStyles = makeStyles({
   grow: {
-    background: '#f1f1f1f4',
-    textAlign: 'center',
-    fontFamily: 'Nanum Gothic, sans-serif',
-    height: '100%',
-    // width: '100%',
-    zIndex: '1',
-    padding: '20px'
+    padding: '20px',
+    display: 'none'
   },
   card: {
-    width: '300px',
-    minHeight: '500px',
+    width: '340px',
     color: 'rgb(93, 103, 91)',
     background: 'transparent'
   },
@@ -52,13 +47,10 @@ const CardComp = props => {
   const classes = useStyles();
 
   const displayDetails = () => {
-    console.log('clicked');
-    console.log(props);
     setChecked(prev => !prev)
   }
 
   return (
-    // <Card justify='center' elevation={15} className={classes.card}>
       <div style={{ 
         borderRadius: '5px',
         background: '#ffffff', 
@@ -66,24 +58,26 @@ const CardComp = props => {
         position: 'relative',
         boxShadow: '10px 10px 20px -17px rgba(0,0,0,0.75)',
         paddingBottom: '20px' }}>
-        {/* <Slide direction="up" in={checked} className={classes.grow}>
+
+        <CardMedia>
+        <img className={classes.image} src={props.image} alt={props.image} />
+        <Fade in={checked} className={classes.grow}>
           <Paper>
             <Typography>
               {props.description}
             </Typography>
           </Paper>
-        </Slide> */}
-        <img className={classes.image} src={props.image} alt={props.image} />
+        </Fade>
+        </CardMedia>
+        <CardContent>
         <div style={{ cursor: 'pointer' }} onClick={displayDetails}>
         <Typography style={{
             position: 'absolute',
-            // top: '20px',
             bottom: '0px',
             right: '0',
             left: '0',
             color: '#ffffff',
             background: '#404941b1',
-            height: 'auto',
             fontWeight: 'bold',
             padding: '16px',
           }} 
@@ -99,9 +93,8 @@ const CardComp = props => {
         <FormButton className={classes.button}> Buy for {props.price} </FormButton>
         </a>
         </div>
-        
+        </CardContent>
       </div>
-    // </Card>
   );
 };
 

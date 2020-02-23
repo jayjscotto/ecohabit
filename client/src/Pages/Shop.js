@@ -1,5 +1,5 @@
-import React, {Fragment, useEffect, useState} from 'react';
-import { Container, Grid, Paper, Box, Typography } from '@material-ui/core';
+import React, {useEffect, useState} from 'react';
+import { Container, Grid, Box, Typography } from '@material-ui/core';
 import products from '../Utils/products.json';
 import Grow from '@material-ui/core/Grow';
 import CardComponent from '../Components/cardComponent';

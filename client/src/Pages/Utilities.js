@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { Container, Typography, Box, Grid, Paper } from '@material-ui/core';
+import { Container, Typography, Box, Grid } from '@material-ui/core';
 import Grow from '@material-ui/core/Grow';
 import { FormButton, FormInput } from '../Components/FormElements';
 import DataDisplay from '../Components/DataDisplay';
@@ -74,7 +74,7 @@ function Reminders() {
   }
 
   const handleInputChange = event => {
-    const {name, value} = event.target;
+    const {value} = event.target;
     setInputZip(value);
   }
 

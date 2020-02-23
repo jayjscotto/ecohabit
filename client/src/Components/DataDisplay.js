@@ -58,13 +58,11 @@ function DataDisplay(props) {
             <ul className={classes.list}>
               <li>
                 <RoomIcon style={{ float: 'right', marginRight: '20px' }}/>
-                <h2>{res.AddressInfo.Title} <span className={classes.distance}> // {parseFloat(res.AddressInfo.Distance).toFixed(1)}  miles away</span></h2>
+                <h2>{res.AddressInfo.Title} <span className={classes.distance}> / {parseFloat(res.AddressInfo.Distance).toFixed(1)}  miles away</span></h2>
                 <Fragment>
                   {res.AddressInfo.AddressLine1}, 
                    {res.AddressInfo.Town}, {res.AddressInfo.StateOrProvince}, {res.AddressInfo.Postcode}
                 </Fragment>
-                {/* <p>{res.AddressInfo.ContactTelephone}</p> */}
-                {/* <p>{res.AddressInfo.AccessComments}</p> */}
               </li>
             </ul>
           </Paper>
