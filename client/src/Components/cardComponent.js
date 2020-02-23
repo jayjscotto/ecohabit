@@ -1,15 +1,26 @@
-import React from 'react';
+import React, {useState, Fragment} from 'react';
+import Slide from '@material-ui/core/Slide';
 import { FormButton } from './FormElements';
 import {
   Card,
   CardActionArea,
   CardContent,
   Typography,
+  Paper,
   BottomNavigation,
   makeStyles
 } from '@material-ui/core';
 
 const useStyles = makeStyles({
+  grow: {
+    background: '#f1f1f1f4',
+    textAlign: 'center',
+    fontFamily: 'Nanum Gothic, sans-serif',
+    height: '100%',
+    // width: '100%',
+    zIndex: '1',
+    padding: '20px'
+  },
   card: {
     width: '350px',
     minHeight: '500px',
@@ -37,7 +48,14 @@ const useStyles = makeStyles({
 });
 
 const CardComp = props => {
+  const [checked, setChecked] = useState(false);
   const classes = useStyles();
+
+  const displayDetails = () => {
+    console.log('clicked');
+    console.log(props);
+    setChecked(prev => !prev)
+  }
 
   return (
     // <Card justify='center' elevation={15} className={classes.card}>
@@ -48,7 +66,15 @@ const CardComp = props => {
         position: 'relative',
         boxShadow: '10px 10px 20px -17px rgba(0,0,0,0.75)',
         paddingBottom: '20px' }}>
+        {/* <Slide direction="up" in={checked} className={classes.grow}>
+          <Paper>
+            <Typography>
+              {props.description}
+            </Typography>
+          </Paper>
+        </Slide> */}
         <img className={classes.image} src={props.image} alt={props.image} />
+        <div style={{ cursor: 'pointer' }} onClick={displayDetails}>
         <Typography style={{
             position: 'absolute',
             // top: '20px',
@@ -59,10 +85,10 @@ const CardComp = props => {
             background: '#404941b1',
             height: 'auto',
             fontWeight: 'bold',
-            padding: '20px',
-          }} variant='h6' component='h2' align='right'>
+            padding: '16px',
+          }} 
+          variant='h6' component='h2' align='right'>
             {props.name}
-            <span className={classes.action}>Click for description</span>
           </Typography>
         <a
           className={classes.link}
@@ -70,20 +96,11 @@ const CardComp = props => {
           target='_blank'
           rel='noopener noreferrer'
         >
-          <FormButton className={classes.button}> Buy for {props.price} </FormButton>
+        <FormButton className={classes.button}> Buy for {props.price} </FormButton>
         </a>
-      </div>
-    //   <CardContent>
-    //     <Typography gutterBottom variant='h6' component='h2' align='center'>
-    //       {props.name}
-    //     </Typography>
-    //     <Typography gutterBottom component='p' align='center'>
-    //       {props.price}
-    //     </Typography>
-    //   </CardContent>
-    //   <CardActionArea className={classes.action}>
+        </div>
         
-    //   </CardActionArea>
+      </div>
     // </Card>
   );
 };

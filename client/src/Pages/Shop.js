@@ -49,6 +49,7 @@ const ShopContainer = () => {
                   image={product.image}
                   price={product.price}
                   link={product.link}
+                  description={product.productsDescription}
                 />
               </Grid>
             );
