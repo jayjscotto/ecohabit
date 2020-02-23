@@ -26,6 +26,7 @@ let styles = {
 
 function Reminders() {
   const [checked, setChecked] = useState(false);
+  const [earth, setEarth] = useState(false);
   const [userZipCode, setUserZip] = useState('');
   const [inputZipCode, setInputZip] = useState('');
   const [results, setResults] = useState([]);
@@ -40,6 +41,13 @@ function Reminders() {
       }
     },
     []
+  )
+
+  useEffect(
+    () => {
+      setEarth(true);
+    }, 
+    [loading]
   )
 
   const getData = (zip) => {
@@ -95,15 +103,17 @@ function Reminders() {
                 value={inputZipCode}
                 style={{ textAlign: 'right' }}
               />
-              <FormButton onClick={() => { getData(inputZipCode) }}>Anywhere</FormButton>
-              <FormButton onClick={() => { getData(userZipCode)}}>Near you</FormButton>
+              <FormButton onClick={() => { getData(inputZipCode) }}>Search</FormButton>
+              <FormButton onClick={() => { getData(userZipCode)}}>{userZipCode}</FormButton>
             </Grid>
             </div>
         {loading
           ?
-            <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', margin: '0 auto' }}>
-              <img src={EarthGif} alt="Earthboy" width="300" />
-            </div>
+            <Grow in={earth}>
+              <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', margin: '0 auto' }}>
+                <img src={EarthGif} alt="Earthboy" width="300" />
+              </div>
+            </Grow>
           :
             <Grid item lg={12} md={12} style={{ height: '' }} className="">
               <DataDisplay results={results} />

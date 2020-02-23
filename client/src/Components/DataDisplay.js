@@ -1,16 +1,9 @@
-import React, {useState, Fragment} from 'react';
+import React, {useState, useEffect, Fragment} from 'react';
 import { Grid, Paper} from '@material-ui/core';
-// import API from '../Utils/electric-api';
 import RoomIcon from '@material-ui/icons/Room';
 import { makeStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import Slide from '@material-ui/core/Slide';
 import MapModal from '../Components/MapModal';
+import Slide from '@material-ui/core/Slide';
 
 let useStyles = makeStyles({
   root: {
@@ -38,8 +31,13 @@ let useStyles = makeStyles({
 
 function DataDisplay(props) {
   let classes = useStyles();
+  const [checked, setChecked] = useState(false);
   const [link, setLink] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
+
+  useEffect(() => {
+    setChecked(true);
+  }, [props.results])
 
   const handleModalOpen = link => {
     setLink(link);
@@ -54,6 +52,7 @@ function DataDisplay(props) {
     let googleLink = `${res.AddressInfo.AddressLine1}+${res.AddressInfo.Town}+${res.AddressInfo.StateOrProvince}+${res.AddressInfo.Postcode}`;
 
       return (
+        <Slide direction="up" in={checked}>
         <Grid item lg={12} md={12} sm={12} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <Paper className={classes.root} onClick={() => {handleModalOpen(googleLink)}}>
             <ul className={classes.list}>
@@ -70,6 +69,7 @@ function DataDisplay(props) {
             </ul>
           </Paper>
         </Grid>
+        </Slide>
       )
   })
 
