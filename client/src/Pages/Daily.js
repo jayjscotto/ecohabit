@@ -1,8 +1,9 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { Container, Grid } from '@material-ui/core';
 import LeftPane from '../Components/LeftPane';
 import RightPane from '../Components/RightPane';
 import CheckIn from '../Components/CheckIn';
+import Grow from '@material-ui/core/Grow';
 
 const style = {
 	leftpane: {
@@ -13,9 +14,8 @@ const style = {
 		fontFamily: 'inherit',
 		padding: '5px 20px 20px 20px',
 		background: 'f1f1f1',
-		// backgroundImage: 'linear-gradient(30deg, #97a897, #809781)',
 		overflow: 'auto',
-	}, // 689
+	},
 	rightpane: {
 		color: '#5D675B',
 		height: '295px',
@@ -23,8 +23,7 @@ const style = {
 		textAlign: 'left',
 		fontFamily: 'inherit',
 		padding: '5px 20px 20px 20px',
-		// backgroundImage: 'linear-gradient(30deg, #97a897, #809781)',
-	}, // 600 + 40 + 50
+	},
 	header: {
 		textTransform: 'uppercase',
 		borderBottom: '0.5px solid #5D675B',
@@ -37,7 +36,14 @@ const style = {
 
 
 const Daily = props => {
+	const [checked, setChecked] = React.useState(false);
+	
+	useEffect(() => {
+		setChecked(prev => !prev)
+	}, [])
+
   return (
+		<Grow in={checked} unmountOnExit>
     <Container style={{ marginTop: '2em' }}>
       <Grid container>
         <Grid item md={5} sm={12} xs={12}>
@@ -50,6 +56,7 @@ const Daily = props => {
         </Grid>
       </Grid>
     </Container>
+		</Grow>
   );
 };
 

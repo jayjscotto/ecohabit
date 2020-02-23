@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { Container, Typography, Box, Grid, Paper } from '@material-ui/core';
+import Grow from '@material-ui/core/Grow';
 import { FormButton, FormInput } from '../Components/FormElements';
 import DataDisplay from '../Components/DataDisplay';
 import API from '../Utils/electric-api';
@@ -24,6 +25,7 @@ let styles = {
 };
 
 function Reminders() {
+  const [checked, setChecked] = useState(false);
   const [userZipCode, setUserZip] = useState('');
   const [inputZipCode, setInputZip] = useState('');
   const [results, setResults] = useState([]);
@@ -31,6 +33,7 @@ function Reminders() {
 
   useEffect(
     () => {
+      setChecked(prev => !prev);
       let user = JSON.parse(clientauth.getLocalStorage('eco-user'));
       if (user) {
         setUserZip(user.zipCode);
@@ -69,7 +72,8 @@ function Reminders() {
 
 
   return (
-    <Container >
+    <Grow in={checked} unmountOnExit>
+    <Container>
       <Grid container>
       <div style={styles.root}>
             <Grid item lg={6} md={6}>
@@ -108,6 +112,7 @@ function Reminders() {
 
       </Grid>
     </Container>
+    </Grow>
   )
 }
 
