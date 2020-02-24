@@ -1,6 +1,8 @@
 # EcoHabit
 EcoHabit is a web app dedicated to every-day environmentally friendly habits.
 
+![](eco-gif.gif)
+
 ## Using Ecohabit
 * Deployment URL: https://ecohabit.herokuapp.com
 * Take a tour on the home page

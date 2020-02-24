@@ -15,7 +15,7 @@ let style = {
 	button: {
 		background: '#5D675B',
 		color: '#f7f3c2',
-		margin: '20px auto'
+		margin: '20px 10px'
 	}
 };
 

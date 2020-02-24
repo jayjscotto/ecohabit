@@ -1,15 +1,19 @@
-import React from 'react';
-import { Container, Grid, Paper, Box, Typography } from '@material-ui/core';
+import React, {useEffect, useState} from 'react';
+import { Container, Grid, Box, Typography } from '@material-ui/core';
 import products from '../Utils/products.json';
-import CardComponent from '../Components/cardComponent';
+import Grow from '@material-ui/core/Grow';
+import ShopCard from '../Components/ShopCard';
 
 const styles = {
   root: {
-    margin: '2em auto',
-    padding: '20px 20px'
+    margin: '0em auto 3em auto',
+    padding: '20px 20px',
+    color: 'white',
+    borderBottom: '5px solid white'
   },
   header: {
-    marginBottom: '0.5em'
+    marginBottom: '0.5em',
+    color: 'white',
   },
   card: {
     margin: '1em',
@@ -18,11 +22,18 @@ const styles = {
 };
 
 const ShopContainer = () => {
+  const [checked, setChecked] = useState(false);
+
+  useEffect(() => {
+    setChecked(prev => !prev)
+  }, []);
+
   return (
+    <Grow in={checked} unmountOnExit>
     <Container>
       <Grid container>
         <Grid item>
-          <Paper style={styles.root} elevation={15}>
+          <div style={styles.root}>
             <Box style={{ margin: '3em' }}>
               <Typography variant='h3' style={styles.header}>
                 Habit-dashery
@@ -34,18 +45,19 @@ const ShopContainer = () => {
                 they are helping you on your quest for the best EcoHabits.
               </Typography>
             </Box>
-          </Paper>
+          </div>
         </Grid>
         <Grid container spacing={7}>
           {products.products.map((product, index) => {
             return (
               <Grid item lg={4}>
-                <CardComponent
+                <ShopCard
                   key={index}
                   name={product.name}
                   image={product.image}
                   price={product.price}
                   link={product.link}
+                  description={product.productsDescription}
                 />
               </Grid>
             );
@@ -53,6 +65,7 @@ const ShopContainer = () => {
         </Grid>
       </Grid>
     </Container>
+    </Grow>
   );
 };
 
