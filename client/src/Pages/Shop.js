@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import { Container, Grid, Box, Typography } from '@material-ui/core';
 import products from '../Utils/products.json';
 import Grow from '@material-ui/core/Grow';
-import CardComponent from '../Components/cardComponent';
+import ShopCard from '../Components/ShopCard';
 
 const styles = {
   root: {
@@ -51,7 +51,7 @@ const ShopContainer = () => {
           {products.products.map((product, index) => {
             return (
               <Grid item lg={4}>
-                <CardComponent
+                <ShopCard
                   key={index}
                   name={product.name}
                   image={product.image}

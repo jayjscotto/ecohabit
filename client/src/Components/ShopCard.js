@@ -2,13 +2,10 @@ import React, {useState} from 'react';
 import Fade from '@material-ui/core/Fade';
 import { FormButton } from './FormElements';
 import {
-  Card,
-  // CardActionArea,
   CardContent,
   CardMedia,
   Typography,
   Paper,
-  // BottomNavigation,
   makeStyles
 } from '@material-ui/core';
 
@@ -42,7 +39,7 @@ const useStyles = makeStyles({
   },
 });
 
-const CardComp = props => {
+const ShopCard = props => {
   const [checked, setChecked] = useState(false);
   const classes = useStyles();
 
@@ -98,4 +95,4 @@ const CardComp = props => {
   );
 };
 
-export default CardComp;
+export default ShopCard;
