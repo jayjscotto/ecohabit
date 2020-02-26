@@ -23,6 +23,7 @@ EcoHabit is a web app dedicated to every-day environmentally friendly habits.
 * [Material-UI](https://material-ui.com/) - A React component library based on Material Design.
 * [Chart.js](https://www.chartjs.org/) - A JavaScript library for datavisualization.
 * [Moment.js](https://momentjs.com/) - A JavaScript library for time calculations.
+* [React-hook-helper](https://github.com/revelcw/react-hooks-helper) - Custom React Hooks library targeting 'step' functionality
 * [Mongoose](https://mongoosejs.com/docs/guide.html) -  Object modeling for MongoDB/Node.js
 * [Passport-JWT](https://www.npmjs.com/package/passport) - Node package used as middleware for user authentication by hashing passwords. 
 * [Bcrypt](https://www.npmjs.com/package/bcrypt) - Node package used as middleware with Node and passport package for user authentication and password decryption. 
